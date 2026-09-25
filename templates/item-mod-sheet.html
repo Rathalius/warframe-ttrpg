@@ -1,0 +1,354 @@
+<form class="{{cssClass}} warframe-sheet-form item-sheet mod-sheet" autocomplete="off">
+  <!-- MOD SHEET HEADER -->
+  <header class="sheet-header" style="display: flex; align-items: center; gap: 12px; border-bottom: 1px solid rgba(0, 229, 255, 0.25); padding-bottom: 10px; margin-bottom: 12px;">
+    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" style="width: 56px; height: 56px; border-radius: 4px; border: 1px solid rgba(0, 229, 255, 0.4); object-fit: contain; background: rgba(0,0,0,0.5);" />
+    <div class="header-details" style="flex: 1; display: flex; flex-direction: column; gap: 4px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <input class="charname" name="name" type="text" value="{{item.name}}" placeholder="Nom du Mod" style="font-family: 'Orbitron', sans-serif; font-size: 16px; font-weight: bold; color: #fff; background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.1); width: 70%;" />
+        <span class="badge" style="background: rgba(0, 229, 255, 0.15); border: 1px solid #00e5ff; color: #00e5ff; font-family: 'Orbitron', sans-serif; font-size: 10px; text-transform: uppercase; padding: 2px 8px; border-radius: 3px;">
+          {{#if system.type}}{{system.type}}{{else}}MOD{{/if}}
+        </span>
+      </div>
+      <div style="display: flex; gap: 12px; align-items: center; font-size: 11px; color: #8892b0;">
+        <span style="display: inline-flex; align-items: center; gap: 4px;">Polarité : {{polarityIcon system.polarity}} <strong style="color: #fff;">{{system.polarity}}</strong></span>
+        <span>Drain : <strong style="color: #ffd700;">{{system.drain}}</strong></span>
+        <span>Rareté : <strong style="color: #e0e6ed; text-transform: capitalize;">{{system.rarity}}</strong></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- SHEET TABS -->
+  <nav class="sheet-tabs tabs" data-group="primary" style="display: flex; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 12px;">
+    <a class="item" data-tab="card" style="color: #ccd6f6; font-family: 'Orbitron', sans-serif; font-size: 11px; text-transform: uppercase; padding: 4px 10px; text-decoration: none; cursor: pointer;"><i class="fas fa-id-card"></i> Carte du Mod</a>
+    <a class="item" data-tab="stats" style="color: #ccd6f6; font-family: 'Orbitron', sans-serif; font-size: 11px; text-transform: uppercase; padding: 4px 10px; text-decoration: none; cursor: pointer;"><i class="fas fa-bolt"></i> Modificateurs de Stats</a>
+    <a class="item" data-tab="details" style="color: #ccd6f6; font-family: 'Orbitron', sans-serif; font-size: 11px; text-transform: uppercase; padding: 4px 10px; text-decoration: none; cursor: pointer;"><i class="fas fa-cog"></i> Configuration</a>
+  </nav>
+
+  <!-- SHEET BODY -->
+  <section class="sheet-body" style="overflow-y: auto;">
+    <!-- TAB 1: MOD CARD PREVIEW -->
+    <div class="tab card" data-group="primary" data-tab="card">
+      <div style="display: flex; justify-content: center; padding: 10px 0;">
+        <!-- HOLOGRAPHIC MOD DE WARFRAME CARD -->
+        <div class="warframe-mod-card-preview" style="width: 280px; min-height: 380px; background: linear-gradient(180deg, #161b22 0%, #0d1117 100%); border: 2px solid {{#if (eq system.rarity 'legendary')}}#e0e6ed{{else if (eq system.rarity 'rare')}}#ffd700{{else if (eq system.rarity 'uncommon')}}#c0c0c0{{else}}#cd7f32{{/if}}; border-radius: 8px; box-shadow: 0 0 15px rgba(0, 229, 255, 0.15); display: flex; flex-direction: column; overflow: hidden; position: relative;">
+          
+          <!-- Top Card Bar: Name & Drain / Polarité -->
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(0,0,0,0.4); border-bottom: 1px solid rgba(255,255,255,0.1);">
+            <span style="font-family: 'Orbitron', sans-serif; font-size: 12px; font-weight: bold; color: #fff;">{{item.name}}</span>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span style="font-family: 'Orbitron', sans-serif; font-size: 12px; font-weight: bold; color: #ffd700;">
+                {{#if (eq system.type 'aura')}}+{{system.drain}}{{else}}{{system.drain}}{{/if}}
+              </span>
+              <span style="font-size: 10px; color: #8892b0; font-weight: bold; display: inline-flex; align-items: center; gap: 3px;">{{polarityIcon system.polarity}} [{{system.polarity}}]</span>
+            </div>
+          </div>
+
+          <!-- Card Artwork Banner -->
+          <div style="height: 140px; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+            <img src="{{item.img}}" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 8px rgba(0,229,255,0.3)); border: none;" />
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, #0d1117 0%, transparent 100%); height: 30px;"></div>
+          </div>
+
+          <!-- Mod Subtype Badge -->
+          <div style="text-align: center; padding: 3px 0; background: rgba(0, 229, 255, 0.08); border-top: 1px solid rgba(0, 229, 255, 0.2); border-bottom: 1px solid rgba(0, 229, 255, 0.2);">
+            <span style="font-family: 'Orbitron', sans-serif; font-size: 9px; letter-spacing: 1px; color: #00e5ff; text-transform: uppercase; font-weight: bold;">
+              {{#if (eq system.type 'aura')}}AURA &bull; WARFRAME
+              {{else if (eq system.type 'stance')}}POSTURE &bull; MÊLÉE
+              {{else if (eq system.type 'exilus')}}EXILUS &bull; {{#if (eq system.modType 'warframe')}}WARFRAME{{else}}ARME{{/if}}
+              {{else if (eq system.modType 'warframe')}}MOD DE WARFRAME
+              {{else if (eq system.modType 'primary')}}MOD D'ARME PRINCIPALE
+              {{else if (eq system.modType 'secondary')}}MOD D'ARME SECONDAIRE
+              {{else if (eq system.modType 'melee')}}MOD DE MÊLÉE
+              {{else}}MOD D'ARME{{/if}}
+            </span>
+          </div>
+
+          <!-- Card Description & Stats -->
+          <div style="flex: 1; padding: 12px; font-size: 11px; color: #cbd5e1; line-height: 1.4; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              {{{system.description}}}
+            </div>
+
+            <!-- Stats summary list inside card -->
+            <div style="margin-top: 8px; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 6px; font-size: 10px; color: #2ecc71; font-weight: bold; display: flex; flex-direction: column; gap: 2px;">
+              {{#if system.stats.health}}<div>+{{system.stats.health}} Santé Max</div>{{/if}}
+              {{#if system.stats.shields}}<div>+{{system.stats.shields}} Boucliers Max</div>{{/if}}
+              {{#if system.stats.armor}}<div>+{{system.stats.armor}} Armure</div>{{/if}}
+              {{#if system.stats.energy}}<div>+{{system.stats.energy}} Énergie Max</div>{{/if}}
+              {{#if system.stats.powerStrength}}<div>{{#if (gt system.stats.powerStrength 0)}}+{{/if}}{{system.stats.powerStrength}}% Puissance des Pouvoirs</div>{{/if}}
+              {{#if system.stats.powerDuration}}<div>{{#if (gt system.stats.powerDuration 0)}}+{{/if}}{{system.stats.powerDuration}}% Durée des Pouvoirs</div>{{/if}}
+              {{#if system.stats.powerEfficiency}}<div>{{#if (gt system.stats.powerEfficiency 0)}}+{{/if}}{{system.stats.powerEfficiency}}% Efficacité des Pouvoirs</div>{{/if}}
+              {{#if system.stats.powerRange}}<div>{{#if (gt system.stats.powerRange 0)}}+{{/if}}{{system.stats.powerRange}}% Portée des Pouvoirs</div>{{/if}}
+              {{#if system.stats.sprintSpeed}}<div>+{{system.stats.sprintSpeed}} ft Vitesse de Sprint</div>{{/if}}
+
+              {{#if system.stats.damage}}<div>+{{system.stats.damage}}% Dégâts</div>{{/if}}
+              {{#if system.stats.critChance}}<div>+{{system.stats.critChance}}% Chances Critiques</div>{{/if}}
+              {{#if system.stats.critMultiplier}}<div>+{{system.stats.critMultiplier}}% Dégâts Critiques</div>{{/if}}
+              {{#if system.stats.statusChance}}<div>+{{system.stats.statusChance}}% Chances de Statut</div>{{/if}}
+              {{#if system.stats.multishot}}<div>+{{system.stats.multishot}}% Tir Multiple</div>{{/if}}
+              {{#if system.stats.fireRate}}<div>+{{system.stats.fireRate}}% Cadence de Tir</div>{{/if}}
+              {{#if system.stats.magazine}}<div>+{{system.stats.magazine}}% Capacité du Chargeur</div>{{/if}}
+              {{#if system.stats.reload}}<div>+{{system.stats.reload}}% Vitesse de Rechargement</div>{{/if}}
+              {{#if system.stats.range}}<div>+{{system.stats.range}} ft Portée de Mêlée</div>{{/if}}
+              {{#if system.stats.capacity}}<div>+{{system.stats.capacity}} Capacité de Mods</div>{{/if}}
+
+              {{#if system.stats.heat}}<div style="color: #ff7043;">+{{system.stats.heat}}% Dégâts de Feu</div>{{/if}}
+              {{#if system.stats.cold}}<div style="color: #29b6f6;">+{{system.stats.cold}}% Dégâts de Glace</div>{{/if}}
+              {{#if system.stats.electricity}}<div style="color: #ab47bc;">+{{system.stats.electricity}}% Dégâts Électriques</div>{{/if}}
+              {{#if system.stats.toxin}}<div style="color: #66bb6a;">+{{system.stats.toxin}}% Dégâts de Toxine</div>{{/if}}
+
+              {{#if system.stats.blast}}<div style="color: #ffa726;">+{{system.stats.blast}}% Dégâts Explosifs</div>{{/if}}
+              {{#if system.stats.radiation}}<div style="color: #ffee58;">+{{system.stats.radiation}}% Dégâts Radiatifs</div>{{/if}}
+              {{#if system.stats.gas}}<div style="color: #9ccc65;">+{{system.stats.gas}}% Dégâts de Gaz</div>{{/if}}
+              {{#if system.stats.magnetic}}<div style="color: #26c6da;">+{{system.stats.magnetic}}% Dégâts Magnétiques</div>{{/if}}
+              {{#if system.stats.viral}}<div style="color: #ec407a;">+{{system.stats.viral}}% Dégâts Viraux</div>{{/if}}
+              {{#if system.stats.corrosive}}<div style="color: #d4e157;">+{{system.stats.corrosive}}% Dégâts Corrosifs</div>{{/if}}
+
+              {{#if system.stats.slash}}<div style="color: #ef5350;">+{{system.stats.slash}}% Dégâts Tranchants</div>{{/if}}
+              {{#if system.stats.puncture}}<div style="color: #26a69a;">+{{system.stats.puncture}}% Dégâts Perforants</div>{{/if}}
+              {{#if system.stats.impact}}<div style="color: #b0bec5;">+{{system.stats.impact}}% Dégâts d'Impact</div>{{/if}}
+            </div>
+          </div>
+
+          <!-- Rank Pips Footer -->
+          <div style="padding: 6px; background: rgba(0,0,0,0.5); border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: center; gap: 4px;">
+            <span style="color: #00e5ff; font-size: 9px;">●</span>
+            <span style="color: #00e5ff; font-size: 9px;">●</span>
+            <span style="color: #00e5ff; font-size: 9px;">●</span>
+            <span style="color: #00e5ff; font-size: 9px;">●</span>
+            <span style="color: #00e5ff; font-size: 9px;">●</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: STAT MODIFIERS CONFIG -->
+    <div class="tab stats" data-group="primary" data-tab="stats">
+      <div class="card-panel" style="background: rgba(13, 17, 24, 0.6); border: 1px solid rgba(0, 229, 255, 0.2); border-radius: 6px; padding: 12px; display: flex; flex-direction: column; gap: 14px;">
+        
+        <!-- WARFRAME STATS -->
+        <div>
+          <h3 style="font-family: 'Orbitron', sans-serif; font-size: 11px; color: #00e5ff; margin: 0; border-bottom: 1px solid rgba(0, 229, 255, 0.2); padding-bottom: 4px; text-transform: uppercase;">
+            🛡️ Améliorations de Warframe
+          </h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px;">
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ccd6f6;">Bonus de Santé (+PV)</label>
+              <input type="number" name="system.stats.health" value="{{system.stats.health}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ccd6f6;">Bonus de Boucliers (+Boucliers)</label>
+              <input type="number" name="system.stats.shields" value="{{system.stats.shields}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ccd6f6;">Bonus d'Armure (+Armure)</label>
+              <input type="number" name="system.stats.armor" value="{{system.stats.armor}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ccd6f6;">Bonus d'Énergie (+Énergie Max)</label>
+              <input type="number" name="system.stats.energy" value="{{system.stats.energy}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ccd6f6;">Puissance des Pouvoirs (%)</label>
+              <input type="number" name="system.stats.powerStrength" value="{{system.stats.powerStrength}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ccd6f6;">Durée des Pouvoirs (%)</label>
+              <input type="number" name="system.stats.powerDuration" value="{{system.stats.powerDuration}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ccd6f6;">Efficacité des Pouvoirs (%) [Max 190%]</label>
+              <input type="number" name="system.stats.powerEfficiency" value="{{system.stats.powerEfficiency}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ccd6f6;">Portée des Pouvoirs (%)</label>
+              <input type="number" name="system.stats.powerRange" value="{{system.stats.powerRange}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ccd6f6;">Vitesse de Sprint (+ft)</label>
+              <input type="number" name="system.stats.sprintSpeed" value="{{system.stats.sprintSpeed}}" />
+            </div>
+          </div>
+        </div>
+
+        <!-- WEAPON COMBAT STATS -->
+        <div>
+          <h3 style="font-family: 'Orbitron', sans-serif; font-size: 11px; color: #ffd700; margin: 0; border-bottom: 1px solid rgba(255, 215, 0, 0.2); padding-bottom: 4px; text-transform: uppercase;">
+            ⚔️ Améliorations de Combat d'Arme
+          </h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px;">
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ccd6f6;">Dégâts de Base (%)</label>
+              <input type="number" name="system.stats.damage" value="{{system.stats.damage}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ccd6f6;">Chances de Coup Critique (%)</label>
+              <input type="number" name="system.stats.critChance" value="{{system.stats.critChance}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ccd6f6;">Dégâts Critiques (%)</label>
+              <input type="number" name="system.stats.critMultiplier" value="{{system.stats.critMultiplier}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ccd6f6;">Chances de Statut (%)</label>
+              <input type="number" name="system.stats.statusChance" value="{{system.stats.statusChance}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ccd6f6;">Tir Multiple (%)</label>
+              <input type="number" name="system.stats.multishot" value="{{system.stats.multishot}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ccd6f6;">Cadence de Tir / Vitesse (%)</label>
+              <input type="number" name="system.stats.fireRate" value="{{system.stats.fireRate}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ccd6f6;">Capacité du Chargeur (%)</label>
+              <input type="number" name="system.stats.magazine" value="{{system.stats.magazine}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ccd6f6;">Vitesse de Rechargement (%)</label>
+              <input type="number" name="system.stats.reload" value="{{system.stats.reload}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ccd6f6;">Portée de Mêlée (+ft)</label>
+              <input type="number" name="system.stats.range" value="{{system.stats.range}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ccd6f6;">Capacité de Mod de Posture (+Cap)</label>
+              <input type="number" name="system.stats.capacity" value="{{system.stats.capacity}}" />
+            </div>
+          </div>
+        </div>
+
+        <!-- ELEMENTAL DAMAGE STATS -->
+        <div>
+          <h3 style="font-family: 'Orbitron', sans-serif; font-size: 11px; color: #2ecc71; margin: 0; border-bottom: 1px solid rgba(46, 204, 113, 0.2); padding-bottom: 4px; text-transform: uppercase;">
+            🧪 Éléments de Base & Combinés
+          </h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px;">
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ff7043;">Dégâts de Feu (%)</label>
+              <input type="number" name="system.stats.heat" value="{{system.stats.heat}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #29b6f6;">Dégâts de Glace (%)</label>
+              <input type="number" name="system.stats.cold" value="{{system.stats.cold}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ab47bc;">Dégâts Électriques (%)</label>
+              <input type="number" name="system.stats.electricity" value="{{system.stats.electricity}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #66bb6a;">Dégâts de Toxine (%)</label>
+              <input type="number" name="system.stats.toxin" value="{{system.stats.toxin}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ffa726;">Explosion (Feu+Glace) (%)</label>
+              <input type="number" name="system.stats.blast" value="{{system.stats.blast}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ffee58;">Radiation (Feu+Élec) (%)</label>
+              <input type="number" name="system.stats.radiation" value="{{system.stats.radiation}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #9ccc65;">Gaz (Feu+Toxine) (%)</label>
+              <input type="number" name="system.stats.gas" value="{{system.stats.gas}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #26c6da;">Magnétique (Glace+Élec) (%)</label>
+              <input type="number" name="system.stats.magnetic" value="{{system.stats.magnetic}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #ec407a;">Viral (Glace+Toxine) (%)</label>
+              <input type="number" name="system.stats.viral" value="{{system.stats.viral}}" />
+            </div>
+            <div class="form-group">
+              <label style="font-size: 10px; color: #d4e157;">Corrosif (Élec+Toxine) (%)</label>
+              <input type="number" name="system.stats.corrosive" value="{{system.stats.corrosive}}" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 3: DETAILS & CONFIG -->
+    <div class="tab details" data-group="primary" data-tab="details">
+      <div class="card-panel" style="background: rgba(13, 17, 24, 0.6); border: 1px solid rgba(0, 229, 255, 0.2); border-radius: 6px; padding: 12px; display: flex; flex-direction: column; gap: 10px;">
+        <h3 style="font-family: 'Orbitron', sans-serif; font-size: 12px; color: #00e5ff; margin: 0; border-bottom: 1px solid rgba(0, 229, 255, 0.2); padding-bottom: 6px;">
+          Configuration du Mod
+        </h3>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <div class="form-group">
+            <label style="font-size: 11px; color: #ccd6f6;">Drain (Coût en Capacité)</label>
+            <input type="number" name="system.drain" value="{{system.drain}}" min="0" />
+          </div>
+
+          <div class="form-group">
+            <label style="font-size: 11px; color: #ccd6f6;">Polarity</label>
+            <select name="system.polarity">
+              <option value="Madurai" {{#if (eq system.polarity "Madurai")}}selected{{/if}}>Madurai (V)</option>
+              <option value="Vazarin" {{#if (eq system.polarity "Vazarin")}}selected{{/if}}>Vazarin (D)</option>
+              <option value="Naramon" {{#if (eq system.polarity "Naramon")}}selected{{/if}}>Naramon (-)</option>
+              <option value="Zenurik" {{#if (eq system.polarity "Zenurik")}}selected{{/if}}>Zenurik (=)</option>
+              <option value="Unairu" {{#if (eq system.polarity "Unairu")}}selected{{/if}}>Unairu (R)</option>
+              <option value="Umbra" {{#if (eq system.polarity "Umbra")}}selected{{/if}}>Umbra (U)</option>
+              <option value="universal" {{#if (eq system.polarity "universal")}}selected{{/if}}>Universelle</option>
+              <option value="none" {{#if (eq system.polarity "none")}}selected{{/if}}>Aucune</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label style="font-size: 11px; color: #ccd6f6;">Cible du Mod</label>
+            <select name="system.modType">
+              <option value="warframe" {{#if (eq system.modType "warframe")}}selected{{/if}}>Warframe</option>
+              <option value="primary" {{#if (eq system.modType "primary")}}selected{{/if}}>Arme Principale</option>
+              <option value="secondary" {{#if (eq system.modType "secondary")}}selected{{/if}}>Arme Secondaire</option>
+              <option value="melee" {{#if (eq system.modType "melee")}}selected{{/if}}>Arme de Mêlée</option>
+              <option value="weapon" {{#if (eq system.modType "weapon")}}selected{{/if}}>Arme Universelle</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label style="font-size: 11px; color: #ccd6f6;">Sous-type d'Arme</label>
+            <select name="system.weaponType">
+              <option value="all" {{#if (eq system.weaponType "all")}}selected{{/if}}>Toutes Armes / Universel</option>
+              <option value="rifle" {{#if (eq system.weaponType "rifle")}}selected{{/if}}>Fusil / Fusil d'Assaut</option>
+              <option value="shotgun" {{#if (eq system.weaponType "shotgun")}}selected{{/if}}>Fusil à Pompe</option>
+              <option value="pistol" {{#if (eq system.weaponType "pistol")}}selected{{/if}}>Pistolet / Arme de Poing</option>
+              <option value="bow" {{#if (eq system.weaponType "bow")}}selected{{/if}}>Arc / Fusil de Précision</option>
+              <option value="melee" {{#if (eq system.weaponType "melee")}}selected{{/if}}>Melee Weapon</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label style="font-size: 11px; color: #ccd6f6;">Catégorie de Mod</label>
+            <select name="system.type">
+              <option value="standard" {{#if (eq system.type "standard")}}selected{{/if}}>Mod Standard</option>
+              <option value="aura" {{#if (eq system.type "aura")}}selected{{/if}}>Mod d'Aura (Warframe)</option>
+              <option value="stance" {{#if (eq system.type "stance")}}selected{{/if}}>Mod de Posture (Mêlée)</option>
+              <option value="exilus" {{#if (eq system.type "exilus")}}selected{{/if}}>Mod Exilus / Utilitaire</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label style="font-size: 11px; color: #ccd6f6;">Rareté</label>
+            <select name="system.rarity">
+              <option value="common" {{#if (eq system.rarity "common")}}selected{{/if}}>Courant (Bronze)</option>
+              <option value="uncommon" {{#if (eq system.rarity "uncommon")}}selected{{/if}}>Peu Courant (Argent)</option>
+              <option value="rare" {{#if (eq system.rarity "rare")}}selected{{/if}}>Rare (Or)</option>
+              <option value="legendary" {{#if (eq system.rarity "legendary")}}selected{{/if}}>Légendaire (Platine)</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-top: 10px;">
+          <label style="font-size: 11px; color: #ccd6f6; font-weight: bold; margin-bottom: 4px; display: block;">Description & Règles du Mod</label>
+          {{editor system.description target="system.description" button=true owner=owner editable=editable}}
+        </div>
+      </div>
+    </div>
+  </section>
+</form>

@@ -1,0 +1,6363 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;600;800;900&display=swap');
+
+/* Window & Theme Overrides */
+.window-app.warframe-sheet {
+  background: radial-gradient(circle at top, #161e29 0%, #080a0f 100%) !important;
+  border: 1px solid rgba(0, 229, 255, 0.2) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 229, 255, 0.03) !important;
+  color: #e2e8f0 !important;
+  font-family: 'Inter', sans-serif;
+}
+
+.window-app.warframe-sheet .window-header {
+  background: rgba(8, 10, 15, 0.95) !important;
+  border-bottom: 1px solid rgba(0, 229, 255, 0.15) !important;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+}
+
+.window-app.warframe-sheet .window-header .window-title {
+  color: #00e5ff !important;
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+}
+
+.window-app.warframe-sheet .window-content {
+  background: transparent !important;
+  color: #e2e8f0;
+}
+
+/* Global inputs inside the sheet */
+.warframe-sheet-form input[type="text"],
+.warframe-sheet-form input[type="number"],
+.warframe-sheet-form select,
+.warframe-sheet-form textarea {
+  background: rgba(13, 17, 24, 0.7) !important;
+  border: 1px solid rgba(0, 229, 255, 0.15) !important;
+  border-radius: 4px;
+  color: #fff !important;
+  padding: 4px 8px;
+  transition: all 0.25s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.warframe-sheet-form input:focus,
+.warframe-sheet-form select:focus,
+.warframe-sheet-form textarea:focus {
+  border-color: #00e5ff !important;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.3) !important;
+  outline: none;
+}
+
+/* Header styling */
+.warframe-sheet-form .sheet-header {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  align-items: center;
+}
+
+.warframe-sheet-form .profile-img {
+  width: 90px;
+  height: 90px;
+  border: 2px solid rgba(0, 229, 255, 0.3);
+  border-radius: 6px;
+  object-fit: cover;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.1);
+  background: rgba(0,0,0,0.5);
+  cursor: pointer;
+}
+
+.warframe-sheet-form .profile-img:hover {
+  border-color: #00e5ff;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+}
+
+/* Dual Artwork (Portrait + Token) Group on Actor Sheets */
+.sheet-artwork-group {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.sheet-artwork-group .artwork-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.sheet-artwork-group .profile-img {
+  width: 80px;
+  height: 80px;
+  border: 2px solid rgba(0, 229, 255, 0.35);
+  border-radius: 8px;
+  object-fit: contain;
+  object-position: center;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.15);
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.1) 0%, rgba(10, 16, 26, 0.9) 100%);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sheet-artwork-group .profile-img:hover {
+  border-color: #00e5ff;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
+  transform: scale(1.04);
+}
+
+.sheet-artwork-group .token-img {
+  width: 80px;
+  height: 80px;
+  border: 2px solid rgba(255, 170, 0, 0.45);
+  border-radius: 50%;
+  object-fit: contain;
+  object-position: center;
+  box-shadow: 0 0 10px rgba(255, 170, 0, 0.25);
+  background: radial-gradient(circle, rgba(255, 170, 0, 0.1) 0%, rgba(26, 18, 10, 0.9) 100%);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sheet-artwork-group .token-img:hover {
+  border-color: #ffaa00;
+  box-shadow: 0 0 15px rgba(255, 170, 0, 0.6);
+  transform: scale(1.04);
+}
+
+.sheet-artwork-group .artwork-tag {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 9.5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 3px;
+  padding: 1px 7px;
+  white-space: nowrap;
+}
+
+.sheet-artwork-group .portrait-slot .artwork-tag {
+  color: #00e5ff;
+  background: rgba(0, 229, 255, 0.1);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+}
+
+.sheet-artwork-group .token-slot .artwork-tag {
+  color: #ffaa00;
+  background: rgba(255, 170, 0, 0.1);
+  border: 1px solid rgba(255, 170, 0, 0.35);
+}
+
+.warframe-sheet-form .header-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.warframe-sheet-form .header-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.warframe-sheet-form .charname {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  border: none !important;
+  background: transparent !important;
+  color: #fff !important;
+  box-shadow: none !important;
+  flex-grow: 1;
+}
+
+.warframe-sheet-form .level-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  border-radius: 4px;
+  padding: 4px 10px;
+  min-width: 70px;
+}
+
+.warframe-sheet-form .level-box label {
+  font-size: 9px;
+  text-transform: uppercase;
+  color: #00e5ff;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+}
+
+.warframe-sheet-form .level-box input {
+  width: 45px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.warframe-sheet-form .frame-info {
+  justify-content: space-between;
+}
+
+.warframe-sheet-form .info-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.warframe-sheet-form .info-field label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  color: #ffd700;
+  text-transform: uppercase;
+  text-shadow: 0 0 4px rgba(255, 215, 0, 0.2);
+}
+
+.warframe-sheet-form .info-field input {
+  font-size: 13px;
+  width: 180px;
+}
+
+.warframe-sheet-form .reactor-toggle {
+  font-size: 11px;
+  color: #ffd700;
+}
+
+.warframe-sheet-form .reactor-toggle input {
+  margin-right: 6px;
+  cursor: pointer;
+  accent-color: #ffd700;
+}
+
+/* Resources Grid */
+.warframe-sheet-form .resources-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.warframe-sheet-form .adversary-resources {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.warframe-sheet-form .resource-block {
+  background: rgba(13, 17, 24, 0.5);
+  border-radius: 6px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Resource Colors and Glows */
+.warframe-sheet-form .shield-block {
+  border: 1px solid rgba(0, 229, 255, 0.2);
+}
+.warframe-sheet-form .shield-block:hover {
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.25);
+  border-color: rgba(0, 229, 255, 0.4);
+}
+.warframe-sheet-form .shield-block .resource-label {
+  color: #00e5ff;
+  text-shadow: 0 0 6px rgba(0, 229, 255, 0.3);
+}
+
+.warframe-sheet-form .health-block {
+  border: 1px solid rgba(255, 42, 95, 0.2);
+}
+.warframe-sheet-form .health-block:hover {
+  box-shadow: 0 0 10px rgba(255, 42, 95, 0.25);
+  border-color: rgba(255, 42, 95, 0.4);
+}
+.warframe-sheet-form .health-block .resource-label {
+  color: #ff2a5f;
+  text-shadow: 0 0 6px rgba(255, 42, 95, 0.3);
+}
+
+.warframe-sheet-form .energy-block {
+  border: 1px solid rgba(138, 43, 226, 0.2);
+}
+.warframe-sheet-form .energy-block:hover {
+  box-shadow: 0 0 10px rgba(138, 43, 226, 0.25);
+  border-color: rgba(138, 43, 226, 0.4);
+}
+.warframe-sheet-form .energy-block .resource-label {
+  color: #b057ff;
+  text-shadow: 0 0 6px rgba(138, 43, 226, 0.3);
+}
+
+.warframe-sheet-form .armor-block {
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+.warframe-sheet-form .armor-block:hover {
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.25);
+  border-color: rgba(255, 215, 0, 0.4);
+}
+.warframe-sheet-form .armor-block .resource-label {
+  color: #ffd700;
+  text-shadow: 0 0 6px rgba(255, 215, 0, 0.3);
+}
+
+.warframe-sheet-form .resource-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.warframe-sheet-form .resource-inputs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.warframe-sheet-form .resource-inputs input {
+  width: 50px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.warframe-sheet-form .resource-inputs span {
+  opacity: 0.5;
+  font-size: 14px;
+}
+
+/* Tabs Navigation */
+.warframe-sheet-form .sheet-tabs {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 16px;
+  display: flex;
+}
+
+.warframe-sheet-form .sheet-tabs .item {
+  flex-grow: 1;
+  text-align: center;
+  padding: 8px 0;
+  color: #8892b0;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.warframe-sheet-form .sheet-tabs .item:hover {
+  color: #00e5ff;
+  text-shadow: 0 0 6px rgba(0, 229, 255, 0.2);
+}
+
+.warframe-sheet-form .sheet-tabs .item.active {
+  color: #00e5ff;
+  border-bottom-color: #00e5ff;
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+}
+
+/* Tab Panels */
+.warframe-sheet-form .tab {
+  display: none;
+}
+
+.warframe-sheet-form .tab.active {
+  display: block;
+}
+
+/* Stats Tab */
+.warframe-sheet-form .stats-container {
+  display: grid;
+  grid-template-columns: 1.1fr 1.3fr 1.1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.warframe-sheet-form .attributes-column,
+.warframe-sheet-form .skills-column,
+.warframe-sheet-form .power-stats-column {
+  background: rgba(13, 17, 24, 0.4);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 6px;
+  padding: 14px;
+}
+
+.warframe-sheet-form .skill-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  padding: 4px 6px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: all 0.2s ease;
+}
+
+.warframe-sheet-form .skill-row:hover {
+  background: rgba(0, 229, 255, 0.03);
+  border-color: rgba(0, 229, 255, 0.1);
+}
+
+.warframe-sheet-form .roll-skill-btn {
+  width: 24px;
+  height: 24px;
+  font-size: 10px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.04);
+}
+
+/* Custom circular checkbox styling */
+.warframe-sheet-form input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent !important;
+  border: 2px solid rgba(0, 229, 255, 0.4) !important;
+  border-radius: 50% !important;
+  width: 14px !important;
+  height: 14px !important;
+  min-width: 14px !important;
+  min-height: 14px !important;
+  flex-shrink: 0 !important;
+  aspect-ratio: 1 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  vertical-align: middle;
+  margin: 0 !important;
+}
+
+.warframe-sheet-form input[type="checkbox"]:checked {
+  background-color: #00e5ff !important;
+  border-color: #00e5ff !important;
+  box-shadow: 0 0 6px rgba(0, 229, 255, 0.6);
+}
+
+/* Orokin Reactor checkbox specific gold colors */
+.warframe-sheet-form .reactor-toggle input[type="checkbox"] {
+  border-color: rgba(255, 215, 0, 0.4) !important;
+}
+
+.warframe-sheet-form .reactor-toggle input[type="checkbox"]:checked {
+  background-color: #ffd700 !important;
+  border-color: #ffd700 !important;
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
+}
+
+.warframe-sheet-form .skill-label {
+  flex-grow: 1;
+  font-size: 11.5px;
+  color: #ccd6f6;
+}
+
+.warframe-sheet-form .skill-mod-badge {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffd700;
+  min-width: 32px;
+  text-align: right;
+  text-shadow: 0 0 4px rgba(255, 215, 0, 0.3);
+}
+
+.warframe-sheet-form h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #ffd700;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+  padding-bottom: 8px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+
+.warframe-sheet-form .attribute-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.warframe-sheet-form .roll-attribute {
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  color: #00e5ff;
+  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.warframe-sheet-form .roll-attribute:hover {
+  background: #00e5ff;
+  color: #080a0f;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+  transform: scale(1.05);
+}
+
+.warframe-sheet-form .attr-label {
+  flex-grow: 1;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: help;
+}
+
+.warframe-sheet-form .attribute-row input {
+  width: 60px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.warframe-sheet-form .attr-mod {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  color: #00e5ff;
+  min-width: 35px;
+  text-align: right;
+  text-shadow: 0 0 6px rgba(0, 229, 255, 0.4);
+}
+
+.warframe-sheet-form .stat-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.warframe-sheet-form .stat-entry label {
+  font-size: 11px;
+  color: #8892b0;
+}
+
+.warframe-sheet-form .stat-entry input {
+  width: 70px;
+  text-align: center;
+}
+
+.warframe-sheet-form .biography-section {
+  background: rgba(13, 17, 24, 0.4);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 6px;
+  padding: 16px;
+}
+
+/* Arsenal & Powers lists */
+.warframe-sheet-form .tab-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.warframe-sheet-form .tab-header-row h2 {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.warframe-sheet-form .action-btn {
+  background: rgba(0, 229, 255, 0.12) !important;
+  border: 1px solid #00e5ff !important;
+  color: #00e5ff !important;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.warframe-sheet-form .action-btn:hover {
+  background: #00e5ff !important;
+  color: #080a0f !important;
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.4);
+}
+
+.warframe-sheet-form .list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.warframe-sheet-form .card-panel {
+  background: rgba(22, 29, 39, 0.6);
+  border: 1px solid rgba(0, 229, 255, 0.1);
+  border-radius: 6px;
+  padding: 10px 14px;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(4px);
+}
+
+.warframe-sheet-form .card-panel:hover {
+  border-color: rgba(0, 229, 255, 0.25);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  transform: translateY(-1px);
+}
+
+.warframe-sheet-form .item-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.warframe-sheet-form .item-row.equipped {
+  border-color: rgba(0, 229, 255, 0.35);
+  background: rgba(0, 229, 255, 0.03);
+}
+
+.warframe-sheet-form .item-visual {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.warframe-sheet-form .item-visual img {
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.1);
+  object-fit: cover;
+  background: rgba(0,0,0,0.3);
+}
+
+.warframe-sheet-form .action-icon-btn {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+  border-radius: 4px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.warframe-sheet-form .action-icon-btn:hover {
+  background: #00e5ff;
+  color: #080a0f;
+  border-color: #00e5ff;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+}
+
+.warframe-sheet-form .action-icon-btn.cast:hover {
+  background: #b057ff;
+  border-color: #b057ff;
+  box-shadow: 0 0 8px rgba(176, 87, 255, 0.4);
+}
+
+.warframe-sheet-form .action-icon-btn.delete:hover {
+  background: #ff2a5f;
+  border-color: #ff2a5f;
+  box-shadow: 0 0 8px rgba(255, 42, 95, 0.4);
+}
+
+.warframe-sheet-form .action-icon-btn.toggle.active {
+  color: #00e5ff;
+  border-color: rgba(0, 229, 255, 0.3);
+  background: rgba(0, 229, 255, 0.1);
+}
+
+.warframe-sheet-form .item-info {
+  flex-grow: 1;
+}
+
+.warframe-sheet-form .item-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  color: #fff;
+}
+
+.warframe-sheet-form .badge {
+  font-size: 9px;
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #ccd6f6;
+}
+
+.warframe-sheet-form .badge.type {
+  border-color: rgba(0, 229, 255, 0.2);
+  color: #00e5ff;
+}
+
+.warframe-sheet-form .badge.damage {
+  border-color: rgba(255, 42, 95, 0.2);
+  color: #ff2a5f;
+}
+
+.warframe-sheet-form .badge.energy-cost {
+  border-color: rgba(138, 43, 226, 0.2);
+  color: #b057ff;
+}
+
+.warframe-sheet-form .badge.drain {
+  border-color: rgba(255, 215, 0, 0.2);
+  color: #ffd700;
+}
+
+.warframe-sheet-form .weapon-badges,
+.warframe-sheet-form .mod-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.warframe-sheet-form .ability-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.warframe-sheet-form .ability-title-row .item-name {
+  margin: 0;
+}
+
+.warframe-sheet-form .item-desc {
+  font-size: 11px;
+  color: #8892b0;
+  margin: 4px 0 0 0;
+  line-height: 1.4;
+}
+
+.warframe-sheet-form .item-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.warframe-sheet-form .empty-state {
+  text-align: center;
+  font-style: italic;
+  color: #8892b0;
+  padding: 20px;
+  background: rgba(0,0,0,0.15);
+  border: 1px dashed rgba(255,255,255,0.08);
+  border-radius: 6px;
+}
+
+/* Mod Capacity Bar styling */
+.warframe-sheet-form .mod-capacity-meter {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-grow: 1;
+  max-width: 300px;
+}
+
+.warframe-sheet-form .mod-capacity-meter h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  margin: 0;
+  color: #ffd700;
+}
+
+.warframe-sheet-form .meter-bar-container {
+  height: 8px;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.warframe-sheet-form .meter-bar {
+  height: 100%;
+  background: linear-gradient(to right, #00b0ff, #00e5ff);
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+  transition: width 0.3s ease;
+}
+
+.warframe-sheet-form .meter-bar.overloaded {
+  background: linear-gradient(to right, #ff2a5f, #ff007f);
+  box-shadow: 0 0 8px rgba(255, 42, 95, 0.5);
+}
+
+.warframe-sheet-form .capacity-text {
+  font-size: 9px;
+  color: #8892b0;
+}
+
+/* Adversary layout specific */
+.warframe-sheet-form.adversary-sheet .adversary-body-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.warframe-sheet-form.adversary-sheet textarea {
+  width: 100%;
+  height: 250px;
+  resize: vertical;
+  background: rgba(13, 17, 24, 0.4) !important;
+  border-color: rgba(255, 42, 95, 0.15) !important;
+}
+
+.warframe-sheet-form.adversary-sheet textarea:focus {
+  border-color: #ff2a5f !important;
+  box-shadow: 0 0 8px rgba(255, 42, 95, 0.3) !important;
+}
+
+/* Item Config Sheet specific */
+.warframe-sheet-form.item-sheet .item-sheet-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.warframe-sheet-form.item-sheet .form-group {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.warframe-sheet-form.item-sheet .form-group label {
+  font-size: 11px;
+  font-family: 'Orbitron', sans-serif;
+  color: #ffd700;
+  text-transform: uppercase;
+}
+
+.warframe-sheet-form.item-sheet textarea {
+  width: 100%;
+  height: 220px;
+  resize: none;
+}
+
+.warframe-sheet-form .badge.item-type-badge {
+  text-transform: uppercase;
+  color: #00e5ff;
+  border-color: #00e5ff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  align-self: flex-start;
+}
+
+/* Dedicated Weapon Sheet Styles */
+.warframe-sheet-form.weapon-sheet {
+  min-width: 560px;
+}
+
+.weapon-sheet-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(135deg, rgba(13, 17, 24, 0.95) 0%, rgba(20, 27, 40, 0.95) 100%);
+  border-bottom: 2px solid rgba(0, 229, 255, 0.25);
+  padding: 10px 14px;
+}
+
+.weapon-img-container {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  border: 1px solid rgba(0, 229, 255, 0.4);
+  border-radius: 6px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+}
+
+.weapon-profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border: none;
+}
+
+.weapon-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.weapon-name-input {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0;
+  padding: 2px 4px;
+  flex: 1;
+}
+
+.weapon-name-input:focus {
+  border-bottom-color: #00e5ff;
+  box-shadow: 0 1px 0 #00e5ff;
+}
+
+.weapon-type-pill {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: rgba(0, 229, 255, 0.1);
+  border: 1px solid rgba(0, 229, 255, 0.4);
+  color: #00e5ff;
+}
+
+.weapon-type-pill.secondary {
+  background: rgba(241, 196, 15, 0.1);
+  border-color: rgba(241, 196, 15, 0.4);
+  color: #f1c40f;
+}
+
+.weapon-type-pill.melee {
+  background: rgba(231, 76, 60, 0.1);
+  border-color: rgba(231, 76, 60, 0.4);
+  color: #ff2a5f;
+}
+
+.weapon-quick-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.quick-stat {
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.quick-stat .stat-label {
+  font-size: 8.5px;
+  text-transform: uppercase;
+  font-family: 'Orbitron', sans-serif;
+  color: #8892b0;
+}
+
+.quick-stat .stat-val {
+  font-size: 11px;
+  font-weight: bold;
+  color: #ccd6f6;
+}
+
+.quick-stat.damage .stat-val {
+  color: #00e5ff;
+}
+
+.quick-stat.crit .stat-val {
+  color: #f1c40f;
+}
+
+.quick-stat.status .stat-val {
+  color: #2ecc71;
+}
+
+.weapon-header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.roll-weapon-btn, .roll-weapon-finisher-btn {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 5px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.roll-weapon-btn.main-roll {
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.2) 0%, rgba(0, 229, 255, 0.05) 100%);
+  border: 1px solid #00e5ff;
+  color: #00e5ff;
+}
+
+.roll-weapon-btn.main-roll:hover {
+  background: #00e5ff;
+  color: #000;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+.roll-weapon-finisher-btn.finisher-roll {
+  background: rgba(255, 42, 95, 0.15);
+  border: 1px solid #ff2a5f;
+  color: #ff2a5f;
+}
+
+.roll-weapon-finisher-btn.finisher-roll:hover {
+  background: #ff2a5f;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(255, 42, 95, 0.5);
+}
+
+.weapon-stats-layout, .weapon-mods-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 4px;
+}
+
+.weapon-panel {
+  background: rgba(13, 17, 24, 0.6);
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+
+.weapon-panel h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  color: #00e5ff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 8px 0;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(0, 229, 255, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-row-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+}
+
+.catalyst-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(13, 17, 24, 0.7);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+
+.catalyst-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.catalyst-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  color: #00e5ff;
+}
+
+.catalyst-status {
+  font-size: 10px;
+}
+
+.toggle-catalyst-btn {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Custom Chat Card Styles */
+.warframe-chat-card {
+  font-family: 'Inter', sans-serif;
+  background: #0d1117;
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  overflow: hidden;
+  margin: 5px 0;
+}
+
+.warframe-chat-card .card-header {
+  padding: 8px 12px;
+  background: rgba(0, 229, 255, 0.15);
+  border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+}
+
+.warframe-chat-card .card-header.ability {
+  background: rgba(138, 43, 226, 0.2);
+  border-bottom-color: rgba(138, 43, 226, 0.3);
+}
+
+.warframe-chat-card .card-header.weapon {
+  background: rgba(255, 42, 95, 0.15);
+  border-bottom-color: rgba(255, 42, 95, 0.2);
+}
+
+.warframe-chat-card .header-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.warframe-chat-card .roll-label,
+.warframe-chat-card .cast-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #8892b0;
+}
+
+.warframe-chat-card h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  margin: 0;
+  border: none;
+  padding: 0;
+  color: #fff;
+}
+
+.warframe-chat-card .card-body {
+  padding: 10px 12px;
+  font-size: 12px;
+  color: #e2e8f0;
+}
+
+.warframe-chat-card .cost-row,
+.warframe-chat-card .stat-value-row {
+  margin: 0 0 10px 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  justify-content: space-between;
+}
+
+.warframe-chat-card .cost-row span,
+.warframe-chat-card .stat-value-row span {
+  color: #00e5ff;
+  font-weight: bold;
+}
+
+.warframe-chat-card .ability-card .cost-row span {
+  color: #b057ff;
+}
+
+.warframe-chat-card .ability-desc {
+  line-height: 1.4;
+  color: #ccd6f6;
+  font-style: italic;
+}
+
+.warframe-chat-card .weapon-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: 11px;
+}
+
+.warframe-chat-card .weapon-stats .dmg-type {
+  color: #ff2a5f;
+}
+
+.warframe-chat-card .roll-section {
+  margin-bottom: 10px;
+}
+
+.warframe-chat-card .roll-section:last-child {
+  margin-bottom: 0;
+}
+
+.warframe-chat-card .roll-sublabel {
+  font-size: 10px;
+  font-weight: bold;
+  color: #8892b0;
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Tweak default Foundry Roll HTML inside our chat card */
+.warframe-chat-card .dice-roll {
+  background: rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 4px;
+}
+
+.warframe-chat-card .dice-total {
+  font-family: 'Orbitron', sans-serif !important;
+  font-size: 20px !important;
+  background: rgba(0, 229, 255, 0.05) !important;
+  color: #00e5ff !important;
+  border: 1px solid rgba(0, 229, 255, 0.15) !important;
+  text-shadow: 0 0 6px rgba(0, 229, 255, 0.3);
+}
+
+.warframe-chat-card .weapon-card .dice-total {
+  color: #ff2a5f !important;
+  background: rgba(255, 42, 95, 0.05) !important;
+  border-color: rgba(255, 42, 95, 0.15) !important;
+  text-shadow: 0 0 6px rgba(255, 42, 95, 0.3);
+}
+
+.warframe-sheet-form textarea.bio-textarea {
+  width: 100% !important;
+  height: 180px !important;
+  resize: vertical !important;
+  line-height: 1.5 !important;
+  box-sizing: border-box !important;
+}
+
+.warframe-sheet-form textarea.adversary-desc-textarea {
+  width: 100% !important;
+  height: 250px !important;
+  resize: vertical !important;
+  line-height: 1.5 !important;
+  box-sizing: border-box !important;
+}
+
+/* Equipped Warframe Drag & Drop styling */
+.warframe-sheet-form .warframe-equipped-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.warframe-sheet-form .frame-dropzone {
+  border: 1px dashed rgba(0, 229, 255, 0.35);
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-family: 'Orbitron', sans-serif;
+  color: #8892b0;
+  background: rgba(0, 229, 255, 0.02);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.5px;
+}
+
+.warframe-sheet-form .frame-dropzone:hover {
+  border-color: #00e5ff;
+  color: #00e5ff;
+  background: rgba(0, 229, 255, 0.05);
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.2);
+}
+
+.warframe-sheet-form .equipped-frame-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  border-radius: 4px;
+  padding: 3px 8px;
+  color: #00e5ff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  text-shadow: 0 0 4px rgba(0, 229, 255, 0.3);
+}
+
+.warframe-sheet-form .equipped-frame-badge img {
+  border-radius: 3px;
+  border: 1px solid rgba(0, 229, 255, 0.4);
+  object-fit: cover;
+  background: rgba(0,0,0,0.5);
+}
+
+.warframe-sheet-form .unequip-btn {
+  background: transparent !important;
+  border: none !important;
+  color: #8892b0 !important;
+  font-size: 11px;
+  padding: 0 !important;
+  margin-left: 4px !important;
+  cursor: pointer;
+  width: auto !important;
+  height: auto !important;
+  display: inline-block !important;
+  transition: all 0.2s ease;
+}
+
+.warframe-sheet-form .unequip-btn:hover {
+  color: #ff2a5f !important;
+  transform: scale(1.2);
+}
+
+/* Armor Damage Reduction Badge */
+.warframe-sheet-form .armor-dr-badge {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffd700;
+  text-shadow: 0 0 4px rgba(255, 215, 0, 0.3);
+  margin-left: 6px;
+}
+
+/* Pulse animation for the dropzone icon */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.95); }
+}
+
+.warframe-sheet-form .animate-pulse {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+/* Selector Popup styling */
+.warframe-selector-popup .warframe-select-row:hover {
+  border-color: rgba(0, 229, 255, 0.4) !important;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.1);
+  background: rgba(0, 229, 255, 0.03) !important;
+}
+
+.window-app.warframe-sheet .warframe-selector-popup .select-frame-btn:hover {
+  background: #00e5ff !important;
+  color: #080a0f !important;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+  border-color: #00e5ff !important;
+}
+
+/* Resistances Section & Grid */
+.warframe-sheet-form .resistances-section {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.warframe-sheet-form .resistances-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.warframe-sheet-form .resistance-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 4px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.warframe-sheet-form .resistance-row:hover {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.warframe-sheet-form .damage-type-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  color: #8892b0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.warframe-sheet-form .resistance-select {
+  font-size: 10px !important;
+  height: 22px !important;
+  padding: 2px 4px !important;
+  width: 100% !important;
+  border-radius: 3px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  text-align: center !important;
+  background: rgba(22, 29, 39, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #ccd6f6 !important;
+}
+
+/* Resistance state styles */
+.warframe-sheet-form .resistance-select.resistant {
+  border-color: rgba(0, 229, 255, 0.4) !important;
+  background: rgba(0, 229, 255, 0.08) !important;
+  color: #00e5ff !important;
+  text-shadow: 0 0 4px rgba(0, 229, 255, 0.3);
+}
+
+.warframe-sheet-form .resistance-select.immune {
+  border-color: rgba(176, 87, 255, 0.4) !important;
+  background: rgba(138, 43, 226, 0.08) !important;
+  color: #b057ff !important;
+  text-shadow: 0 0 4px rgba(176, 87, 255, 0.3);
+}
+
+.warframe-sheet-form .resistance-select.vulnerable {
+  border-color: rgba(255, 42, 95, 0.4) !important;
+  background: rgba(255, 42, 95, 0.08) !important;
+  color: #ff2a5f !important;
+  text-shadow: 0 0 4px rgba(255, 42, 95, 0.3);
+}
+
+/* Styled option elements in dropdown menus to match sheet theme */
+.warframe-sheet-form .resistance-select option {
+  background-color: #121820 !important;
+  color: #ccd6f6 !important;
+  font-weight: bold;
+}
+
+.warframe-sheet-form .resistance-select option[value="normal"] {
+  color: #ccd6f6 !important;
+}
+
+.warframe-sheet-form .resistance-select option[value="resistant"] {
+  color: #00e5ff !important;
+}
+
+.warframe-sheet-form .resistance-select option[value="immune"] {
+  color: #b057ff !important;
+}
+
+.warframe-sheet-form .resistance-select option[value="vulnerable"] {
+  color: #ff2a5f !important;
+}
+
+.warframe-sheet-form .resistance-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.15));
+  margin-bottom: 2px;
+}
+
+/* Mod upgrade grid styling */
+.warframe-sheet-form .mod-upgrade-grid-panel {
+  margin-top: 16px;
+  margin-bottom: 20px;
+}
+
+.warframe-sheet-form .mod-upgrade-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.warframe-sheet-form .mod-upgrade-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.warframe-sheet-form .mod-upgrade-row.top-row.jade-top-row {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 75%;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.switch-twin-btn {
+  transition: all 0.2s ease;
+  white-space: nowrap !important;
+}
+
+.switch-twin-btn.header-twin-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  height: 20px !important;
+  max-height: 20px !important;
+  line-height: 18px !important;
+  padding: 1px 7px !important;
+  font-size: 9.5px !important;
+  font-family: 'Orbitron', sans-serif !important;
+  font-weight: 700 !important;
+  color: #ffd700 !important;
+  background: linear-gradient(135deg, rgba(230, 180, 34, 0.2) 0%, rgba(255, 120, 0, 0.25) 100%) !important;
+  border: 1px solid rgba(255, 215, 0, 0.5) !important;
+  border-radius: 3px !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: fit-content !important;
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.2) !important;
+}
+
+.switch-twin-btn.header-twin-btn:hover {
+  background: linear-gradient(135deg, rgba(230, 180, 34, 0.4) 0%, rgba(255, 120, 0, 0.45) 100%) !important;
+  border-color: #ffd700 !important;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5) !important;
+  transform: translateY(-1px);
+}
+
+.switch-twin-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.2);
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.6) !important;
+}
+
+.switch-twin-btn i.fa-sync-alt {
+  transition: transform 0.4s ease;
+}
+
+.switch-twin-btn:hover i.fa-sync-alt {
+  transform: rotate(180deg);
+}
+
+.warframe-sheet-form .mod-slot-card-spacer {
+  visibility: hidden;
+  height: 120px;
+}
+
+.warframe-sheet-form .mod-slot-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.warframe-sheet-form .slot-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #8892b0;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.warframe-sheet-form .mod-slot-card {
+  height: 120px;
+  width: 100%;
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+}
+
+/* Empty mod slot card styling */
+.warframe-sheet-form .mod-slot-card.empty {
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.warframe-sheet-form .mod-slot-card.empty:hover {
+  border-color: rgba(0, 229, 255, 0.4);
+  background: rgba(0, 229, 255, 0.02);
+  box-shadow: inset 0 0 10px rgba(0, 229, 255, 0.05);
+}
+
+.warframe-sheet-form .mod-slot-card.empty .empty-slot-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  color: #4a5568;
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.warframe-sheet-form .mod-slot-card.empty .empty-slot-content i {
+  font-size: 14px;
+}
+
+.warframe-sheet-form .mod-slot-card.empty:hover .empty-slot-content {
+  color: #00e5ff;
+}
+
+/* Occupied mod slot card styling */
+.warframe-sheet-form .mod-slot-card.occupied {
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  background: linear-gradient(180deg, rgba(16, 26, 38, 0.95) 0%, rgba(10, 16, 26, 0.98) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  padding: 4px 4px 2px 4px;
+}
+
+.warframe-sheet-form .mod-slot-card.occupied:hover {
+  border-color: #00e5ff;
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.35);
+  transform: translateY(-2px);
+}
+
+/* Rarity border styling for occupied mod cards */
+.warframe-sheet-form .mod-slot-card.occupied.rarity-common {
+  border: 1px solid rgba(205, 127, 50, 0.6);
+}
+.warframe-sheet-form .mod-slot-card.occupied.rarity-common:hover {
+  border-color: #cd7f32;
+  box-shadow: 0 0 10px rgba(205, 127, 50, 0.4);
+}
+
+.warframe-sheet-form .mod-slot-card.occupied.rarity-uncommon {
+  border: 1px solid rgba(192, 192, 192, 0.6);
+}
+.warframe-sheet-form .mod-slot-card.occupied.rarity-uncommon:hover {
+  border-color: #ffffff;
+  box-shadow: 0 0 10px rgba(220, 220, 220, 0.4);
+}
+
+.warframe-sheet-form .mod-slot-card.occupied.rarity-rare {
+  border: 1px solid rgba(255, 215, 0, 0.6);
+}
+.warframe-sheet-form .mod-slot-card.occupied.rarity-rare:hover {
+  border-color: #ffd700;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+}
+
+.warframe-sheet-form .mod-slot-card.occupied.rarity-legendary {
+  border: 1px solid rgba(224, 230, 237, 0.8);
+  box-shadow: 0 0 8px rgba(224, 230, 237, 0.25);
+}
+.warframe-sheet-form .mod-slot-card.occupied.rarity-legendary:hover {
+  border-color: #ffffff;
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.7);
+}
+
+/* Mod Artwork Thumbnail in slot card */
+.warframe-sheet-form .mod-art-container {
+  width: 32px;
+  height: 32px;
+  min-height: 32px;
+  margin: 1px auto 2px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  overflow: hidden;
+  box-shadow: 0 0 6px rgba(0, 229, 255, 0.15);
+  flex-shrink: 0;
+}
+
+.warframe-sheet-form .mod-art-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  border: none !important;
+  background: transparent !important;
+  filter: drop-shadow(0 0 3px rgba(0, 229, 255, 0.5));
+}
+
+.warframe-sheet-form .mod-slot-card.occupied:hover .mod-art-container {
+  border-color: #00e5ff;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+}
+
+/* Card Top Bar Layout for Occupied Mod Cards */
+.warframe-sheet-form .card-top-bar {
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  right: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.warframe-sheet-form .card-polarities-cluster {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  pointer-events: auto;
+}
+
+/* Mod Polarity Badge (Green if match, Red if mismatch) */
+.warframe-sheet-form .mod-polarity-badge {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+  background: rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: help;
+}
+
+.warframe-sheet-form .mod-polarity-badge.match {
+  background: rgba(46, 204, 113, 0.25) !important;
+  border: 1px solid #2ecc71 !important;
+  box-shadow: 0 0 6px rgba(46, 204, 113, 0.6) !important;
+}
+
+.warframe-sheet-form .mod-polarity-badge.mismatch {
+  background: rgba(255, 42, 95, 0.25) !important;
+  border: 1px solid #ff2a5f !important;
+  box-shadow: 0 0 6px rgba(255, 42, 95, 0.6) !important;
+}
+
+.warframe-sheet-form .mod-polarity-badge.neutral {
+  background: rgba(0, 0, 0, 0.65) !important;
+  border: 1px solid rgba(0, 229, 255, 0.3) !important;
+}
+
+/* Mod Polarity Icon Image */
+.warframe-sheet-form .polarity-icon-img.mod-pol-img {
+  width: 12px;
+  height: 12px;
+  object-fit: contain;
+  mix-blend-mode: screen;
+}
+
+.warframe-sheet-form .polarity-icon-img.mod-pol-img.match {
+  filter: drop-shadow(0 0 3px #2ecc71) drop-shadow(0 0 1px #2ecc71) brightness(1.3) !important;
+}
+
+.warframe-sheet-form .polarity-icon-img.mod-pol-img.mismatch {
+  filter: drop-shadow(0 0 3px #ff2a5f) drop-shadow(0 0 1px #ff2a5f) brightness(1.3) !important;
+}
+
+/* Polarities in slot styling */
+.warframe-sheet-form .slot-polarity {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  pointer-events: auto;
+}
+
+.warframe-sheet-form .card-polarities-cluster .slot-polarity {
+  position: static;
+}
+
+.warframe-sheet-form .slot-polarity:hover {
+  transform: scale(1.25);
+}
+
+.warframe-sheet-form .slot-polarity.match {
+  box-shadow: 0 0 5px rgba(46, 204, 113, 0.5);
+  border: 1px solid rgba(46, 204, 113, 0.5);
+  background: rgba(46, 204, 113, 0.15);
+}
+
+.warframe-sheet-form .slot-polarity.mismatch {
+  box-shadow: 0 0 5px rgba(255, 42, 95, 0.5);
+  border: 1px solid rgba(255, 42, 95, 0.5);
+  background: rgba(255, 42, 95, 0.15);
+}
+
+.warframe-sheet-form .polarity-icon-img {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  border-radius: 50%;
+  border: none !important;
+  background: transparent !important;
+  filter: drop-shadow(0 0 2px rgba(0, 229, 255, 0.75)) brightness(1.2);
+}
+
+.warframe-sheet-form .polarity-blank {
+  width: 12px;
+  height: 12px;
+  border: 1.5px dashed rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+.warframe-sheet-form .slot-polarity:hover .polarity-blank {
+  border-color: #ffd700;
+  border-style: solid;
+  opacity: 1;
+  box-shadow: 0 0 4px rgba(255, 215, 0, 0.4);
+}
+
+
+/* Drain badges styling */
+.warframe-sheet-form .mod-drain-badge {
+  position: static;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  z-index: 5;
+  pointer-events: auto;
+}
+
+.warframe-sheet-form .mod-drain-badge.match {
+  color: #2ecc71 !important;
+  border-color: #2ecc71 !important;
+  background: rgba(46, 204, 113, 0.2) !important;
+  text-shadow: 0 0 4px rgba(46, 204, 113, 0.6);
+  box-shadow: 0 0 6px rgba(46, 204, 113, 0.35);
+}
+
+.warframe-sheet-form .mod-drain-badge.mismatch {
+  color: #ff2a5f !important;
+  border-color: #ff2a5f !important;
+  background: rgba(255, 42, 95, 0.2) !important;
+  text-shadow: 0 0 4px rgba(255, 42, 95, 0.6);
+  box-shadow: 0 0 6px rgba(255, 42, 95, 0.35);
+}
+
+.warframe-sheet-form .mod-drain-badge.neutral {
+  color: #fff !important;
+  border-color: rgba(0, 229, 255, 0.3) !important;
+}
+
+/* Slotted Mod Header & Body */
+.warframe-sheet-form .mod-card-header {
+  padding: 0 4px 2px 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: transparent;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.warframe-sheet-form .mod-name {
+  font-family: 'Orbitron', sans-serif !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+  line-height: 12px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+
+.warframe-sheet-form .mod-card-body {
+  padding: 3px 4px 2px 4px;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.warframe-sheet-form .mod-desc,
+.warframe-sheet-form .mod-desc p,
+.warframe-sheet-form .mod-card-body p {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 8px !important;
+  line-height: 1.2 !important;
+  color: #a0aec0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: center !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  word-break: break-word !important;
+}
+
+.warframe-sheet-form .mod-desc strong,
+.warframe-sheet-form .mod-desc b,
+.warframe-sheet-form .mod-card-body p strong,
+.warframe-sheet-form .mod-card-body p b {
+  color: #00e5ff !important;
+  font-weight: 700 !important;
+  font-size: 8px !important;
+}
+
+/* Unequipped inventory title */
+.warframe-sheet-form .mods-inventory-section {
+  margin-top: 24px;
+}
+
+.warframe-sheet-form .mods-inventory-section h2 {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+}
+
+/* Profile Tab Grid Layout & Inputs */
+.warframe-sheet-form .profile-details-grid {
+  margin-bottom: 16px;
+}
+
+.warframe-sheet-form .profile-inputs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.warframe-sheet-form .profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.warframe-sheet-form .profile-field label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  color: #8892b0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.warframe-sheet-form .profile-field input {
+  background: rgba(22, 29, 39, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 4px !important;
+  color: #fff !important;
+  font-size: 11.5px !important;
+  height: 28px !important;
+  padding: 4px 8px !important;
+  font-family: 'Orbitron', sans-serif;
+  transition: all 0.2s ease;
+}
+
+.warframe-sheet-form .profile-field input:focus {
+  border-color: #00e5ff !important;
+  box-shadow: 0 0 6px rgba(0, 229, 255, 0.25) !important;
+}
+
+.warframe-sheet-form .biography-section textarea.bio-textarea {
+  height: 250px !important;
+}
+
+/* Focus School styling */
+.warframe-sheet-form .focus-school-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  grid-column: span 2;
+}
+
+.warframe-sheet-form .school-dropzone {
+  border: 1px dashed rgba(0, 229, 255, 0.3);
+  border-radius: 4px;
+  padding: 5px 12px;
+  font-size: 11px;
+  font-family: 'Orbitron', sans-serif;
+  color: #8892b0;
+  background: rgba(0, 229, 255, 0.02);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.5px;
+  height: 28px;
+  box-sizing: border-box;
+}
+
+.warframe-sheet-form .school-dropzone:hover {
+  border-color: #00e5ff;
+  color: #00e5ff;
+  background: rgba(0, 229, 255, 0.05);
+  box-shadow: 0 0 6px rgba(0, 229, 255, 0.15);
+}
+
+.warframe-sheet-form .equipped-school-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  border-radius: 4px;
+  padding: 3px 8px;
+  color: #00e5ff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  height: 28px;
+  box-sizing: border-box;
+  width: max-content;
+  text-shadow: 0 0 4px rgba(0, 229, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.warframe-sheet-form .equipped-school-badge:hover {
+  border-color: #00e5ff;
+  box-shadow: 0 0 6px rgba(0, 229, 255, 0.2);
+}
+
+.warframe-sheet-form .school-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  border-radius: 50%;
+  border: none !important;
+  background: transparent !important;
+  filter: drop-shadow(0 0 2px rgba(0, 229, 255, 0.5));
+}
+
+.warframe-sheet-form .remove-school-btn {
+  background: transparent !important;
+  border: none !important;
+  color: #8892b0 !important;
+  font-size: 10px;
+  padding: 0 !important;
+  margin-left: 4px !important;
+  cursor: pointer;
+  width: auto !important;
+  height: auto !important;
+  display: inline-block !important;
+  transition: all 0.2s ease;
+}
+
+.warframe-sheet-form .remove-school-btn:hover {
+  color: #ff2a5f !important;
+  transform: scale(1.2);
+}
+
+/* Custom Focus Tree Dialog Style */
+.focus-tree-popup.dialog {
+  background: radial-gradient(circle at center, #0f1622 0%, #070a0f 100%) !important;
+  border: 1.5px solid rgba(0, 229, 255, 0.2) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.15) !important;
+}
+
+.focus-tree-popup .window-header {
+  background: transparent !important;
+  border-bottom: none !important;
+}
+
+.focus-tree-popup .window-content {
+  background: transparent !important;
+  color: #fff !important;
+  font-family: 'Outfit', sans-serif !important;
+}
+
+.focus-tree-popup .dialog-buttons {
+  display: none !important; /* No buttons needed since it's an interactive panel */
+}
+
+/* Focus Tree Node Cards */
+.focus-tree-window .tree-node-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: 10px 8px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  user-select: none;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 105px;
+  justify-content: flex-start;
+}
+
+.focus-tree-window .node-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 11px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.focus-tree-window .node-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.focus-tree-window .node-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.focus-tree-window .node-type {
+  font-size: 7px;
+  text-transform: uppercase;
+  color: #8892b0;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.focus-tree-window .node-desc {
+  font-size: 8.5px;
+  color: #a0aec0;
+  margin: 0;
+  line-height: 1.15;
+}
+
+/* Node States: Locked */
+.focus-tree-window .tree-node-card.locked {
+  border-color: rgba(255, 255, 255, 0.03);
+  opacity: 0.45;
+}
+
+.focus-tree-window .tree-node-card.locked .node-icon {
+  background: rgba(255, 255, 255, 0.05);
+  color: #718096;
+}
+
+.focus-tree-window .tree-node-card.locked .node-name {
+  color: #718096;
+}
+
+/* Node States: Unlockable */
+.focus-tree-window .tree-node-card.locked.unlockable {
+  border-color: rgba(0, 229, 255, 0.25);
+  opacity: 0.85;
+}
+
+.focus-tree-window .tree-node-card.locked.unlockable .node-icon {
+  background: rgba(0, 229, 255, 0.08);
+  color: #00e5ff;
+}
+
+.focus-tree-window .tree-node-card.locked.unlockable .node-name {
+  color: #ccd6f6;
+}
+
+.focus-tree-window .tree-node-card.locked.unlockable:hover {
+  border-color: #00e5ff;
+  background: rgba(0, 229, 255, 0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+  opacity: 1;
+}
+
+/* Node States: Unlocked */
+.focus-tree-window .tree-node-card.unlocked {
+  border-color: #00e5ff;
+  background: rgba(0, 229, 255, 0.12);
+  opacity: 1;
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.35);
+}
+
+.focus-tree-window .tree-node-card.unlocked .node-icon {
+  background: #00e5ff;
+  color: #070a0f;
+  box-shadow: 0 0 8px #00e5ff;
+}
+
+.focus-tree-window .tree-node-card.unlocked .node-name {
+  color: #fff;
+}
+
+.focus-tree-window .tree-node-card.unlocked .node-desc {
+  color: #fff;
+}
+
+.focus-tree-window .tree-node-card.unlocked:hover {
+  border-color: #ff2a5f;
+  background: rgba(255, 42, 95, 0.08);
+  box-shadow: 0 0 12px rgba(255, 42, 95, 0.4);
+}
+
+.focus-tree-window .tree-node-card.unlocked:hover .node-icon {
+  background: #ff2a5f;
+  color: #fff;
+  box-shadow: 0 0 8px #ff2a5f;
+}
+
+/* Focus School button and container fixes */
+.warframe-sheet-form .equipped-school-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+
+.warframe-sheet-form .view-tree-btn {
+  height: 28px !important;
+  font-size: 10.5px !important;
+  font-family: 'Orbitron', sans-serif !important;
+  font-weight: 700 !important;
+  background: rgba(0, 229, 255, 0.1) !important;
+  border: 1px solid rgba(0, 229, 255, 0.35) !important;
+  color: #00e5ff !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 0 12px !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+.warframe-sheet-form .view-tree-btn:hover {
+  background: rgba(0, 229, 255, 0.2) !important;
+  border-color: #00e5ff !important;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.3) !important;
+}
+
+/* Extended Focus Tree Grid Layout */
+.focus-tree-window .tree-layout-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.focus-tree-window .tree-grid-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  width: 100%;
+}
+
+/* Tier-specific grid placement */
+.focus-tree-window .tier-1-row .center-card {
+  grid-column: 2 / span 2;
+  justify-self: center;
+}
+
+.focus-tree-window .tier-2-row .left-card {
+  grid-column: 1 / span 2;
+  justify-self: center;
+  margin-right: -20px;
+}
+
+.focus-tree-window .tier-2-row .right-card {
+  grid-column: 3 / span 2;
+  justify-self: center;
+  margin-left: -20px;
+}
+
+.focus-tree-window .tier-3-row .tree-node-card,
+.focus-tree-window .tier-4-row .tree-node-card {
+  grid-column: span 1;
+  width: 100%;
+}
+
+.focus-tree-window .tree-node-card {
+  width: 100% !important;
+}
+
+/* Active Effects Styling */
+.warframe-sheet-form .effects-list-container {
+  padding: 16px;
+}
+
+.warframe-sheet-form .effect-table-header {
+  display: grid;
+  grid-template-columns: 2.5fr 1.2fr 1fr 120px;
+  padding: 8px 12px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  color: #8892b0;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 8px;
+}
+
+.warframe-sheet-form .effect-row {
+  display: grid;
+  grid-template-columns: 2.5fr 1.2fr 1fr 120px;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.warframe-sheet-form .effect-row:hover {
+  border-color: rgba(0, 229, 255, 0.15);
+  background: rgba(0, 229, 255, 0.02);
+}
+
+.warframe-sheet-form .effect-name-col {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.warframe-sheet-form .effect-name-col img {
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0c111c;
+  object-fit: contain;
+}
+
+.warframe-sheet-form .effect-title-span {
+  font-weight: bold;
+  font-size: 12px;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+
+.warframe-sheet-form .effect-title-span.disabled-effect {
+  color: #718096 !important;
+  text-decoration: line-through;
+}
+
+.warframe-sheet-form .effect-source,
+.warframe-sheet-form .effect-duration {
+  font-size: 11px;
+  color: #a0aec0;
+}
+
+.warframe-sheet-form .effect-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+}
+
+.warframe-sheet-form .effect-controls button {
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  font-size: 13px !important;
+  transition: all 0.2s ease !important;
+  width: auto !important;
+  height: auto !important;
+  display: inline-block !important;
+  box-shadow: none !important;
+}
+
+.warframe-sheet-form .effect-controls button.toggle {
+  color: #00e5ff !important;
+}
+
+.warframe-sheet-form .effect-controls button.toggle:hover {
+  color: #fff !important;
+  transform: scale(1.2);
+}
+
+.warframe-sheet-form .effect-controls button.edit {
+  color: #ffd700 !important;
+}
+
+.warframe-sheet-form .effect-controls button.edit:hover {
+  color: #fff !important;
+  transform: scale(1.2);
+}
+
+.warframe-sheet-form .effect-controls button.delete {
+  color: #ff2a5f !important;
+}
+
+.warframe-sheet-form .effect-controls button.delete:hover {
+  color: #fff !important;
+  transform: scale(1.2);
+}
+
+/* Consumable Type Check Cards */
+.warframe-sheet-form .type-check-card {
+  transition: all 0.2s ease !important;
+}
+
+.warframe-sheet-form .type-check-card:hover {
+  border-color: rgba(0, 229, 255, 0.4) !important;
+  background: rgba(13, 17, 24, 0.6) !important;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.warframe-sheet-form .type-check-card.active {
+  border-color: #ffd700 !important;
+  background: rgba(255, 215, 0, 0.05) !important;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.15);
+}
+
+/* Dark Theme Selects & Dropdowns */
+select, 
+select option, 
+.forma-use-form select, 
+.forma-use-form select option,
+.warframe-sheet select,
+.warframe-sheet select option {
+  background-color: #0c111c !important;
+  color: #ccd6f6 !important;
+  border: 1px solid rgba(0, 229, 255, 0.2) !important;
+}
+
+select:focus, 
+.forma-use-form select:focus,
+.warframe-sheet select:focus {
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.4) !important;
+  border-color: #00e5ff !important;
+}
+
+/* Restrict Widths for Clean Look */
+.warframe-sheet-form.item-sheet:not(.weapon-sheet) select {
+  width: 240px !important;
+  max-width: 240px !important;
+}
+
+.warframe-sheet-form.weapon-sheet select {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.forma-use-form select {
+  width: 240px !important;
+  max-width: 240px !important;
+  margin-left: auto !important;
+}
+
+/* Force dark label font color inside the Apply Forma dialog */
+.forma-use-form label {
+  color: #0b121f !important;
+  text-shadow: none !important;
+}
+
+/* Character Sheet Saving Throws */
+.warframe-sheet-form .saving-throws-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.warframe-sheet-form .save-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: all 0.2s ease;
+}
+
+.warframe-sheet-form .save-row:hover {
+  background: rgba(0, 229, 255, 0.03);
+  border-color: rgba(0, 229, 255, 0.1);
+}
+
+.warframe-sheet-form .save-label {
+  flex-grow: 1;
+  font-size: 11.5px;
+  color: #ccd6f6;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.warframe-sheet-form .save-mod-badge {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #00e5ff;
+  min-width: 32px;
+  text-align: right;
+  text-shadow: 0 0 4px rgba(0, 229, 255, 0.3);
+}
+
+.warframe-sheet-form .roll-save-btn {
+  width: 24px;
+  height: 24px;
+  font-size: 10px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.04);
+}
+
+/* Premium Dark Chat Messages Overrides */
+.chat-message {
+  background: rgba(16, 22, 33, 0.95) !important;
+  background-color: rgba(16, 22, 33, 0.95) !important;
+  background-image: none !important;
+  border: 1px solid rgba(0, 229, 255, 0.15) !important;
+  color: #ccd6f6 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+  border-radius: 6px !important;
+  margin: 6px 0 !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.chat-message .message-header {
+  color: #8892b0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  padding-bottom: 6px !important;
+  margin-bottom: 8px !important;
+}
+
+.chat-message .message-metadata {
+  color: rgba(255, 255, 255, 0.35) !important;
+}
+
+.chat-message .message-header .message-sender {
+  font-family: 'Orbitron', sans-serif !important;
+  font-weight: 700 !important;
+  color: #00e5ff !important;
+}
+
+.chat-message .message-metadata a.message-delete {
+  color: #ff2a5f !important;
+}
+
+.chat-message .message-metadata a.message-delete:hover {
+  text-shadow: 0 0 6px rgba(255, 42, 95, 0.6) !important;
+}
+
+/* Dice roll panels inside chat messages */
+.chat-message .dice-roll .dice-formula {
+  background: rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #ccd6f6 !important;
+  border-radius: 4px !important;
+  padding: 6px !important;
+}
+
+.chat-message .dice-roll .dice-total {
+  background: rgba(0, 229, 255, 0.05) !important;
+  border: 1px solid rgba(0, 229, 255, 0.3) !important;
+  color: #00e5ff !important;
+  font-family: 'Orbitron', sans-serif !important;
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.4) !important;
+  font-weight: 800 !important;
+  border-radius: 4px !important;
+}
+
+.chat-message .dice-roll .dice-tooltip .dice-rolls .roll {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 3px !important;
+}
+
+.chat-message .dice-roll .dice-tooltip .dice-rolls .roll.max {
+  color: #ffd700 !important;
+  border-color: rgba(255, 215, 0, 0.4) !important;
+  text-shadow: 0 0 6px rgba(255, 215, 0, 0.5) !important;
+}
+
+.chat-message .dice-roll .dice-tooltip .dice-rolls .roll.min {
+  color: #ff2a5f !important;
+  border-color: rgba(255, 42, 95, 0.4) !important;
+  text-shadow: 0 0 6px rgba(255, 42, 95, 0.5) !important;
+}
+
+/* Chat Card Action Buttons styling */
+.chat-message .apply-chat-effect-btn {
+  margin-top: 8px !important;
+  background: rgba(0, 229, 255, 0.08) !important;
+  border: 1px solid rgba(0, 229, 255, 0.25) !important;
+  color: #00e5ff !important;
+  font-family: 'Orbitron', sans-serif !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  font-size: 10px !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.chat-message .apply-chat-effect-btn:hover {
+  background: #00e5ff !important;
+  color: #0c111c !important;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.4) !important;
+}
+
+.chat-message .apply-chat-effect-btn.heal {
+  background: rgba(46, 204, 113, 0.08) !important;
+  border: 1px solid rgba(46, 204, 113, 0.25) !important;
+  color: #2ecc71 !important;
+}
+
+.chat-message .apply-chat-effect-btn.heal:hover {
+  background: #2ecc71 !important;
+  color: #0c111c !important;
+  box-shadow: 0 0 10px rgba(46, 204, 113, 0.4) !important;
+}
+
+.chat-message .apply-chat-effect-btn.damage {
+  background: rgba(255, 42, 95, 0.08) !important;
+  border: 1px solid rgba(255, 42, 95, 0.25) !important;
+  color: #ff2a5f !important;
+}
+
+.chat-message .apply-chat-effect-btn.damage:hover {
+  background: #ff2a5f !important;
+  color: #0c111c !important;
+  box-shadow: 0 0 10px rgba(255, 42, 95, 0.4) !important;
+}
+
+/* Rich HTML Editor Progression Table Styles */
+.editor-content table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 12px 0 !important;
+  background: rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 4px !important;
+  overflow: hidden !important;
+}
+
+.editor-content th {
+  background: rgba(0, 229, 255, 0.08) !important;
+  color: #00e5ff !important;
+  font-family: 'Orbitron', sans-serif !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  border: 1px solid rgba(0, 229, 255, 0.2) !important;
+  padding: 8px !important;
+  font-weight: 700 !important;
+}
+
+.editor-content td {
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  padding: 7px 9px !important;
+  color: #ccd6f6 !important;
+  font-size: 11.5px !important;
+  vertical-align: middle !important;
+}
+
+.editor-content tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+
+.editor-content tr:hover {
+  background: rgba(0, 229, 255, 0.04) !important;
+}
+
+/* D&D 5e-Style Cybernetic Content Links */
+.editor-content a.content-link, 
+.editor-content a.inline-roll {
+  background: rgba(0, 229, 255, 0.08) !important;
+  border: 1px solid rgba(0, 229, 255, 0.25) !important;
+  color: #00e5ff !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  font-family: 'Orbitron', sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+.editor-content a.content-link:hover, 
+.editor-content a.inline-roll:hover {
+  background: #00e5ff !important;
+  color: #0c111c !important;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.5) !important;
+  border-color: #00e5ff !important;
+}
+
+.editor-content a.content-link i {
+  color: inherit !important;
+}
+
+/* --- Warframe Sci-Fi Themed Dialogs --- */
+.warframe-dialog.window-app {
+  background: #0b0f1a !important;
+  border: 1.5px solid rgba(0, 229, 255, 0.3) !important;
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.25) !important;
+  font-family: 'Orbitron', sans-serif !important;
+  color: #ccd6f6 !important;
+}
+
+.warframe-dialog.window-app .window-header {
+  background: rgba(0, 229, 255, 0.05) !important;
+  border-bottom: 1px solid rgba(0, 229, 255, 0.2) !important;
+  color: #00e5ff !important;
+  font-family: 'Orbitron', sans-serif !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+}
+
+.warframe-dialog.window-app .window-header .close {
+  color: #ff2a5f !important;
+  text-shadow: 0 0 4px rgba(255, 42, 95, 0.4) !important;
+}
+
+.warframe-dialog.window-app .window-content {
+  background: #0b0f1a !important;
+  color: #ccd6f6 !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.warframe-dialog.window-app .dialog-buttons button {
+  background: rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid rgba(0, 229, 255, 0.3) !important;
+  color: #00e5ff !important;
+  font-family: 'Orbitron', sans-serif !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.warframe-dialog.window-app .dialog-buttons button:hover {
+  background: rgba(0, 229, 255, 0.1) !important;
+  border-color: #00e5ff !important;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.4) !important;
+}
+
+.warframe-dialog.window-app .dialog-buttons button.default {
+  background: #00e5ff !important;
+  color: #000 !important;
+  border-color: #00e5ff !important;
+}
+
+.warframe-dialog.window-app .dialog-buttons button.default:hover {
+  background: #00b8cc !important;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.6) !important;
+}
+
+.warframe-dialog.window-app form,
+.warframe-dialog.window-app label,
+.warframe-dialog.window-app input,
+.warframe-dialog.window-app select,
+.warframe-dialog.window-app span {
+  font-family: 'Inter', sans-serif !important;
+}
+
+.warframe-dialog.window-app select,
+.warframe-dialog.window-app input[type="text"],
+.warframe-dialog.window-app input[type="number"] {
+  background: rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid rgba(0, 229, 255, 0.2) !important;
+  color: #fff !important;
+  border-radius: 4px !important;
+  padding: 4px 8px !important;
+}
+
+.warframe-dialog.window-app select:focus,
+.warframe-dialog.window-app input:focus {
+  border-color: #00e5ff !important;
+  box-shadow: 0 0 5px rgba(0, 229, 255, 0.3) !important;
+  outline: none !important;
+}
+
+.warframe-dialog.window-app .form-group label {
+  color: #00e5ff !important;
+  font-family: 'Orbitron', sans-serif !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.warframe-dialog.window-app input[type="checkbox"] {
+  accent-color: #00e5ff !important;
+  cursor: pointer !important;
+}
+
+.warframe-sheet-form .tab.advancement.active {
+  display: flex !important;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  position: relative;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Uriel - Legion & Brimstone Fury Styles */
+.warframe-sheet-form .resource-block.brimstone-block {
+  box-shadow: 0 0 10px rgba(231, 76, 60, 0.15);
+  transition: all 0.25s ease;
+}
+
+.warframe-sheet-form .resource-block.brimstone-block:hover {
+  border-color: rgba(255, 94, 58, 0.6);
+  box-shadow: 0 0 14px rgba(255, 94, 58, 0.35);
+}
+
+.warframe-sheet-form .resource-block.legion-block {
+  box-shadow: 0 0 10px rgba(138, 43, 226, 0.12);
+  transition: all 0.25s ease;
+}
+
+.warframe-sheet-form .resource-block.legion-block:hover {
+  border-color: rgba(191, 85, 236, 0.6);
+  box-shadow: 0 0 14px rgba(191, 85, 236, 0.3);
+}
+
+.warframe-sheet-form .uriel-brimstone-btn:hover {
+  background: rgba(231, 76, 60, 0.35) !important;
+  border-color: #ff5e3a !important;
+  box-shadow: 0 0 8px rgba(255, 94, 58, 0.5) !important;
+}
+
+.warframe-sheet-form .demon-card {
+  transition: all 0.2s ease;
+}
+
+.warframe-sheet-form .demon-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+
+/* ==========================================================================
+   TENNO AWAKENING - CHARACTER CREATION WIZARD (FULLSCREEN)
+   ========================================================================== */
+
+.window-app.character-wizard-window,
+#character-creation-wizard {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  z-index: 100 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.window-app.character-wizard-window .window-header,
+#character-creation-wizard .window-header {
+  border-radius: 0 !important;
+  flex: 0 0 auto !important;
+  background: #080b10 !important;
+  border-bottom: 1px solid rgba(0, 229, 255, 0.3) !important;
+  padding: 6px 16px !important;
+  height: 36px !important;
+}
+
+.window-app.character-wizard-window .window-header .window-title,
+#character-creation-wizard .window-header .window-title {
+  font-family: 'Orbitron', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #00e5ff !important;
+  letter-spacing: 0.5px !important;
+}
+
+.window-app.character-wizard-window .window-content,
+#character-creation-wizard .window-content {
+  padding: 0 !important;
+  overflow: hidden !important;
+  flex: 1 1 auto !important;
+  height: calc(100vh - 36px) !important;
+  max-height: calc(100vh - 36px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.window-app.character-wizard-window .character-wizard-container,
+#character-creation-wizard .character-wizard-container {
+  flex: 1 1 auto !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  background: radial-gradient(circle at 50% 0%, #161f2e 0%, #080b10 100%);
+  color: #e2e8f0;
+  font-family: 'Inter', sans-serif;
+  user-select: none;
+}
+
+.window-app.character-wizard-window .wizard-body,
+#character-creation-wizard .wizard-body {
+  flex: 1 1 auto !important;
+  overflow-y: auto !important;
+  padding: 24px 36px !important;
+}
+
+/* Center and give a spacious max-width to the inner wizard panes on wide screens */
+.window-app.character-wizard-window .step-attributes,
+.window-app.character-wizard-window .dossier-grid,
+.window-app.character-wizard-window .schools-grid,
+.window-app.character-wizard-window .starter-trio-section,
+.window-app.character-wizard-window .archive-section,
+.window-app.character-wizard-window .step-intro,
+.window-app.character-wizard-window .arsenal-summary-bar,
+.window-app.character-wizard-window .weapon-browser-header,
+.window-app.character-wizard-window .weapons-grid,
+.window-app.character-wizard-window .tenno-name-card,
+.window-app.character-wizard-window .awaken-action-container {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+/* Expand the archive and weapon grid height on fullscreen */
+.window-app.character-wizard-window .archive-cards-grid {
+  max-height: calc(100vh - 540px) !important;
+  min-height: 250px !important;
+}
+
+.window-app.character-wizard-window .weapons-grid {
+  max-height: calc(100vh - 420px) !important;
+  min-height: 250px !important;
+}
+
+/* Hide the resize handle on fullscreen */
+.window-app.character-wizard-window .window-resizable-handle,
+#character-creation-wizard .window-resizable-handle {
+  display: none !important;
+}
+
+/* Header & Stepper */
+.wizard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: rgba(11, 15, 23, 0.95);
+  border-bottom: 1px solid rgba(0, 229, 255, 0.25);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  gap: 20px;
+}
+
+.wizard-title-block {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wizard-lotus-icon {
+  font-size: 26px;
+  color: #00e5ff;
+  filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.6));
+}
+
+.wizard-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+}
+
+.wizard-subtitle {
+  font-size: 10px;
+  color: #8892b0;
+  margin: 0;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Stepper Bar */
+.wizard-stepper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.step-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.25s ease;
+}
+
+.step-badge.active {
+  opacity: 1;
+}
+
+.step-badge.completed {
+  opacity: 0.85;
+}
+
+.step-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #a0aec0;
+  transition: all 0.25s ease;
+}
+
+.step-badge.active .step-circle {
+  border-color: #00e5ff;
+  background: rgba(0, 229, 255, 0.2);
+  color: #00e5ff;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+.step-badge.completed .step-circle {
+  border-color: #2ecc71;
+  background: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
+}
+
+.step-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: #a0aec0;
+}
+
+.step-badge.active .step-label {
+  color: #00e5ff;
+}
+
+.step-badge.completed .step-label {
+  color: #e2e8f0;
+}
+
+.step-line {
+  width: 16px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.step-line.completed {
+  background: #2ecc71;
+}
+
+/* Wizard Body */
+.wizard-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 22px;
+}
+
+.step-intro {
+  margin-bottom: 16px;
+}
+
+.step-intro h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 4px 0;
+  letter-spacing: 0.5px;
+}
+
+.step-intro p {
+  font-size: 12px;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Step 1: Warframe Cards */
+.starter-trio-section {
+  margin-bottom: 20px;
+}
+
+.section-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #cbd5e1;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.starter-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.warframe-card {
+  position: relative;
+  background: rgba(13, 17, 24, 0.8);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  overflow: hidden;
+}
+
+.warframe-card:hover {
+  border-color: rgba(0, 229, 255, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6), 0 0 12px rgba(0, 229, 255, 0.2);
+}
+
+.warframe-card.selected {
+  border-color: #00e5ff;
+  background: rgba(0, 229, 255, 0.08);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.4), inset 0 0 12px rgba(0, 229, 255, 0.15);
+}
+
+.starter-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 215, 0, 0.15);
+  border: 1px solid #ffd700;
+  color: #ffd700;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 8px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+}
+
+.card-img-wrap {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 229, 255, 0.3);
+  overflow: hidden;
+  margin-bottom: 8px;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.warframe-card.selected .card-img-wrap {
+  border-color: #00e5ff;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
+}
+
+.card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-content {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.frame-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 3px;
+}
+
+.frame-theme {
+  font-size: 10px;
+  color: #00e5ff;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.frame-stats-mini {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.select-frame-action-btn,
+.select-school-action-btn,
+.select-weapon-action-btn {
+  width: 100%;
+  padding: 5px 0;
+  background: rgba(0, 229, 255, 0.12);
+  border: 1px solid rgba(0, 229, 255, 0.4);
+  color: #00e5ff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.warframe-card.selected .select-frame-action-btn,
+.school-card.selected .select-school-action-btn,
+.weapon-card.selected .select-weapon-action-btn {
+  background: #00e5ff;
+  color: #080b10;
+  border-color: #00e5ff;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+/* Archive Grid */
+.archive-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.archive-search-box,
+.weapon-search-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  border-radius: 4px;
+  padding: 4px 10px;
+  width: 240px;
+}
+
+.archive-search-box input,
+.weapon-search-box input {
+  background: transparent !important;
+  border: none !important;
+  color: #fff !important;
+  font-size: 11px;
+  outline: none !important;
+  width: 100%;
+}
+
+.archive-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.archive-card .card-img-wrap {
+  width: 55px;
+  height: 55px;
+  margin-bottom: 4px;
+}
+
+.archive-card .frame-name {
+  font-size: 11px;
+}
+
+.archive-card .frame-stats-mini {
+  font-size: 8.5px;
+  gap: 5px;
+}
+
+/* Selected Frame Preview Bar */
+.selected-frame-preview-bar {
+  margin-top: 14px;
+  background: rgba(8, 12, 18, 0.9);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  border-radius: 6px;
+  padding: 10px 14px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.preview-img-container img {
+  width: 65px;
+  height: 65px;
+  border-radius: 6px;
+  border: 1px solid #00e5ff;
+  object-fit: cover;
+  background: #000;
+}
+
+.preview-details {
+  flex: 1;
+}
+
+.preview-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.preview-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.signature-tag {
+  background: rgba(255, 215, 0, 0.15);
+  border: 1px solid #ffd700;
+  color: #ffd700;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.preview-desc {
+  font-size: 10.5px;
+  color: #94a3b8;
+  margin: 0 0 5px 0;
+  line-height: 1.35;
+}
+
+.preview-passive,
+.preview-mechanic {
+  font-size: 10px;
+  color: #cbd5e1;
+  line-height: 1.3;
+}
+
+/* Step 2: Attributes & Stat Allocation */
+.step-attributes {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.stat-method-selector {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.stat-method-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 18px;
+  background: rgba(13, 17, 24, 0.85);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  border-radius: 6px;
+  color: #94a3b8;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+}
+
+.stat-method-tab:hover {
+  background: rgba(0, 229, 255, 0.1);
+  border-color: rgba(0, 229, 255, 0.6);
+  color: #fff;
+}
+
+.stat-method-tab.active {
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.18) 0%, rgba(0, 119, 182, 0.25) 100%);
+  border-color: #00e5ff;
+  color: #00e5ff;
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.25), inset 0 0 8px rgba(0, 229, 255, 0.1);
+}
+
+/* Method A: Point Buy Allocation */
+.point-buy-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.point-allocation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 10px 16px;
+  background: rgba(8, 12, 18, 0.9);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  border-radius: 6px;
+}
+
+.point-budget-display {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.budget-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #cbd5e1;
+}
+
+.points-badge {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.points-badge.valid {
+  background: rgba(46, 204, 113, 0.18);
+  border: 1px solid #2ecc71;
+  color: #2ecc71;
+  box-shadow: 0 0 12px rgba(46, 204, 113, 0.3);
+}
+
+.points-badge.invalid {
+  background: rgba(231, 76, 60, 0.18);
+  border: 1px solid #e74c3c;
+  color: #ff6b6b;
+  box-shadow: 0 0 12px rgba(231, 76, 60, 0.25);
+}
+
+.budget-status {
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.budget-status.valid {
+  color: #2ecc71;
+}
+
+.budget-status.over {
+  color: #e74c3c;
+}
+
+.budget-status.remaining {
+  color: #f39c12;
+}
+
+.point-budget-hint {
+  font-size: 11px;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Presets Container & Archetype Cards */
+.presets-container {
+  background: rgba(8, 12, 18, 0.85);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  border-radius: 6px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+}
+
+.presets-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.presets-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.presets-hint {
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+.presets-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.btn-stat-preset {
+  background: rgba(13, 17, 24, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  gap: 4px;
+  width: 100%;
+}
+
+.btn-stat-preset:hover {
+  border-color: rgba(0, 229, 255, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.btn-stat-preset.active {
+  border-color: #00e5ff;
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.15) 0%, rgba(0, 119, 182, 0.2) 100%);
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.25), inset 0 0 8px rgba(0, 229, 255, 0.1);
+}
+
+.preset-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.preset-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.preset-active-pill {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 8px;
+  font-weight: 800;
+  color: #2ecc71;
+  background: rgba(46, 204, 113, 0.2);
+  border: 1px solid #2ecc71;
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+.preset-scores-badge {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #00e5ff;
+  background: rgba(0, 229, 255, 0.1);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  padding: 2px 6px;
+  border-radius: 3px;
+  width: 100%;
+  margin: 2px 0;
+}
+
+.preset-tagline {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 8.5px;
+  font-weight: 700;
+  color: #ffd700;
+  letter-spacing: 0.3px;
+}
+
+.preset-desc-text {
+  font-size: 9px;
+  color: #94a3b8;
+  line-height: 1.3;
+  margin-top: 2px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Attributes 4-column Card Grid */
+.attribute-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.attr-card {
+  background: rgba(13, 17, 24, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.25s ease;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.attr-card:nth-child(1) {
+  border-top: 3px solid #e74c3c;
+}
+.attr-card:nth-child(2) {
+  border-top: 3px solid #2ecc71;
+}
+.attr-card:nth-child(3) {
+  border-top: 3px solid #3498db;
+}
+.attr-card:nth-child(4) {
+  border-top: 3px solid #9b59b6;
+}
+
+.attr-card:hover {
+  border-color: rgba(0, 229, 255, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+}
+
+.attr-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.attr-icon-wrap {
+  font-size: 24px;
+  margin-bottom: 6px;
+  filter: drop-shadow(0 0 6px currentColor);
+}
+
+.attr-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.attr-sub {
+  font-size: 9.5px;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+.attr-score-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.attr-score-val {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+}
+
+.attr-mod-badge {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #00e5ff;
+  background: rgba(0, 229, 255, 0.12);
+  border: 1px solid rgba(0, 229, 255, 0.4);
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.attr-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.point-buy-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  background: rgba(0, 229, 255, 0.12);
+  border: 1px solid rgba(0, 229, 255, 0.4);
+  color: #00e5ff;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.point-buy-btn:hover {
+  background: #00e5ff;
+  color: #080b10;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+.point-buy-btn:active {
+  transform: scale(0.92);
+}
+
+.stat-score-input {
+  width: 52px;
+  height: 32px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #fff !important;
+  font-family: 'Orbitron', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  border-radius: 4px;
+  padding: 0 !important;
+}
+
+.stat-score-input:focus {
+  border-color: #00e5ff !important;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.4) !important;
+}
+
+.attr-governs {
+  font-size: 9px;
+  color: #64748b;
+  line-height: 1.35;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 8px;
+  width: 100%;
+}
+
+/* Method B: 4d6 Drop Lowest Rolled */
+.dice-roll-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.roll-banner-row {
+  background: rgba(8, 12, 18, 0.9);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  border-radius: 6px;
+  padding: 12px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.roll-info-text {
+  font-size: 11.5px;
+  color: #cbd5e1;
+  flex: 1;
+  line-height: 1.4;
+}
+
+.roll-action-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.roll-attempt-counter {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 6px 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.roll-attempt-counter strong {
+  color: #ffd700;
+}
+
+.roll-attempt-counter.limit-reached {
+  border-color: #e74c3c;
+  color: #e74c3c;
+  background: rgba(231, 76, 60, 0.1);
+}
+
+.roll-attempt-counter.limit-reached strong {
+  color: #e74c3c;
+}
+
+.btn-roll-stats {
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.25) 0%, rgba(0, 150, 199, 0.3) 100%);
+  border: 1px solid #00e5ff;
+  color: #00e5ff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11.5px;
+  font-weight: 800;
+  padding: 8px 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.25);
+  white-space: nowrap;
+}
+
+.btn-roll-stats:hover:not(:disabled) {
+  background: #00e5ff;
+  color: #080b10;
+  box-shadow: 0 0 22px rgba(0, 229, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+.btn-roll-stats.btn-reroll {
+  border-color: #f39c12;
+  color: #f39c12;
+  background: rgba(243, 156, 18, 0.15);
+  box-shadow: 0 0 14px rgba(243, 156, 18, 0.25);
+}
+
+.btn-roll-stats.btn-reroll:hover:not(:disabled) {
+  background: #f39c12;
+  color: #080b10;
+  box-shadow: 0 0 22px rgba(243, 156, 18, 0.6);
+}
+
+.btn-roll-stats:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #64748b;
+  box-shadow: none;
+}
+
+
+/* Set 1 vs Set 2 Comparison Selector Bar */
+.roll-sets-selector-bar {
+  background: rgba(8, 12, 18, 0.95);
+  border: 1px solid rgba(255, 215, 0, 0.35);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+
+.sets-selector-header {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sets-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.sets-subtitle {
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+.sets-cards-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.set-choice-card {
+  background: rgba(13, 17, 24, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.set-choice-card:hover {
+  border-color: rgba(0, 229, 255, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+}
+
+.set-choice-card.active {
+  border-color: #00e5ff;
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.12) 0%, rgba(0, 119, 182, 0.18) 100%);
+  box-shadow: 0 0 18px rgba(0, 229, 255, 0.3), inset 0 0 10px rgba(0, 229, 255, 0.1);
+}
+
+.set-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.set-card-badge {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.set-status-tag {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+}
+
+.set-status-tag.active {
+  background: rgba(46, 204, 113, 0.2);
+  border: 1px solid #2ecc71;
+  color: #2ecc71;
+  box-shadow: 0 0 8px rgba(46, 204, 113, 0.3);
+}
+
+.set-status-tag.inactive {
+  background: rgba(255, 255, 255, 0.06);
+  color: #94a3b8;
+}
+
+.set-card-sum {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.sum-label {
+  font-size: 10.5px;
+  color: #94a3b8;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.sum-number {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+  line-height: 1;
+}
+
+.set-card-scores {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.scores-label {
+  font-size: 9.5px;
+  color: #94a3b8;
+}
+
+.scores-pills {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.mini-score-pill {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 3px;
+}
+
+.btn-select-roll-set {
+  width: 100%;
+  padding: 6px 12px;
+  margin-top: 4px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn-select-roll-set.active {
+  background: #00e5ff;
+  color: #080b10;
+  border: 1px solid #00e5ff;
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.5);
+}
+
+.btn-select-roll-set:not(.active) {
+  background: rgba(0, 229, 255, 0.1);
+  border: 1px solid rgba(0, 229, 255, 0.4);
+  color: #00e5ff;
+}
+
+.btn-select-roll-set:not(.active):hover {
+  background: rgba(0, 229, 255, 0.25);
+  color: #fff;
+}
+
+.btn-reset-rolls {
+  background: rgba(231, 76, 60, 0.15);
+  border: 1px solid rgba(231, 76, 60, 0.4);
+  color: #ff6b6b;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.btn-reset-rolls:hover {
+  background: #e74c3c;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+}
+
+/* Rolled Pool Cards */
+.rolled-results-section {
+  margin-bottom: 16px;
+}
+
+.rolled-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.rolled-score-card {
+  background: rgba(13, 17, 24, 0.9);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  border-radius: 6px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.rolled-score-card.assigned {
+  border-color: #2ecc71;
+  background: rgba(46, 204, 113, 0.08);
+  box-shadow: 0 0 12px rgba(46, 204, 113, 0.15);
+}
+
+.rolled-score-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.score-num-badge {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #00e5ff;
+}
+
+.assigned-tag {
+  font-size: 9px;
+  font-weight: 700;
+  color: #2ecc71;
+  background: rgba(46, 204, 113, 0.15);
+  border: 1px solid rgba(46, 204, 113, 0.4);
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+
+.unassigned-tag {
+  font-size: 9px;
+  color: #64748b;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+
+.rolled-total-val {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+
+.rolled-dice-breakdown {
+  font-size: 9px;
+  color: #94a3b8;
+  line-height: 1.3;
+}
+
+.dice-kept-label {
+  color: #64748b;
+}
+
+.kept-str {
+  color: #ffd700;
+  font-weight: 600;
+}
+
+.dropped-str {
+  color: #64748b;
+  font-style: italic;
+  margin-left: 2px;
+}
+
+/* Rolled Assignment Cards */
+.assignment-targets-section {
+  margin-bottom: 12px;
+}
+
+.assignment-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.assign-card {
+  background: rgba(13, 17, 24, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.assign-card.assigned {
+  border-color: rgba(0, 229, 255, 0.5);
+  background: rgba(0, 229, 255, 0.05);
+}
+
+.assign-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.assign-stat-title {
+  flex: 1;
+}
+
+.assign-dropdown-wrap {
+  width: 100%;
+}
+
+.assign-stat-select {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid rgba(0, 229, 255, 0.3) !important;
+  color: #fff !important;
+  font-family: 'Orbitron', sans-serif !important;
+  font-size: 10px !important;
+  padding: 5px 6px !important;
+  border-radius: 4px;
+}
+
+.assign-stat-select:focus {
+  border-color: #00e5ff !important;
+  outline: none !important;
+}
+
+.assign-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 24px;
+}
+
+.assigned-val {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.assigned-mod {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: #00e5ff;
+  background: rgba(0, 229, 255, 0.12);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.unassigned-placeholder {
+  font-size: 9px;
+  color: #64748b;
+  font-style: italic;
+}
+
+/* Step 3: Focus Schools Grid */
+.schools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.school-card {
+  background: rgba(13, 17, 24, 0.85);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  border-radius: 8px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.school-card:hover {
+  border-color: rgba(0, 229, 255, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+}
+
+.school-card.selected {
+  border-color: #ffd700;
+  background: rgba(255, 215, 0, 0.05);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3), inset 0 0 10px rgba(255, 215, 0, 0.1);
+}
+
+.school-emblem-wrap {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  overflow: hidden;
+  margin-bottom: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 4px;
+}
+
+.school-card.selected .school-emblem-wrap {
+  border-color: #ffd700;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+}
+
+.school-emblem-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: screen;
+}
+
+.school-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+}
+
+.school-title {
+  font-size: 10px;
+  color: #ffd700;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.school-philosophy {
+  font-size: 10.5px;
+  color: #94a3b8;
+  line-height: 1.35;
+  margin: 0 0 10px 0;
+  flex: 1;
+}
+
+.school-starter-passive {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  padding: 6px 8px;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.node-title {
+  font-size: 10px;
+  color: #00e5ff;
+  margin-bottom: 2px;
+}
+
+.node-desc {
+  font-size: 9.5px;
+  color: #cbd5e1;
+  line-height: 1.25;
+}
+
+/* Step 4: Weapons Arsenal */
+.arsenal-summary-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.arsenal-slot-preview {
+  position: relative;
+  background: rgba(13, 17, 24, 0.9);
+  border: 1px dashed rgba(0, 229, 255, 0.3);
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 52px;
+}
+
+.arsenal-slot-preview:hover {
+  border-color: #00e5ff;
+}
+
+.arsenal-slot-preview.filled {
+  border-style: solid;
+  border-color: rgba(0, 229, 255, 0.6);
+  background: rgba(0, 229, 255, 0.06);
+}
+
+.slot-badge {
+  position: absolute;
+  top: -7px;
+  left: 10px;
+  background: #080b10;
+  border: 1px solid rgba(0, 229, 255, 0.4);
+  color: #00e5ff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 8px;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 2px;
+}
+
+.slot-img {
+  width: 38px;
+  height: 38px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  object-fit: contain;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.slot-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.slot-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.slot-meta {
+  font-size: 9.5px;
+  color: #94a3b8;
+}
+
+.slot-empty {
+  font-size: 11px;
+  color: #64748b;
+  width: 100%;
+  text-align: center;
+}
+
+.weapon-browser-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.weapon-tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.weapon-tab-btn {
+  padding: 6px 12px;
+  background: rgba(13, 17, 24, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.weapon-tab-btn.active {
+  background: rgba(0, 229, 255, 0.15);
+  border-color: #00e5ff;
+  color: #00e5ff;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+}
+
+.weapons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+  max-height: 340px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.weapon-card {
+  position: relative;
+  background: rgba(13, 17, 24, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.weapon-card:hover {
+  border-color: rgba(0, 229, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+.weapon-card.selected {
+  border-color: #00e5ff;
+  background: rgba(0, 229, 255, 0.08);
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.3);
+}
+
+.weapon-card.signature-weapon {
+  border-color: rgba(255, 215, 0, 0.4);
+}
+
+.signature-weapon-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: rgba(255, 215, 0, 0.2);
+  border: 1px solid #ffd700;
+  color: #ffd700;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 8px;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.weapon-img-wrap {
+  width: 100%;
+  height: 70px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weapon-img-wrap img {
+  max-height: 90%;
+  max-width: 90%;
+  object-fit: contain;
+}
+
+.weapon-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 4px;
+}
+
+.weapon-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.weapon-subtype {
+  font-size: 9px;
+  color: #94a3b8;
+}
+
+.weapon-stats-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.stat-badge {
+  font-size: 9px;
+  font-weight: 600;
+  padding: 2px 5px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-badge.damage {
+  color: #e74c3c;
+  border-color: rgba(231, 76, 60, 0.3);
+}
+
+.stat-badge.range {
+  color: #3498db;
+}
+
+.stat-badge.crit {
+  color: #f39c12;
+}
+
+.stat-badge.status {
+  color: #2ecc71;
+}
+
+.weapon-desc-snippet {
+  font-size: 9.5px;
+  color: #94a3b8;
+  line-height: 1.3;
+  max-height: 38px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* Step 5: Summary Dossier */
+.tenno-name-card {
+  background: rgba(13, 17, 24, 0.9);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+}
+
+.tenno-name-card label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #cbd5e1;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.name-input-wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.wizard-name-input {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid rgba(0, 229, 255, 0.4) !important;
+  color: #fff !important;
+  font-family: 'Orbitron', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  padding: 6px 12px !important;
+}
+
+.rank-indicator {
+  background: rgba(0, 229, 255, 0.15);
+  border: 1px solid #00e5ff;
+  color: #00e5ff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 6px 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.dossier-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 900px) {
+  .dossier-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.dossier-card {
+  background: rgba(13, 17, 24, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.dossier-header {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #00e5ff;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dossier-content {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.dossier-img {
+  width: 55px;
+  height: 55px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 229, 255, 0.4);
+  object-fit: cover;
+  background: #000;
+}
+
+.dossier-img.circle-emblem {
+  border-radius: 50%;
+  mix-blend-mode: screen;
+}
+
+.dossier-details {
+  flex: 1;
+}
+
+.dossier-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.dossier-school-title {
+  font-size: 9.5px;
+  color: #ffd700;
+  margin-bottom: 6px;
+}
+
+.dossier-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px 6px;
+  font-size: 9.5px;
+  margin-bottom: 6px;
+}
+
+.dossier-passive-line {
+  font-size: 9px;
+  color: #94a3b8;
+  line-height: 1.25;
+}
+
+.dossier-desc {
+  font-size: 9px;
+  color: #64748b;
+  line-height: 1.25;
+}
+
+.dossier-weapons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dossier-weapon-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
+.dossier-weapon-row img {
+  width: 28px;
+  height: 28px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  object-fit: contain;
+}
+
+.dossier-weapon-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.dossier-weapon-text .tag {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 7px;
+  color: #00e5ff;
+  font-weight: bold;
+}
+
+.dossier-weapon-text .w-name {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.dossier-weapon-text .w-stat {
+  font-size: 8.5px;
+  color: #94a3b8;
+}
+
+/* Awaken Action Button */
+.awaken-action-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.lotus-quote {
+  text-align: center;
+  font-size: 11px;
+  color: #cbd5e1;
+}
+
+.btn-awaken-tenno {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #00b4d8 0%, #0077b6 50%, #03045e 100%);
+  border: 2px solid #00e5ff;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  border-radius: 6px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.4), inset 0 0 15px rgba(0, 229, 255, 0.2);
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-awaken-tenno:hover {
+  background: linear-gradient(135deg, #00e5ff 0%, #0096c7 50%, #023e8a 100%);
+  box-shadow: 0 0 35px rgba(0, 229, 255, 0.7), inset 0 0 20px rgba(0, 229, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Wizard Footer */
+.wizard-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: rgba(11, 15, 23, 0.95);
+  border-top: 1px solid rgba(0, 229, 255, 0.2);
+}
+
+.wizard-nav-btn {
+  padding: 6px 16px;
+  background: rgba(13, 17, 24, 0.9);
+  border: 1px solid rgba(0, 229, 255, 0.4);
+  color: #00e5ff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.wizard-nav-btn:hover:not(:disabled) {
+  background: rgba(0, 229, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+}
+
+.wizard-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #64748b;
+}
+
+.btn-finish-shortcut {
+  background: #2ecc71 !important;
+  color: #080b10 !important;
+  border-color: #2ecc71 !important;
+}
+
+.wizard-status-indicator {
+  font-size: 11px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ========================================================
+   WARFRAME TTRPG - NATIVE STAR CHART PLANET SHEET & CANVAS
+   ======================================================== */
+.warframe-planet-sheet {
+  background: radial-gradient(circle at top, #0d1a29 0%, #040811 100%) !important;
+  border: 1px solid rgba(88, 216, 255, 0.4) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(88, 216, 255, 0.15) !important;
+  border-radius: 8px !important;
+  color: #e2e8f0 !important;
+  font-family: 'Inter', sans-serif;
+}
+
+.warframe-planet-sheet .window-header {
+  background: rgba(4, 9, 18, 0.95) !important;
+  border-bottom: 1px solid rgba(88, 216, 255, 0.3) !important;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1.5px;
+}
+
+.warframe-planet-sheet .window-header .window-title {
+  color: #58d8ff !important;
+  text-shadow: 0 0 10px rgba(88, 216, 255, 0.5);
+}
+
+.warframe-planet-sheet .window-content {
+  background: transparent !important;
+  padding: 16px !important;
+  color: #c6e5ed;
+  overflow-y: auto;
+}
+
+/* Planet Header Banner */
+.planet-header-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(88, 216, 255, 0.2);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.planet-header-title {
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px rgba(88, 216, 255, 0.4);
+}
+
+.planet-header-subtitle {
+  font-size: 12px;
+  color: #8ca0b8;
+  margin: 2px 0 0;
+  letter-spacing: 1px;
+}
+
+.planet-faction-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 1px solid currentColor;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Planet Info Grid */
+.planet-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.planet-stat-box {
+  background: rgba(13, 24, 38, 0.7);
+  border: 1px solid rgba(88, 216, 255, 0.15);
+  border-radius: 6px;
+  padding: 10px 14px;
+}
+
+.planet-stat-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #8ca0b8;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.planet-stat-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Resource Badges */
+.planet-resources-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.planet-resource-chip {
+  background: rgba(88, 216, 255, 0.08);
+  border: 1px solid rgba(88, 216, 255, 0.3);
+  border-radius: 16px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #d1f4ff;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.planet-resource-chip i {
+  color: #58d8ff;
+  font-size: 10px;
+}
+
+/* Lore section */
+.planet-lore-box {
+  background: rgba(5, 12, 22, 0.6);
+  border-left: 3px solid #58d8ff;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border-radius: 0 6px 6px 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #b5d5e2;
+}
+
+/* Boss / Points of Interest cards */
+.planet-poi-card {
+  background: rgba(16, 28, 44, 0.6);
+  border: 1px solid rgba(255, 209, 102, 0.3);
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+}
+
+.planet-poi-card.boss-card {
+  border-color: rgba(231, 76, 60, 0.4);
+  background: rgba(30, 10, 15, 0.4);
+}
+
+.planet-poi-card h4 {
+  margin: 0 0 4px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.planet-poi-card.boss-card h4 {
+  color: #ff6b6b;
+}
+
+.planet-poi-card p {
+  margin: 0;
+  font-size: 12px;
+  color: #cbd5e1;
+}
+
+/* Deploy Liset Action Button */
+.btn-deploy-liset {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, rgba(88, 216, 255, 0.25) 0%, rgba(46, 204, 113, 0.35) 100%);
+  border: 1px solid #58d8ff;
+  border-radius: 6px;
+  color: #ffffff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 15px rgba(88, 216, 255, 0.2);
+  transition: all 0.25s ease;
+  margin-top: 14px;
+}
+
+.btn-deploy-liset:hover {
+  background: linear-gradient(135deg, rgba(88, 216, 255, 0.45) 0%, rgba(46, 204, 113, 0.55) 100%);
+  box-shadow: 0 0 25px rgba(88, 216, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+/* Interactive Canvas Tooltip */
+.warframe-canvas-star-tooltip {
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
+  background: rgba(3, 8, 16, 0.95);
+  border: 1px solid #58d8ff;
+  border-radius: 6px;
+  padding: 8px 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.9), 0 0 15px rgba(88, 216, 255, 0.4);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-family: 'Orbitron', sans-serif;
+  transform: translate(18px, 18px);
+  transition: opacity 0.15s ease;
+  min-width: 160px;
+}
+
+.warframe-canvas-star-tooltip .tooltip-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #ffffff;
+}
+
+.warframe-canvas-star-tooltip .tooltip-subtitle {
+  font-size: 10px;
+  color: #58d8ff;
+  font-family: 'Inter', sans-serif;
+  margin-top: 2px;
+}
+
+.warframe-canvas-star-tooltip .tooltip-level {
+  font-size: 10px;
+  color: #ffd166;
+  font-family: 'Inter', sans-serif;
+  margin-top: 4px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ==========================================================================
+   WARFRAME ORIGIN SYSTEM - NATIVE CANVAS STYLES
+   ========================================================================== */
+.origin-system-hud-tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: rgba(4, 10, 20, 0.92);
+  border: 1px solid #58d8ff;
+  border-radius: 4px;
+  padding: 6px 12px;
+  color: #ffffff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+  z-index: 100;
+  display: none;
+}
+
+.warframe-nav-starchart {
+  border: 1px solid rgba(88, 216, 255, 0.4) !important;
+  background: rgba(8, 20, 36, 0.85) !important;
+  cursor: pointer;
+}
+
+.warframe-nav-starchart:hover {
+  background: rgba(88, 216, 255, 0.25) !important;
+  border-color: #58d8ff !important;
+  box-shadow: 0 0 12px rgba(88, 216, 255, 0.5) !important;
+}
+
+/* ==========================================================================
+   ADVERSARY / BESTIARY SHEET STYLING
+   ========================================================================== */
+.adversary-sheet {
+  background: radial-gradient(circle at top right, rgba(229, 152, 102, 0.08) 0%, rgba(10, 15, 25, 0.95) 70%) !important;
+}
+
+.adversary-sheet .adversary-resources {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.adversary-sheet .adversary-resistances-panel h2,
+.adversary-sheet .attacks-section h2,
+.adversary-sheet .description-section h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  color: #e59866;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid rgba(229, 152, 102, 0.25);
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+
+.adversary-sheet .resistances-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 8px;
+}
+
+.adversary-sheet .resistance-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  padding: 4px 6px;
+  transition: all 0.2s ease;
+}
+
+.adversary-sheet .resistance-row:hover {
+  border-color: rgba(229, 152, 102, 0.4);
+  background: rgba(229, 152, 102, 0.05);
+}
+
+.adversary-sheet .resistance-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.2));
+  flex-shrink: 0;
+}
+
+.adversary-sheet .damage-type-label {
+  font-size: 10.5px;
+  font-family: 'Orbitron', sans-serif;
+  color: #ccd6f6;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.adversary-sheet .resistance-select {
+  font-size: 10px;
+  font-weight: bold;
+  height: 22px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: rgba(15, 23, 42, 0.9);
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+.adversary-sheet .resistance-select.vulnerable {
+  color: #ff6b6b !important;
+  border-color: rgba(255, 107, 107, 0.5) !important;
+  background: rgba(255, 107, 107, 0.1) !important;
+}
+
+.adversary-sheet .resistance-select.resistant {
+  color: #4dabf7 !important;
+  border-color: rgba(77, 171, 247, 0.5) !important;
+  background: rgba(77, 171, 247, 0.1) !important;
+}
+
+.adversary-sheet .resistance-select.immune {
+  color: #ffd43b !important;
+  border-color: rgba(255, 212, 59, 0.5) !important;
+  background: rgba(255, 212, 59, 0.1) !important;
+}
+
+.adversary-sheet .adversary-body-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.adversary-sheet .attacks-section textarea,
+.adversary-sheet .description-section textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #e2e8f0;
+  font-size: 12px;
+  line-height: 1.4;
+  padding: 8px;
+  resize: vertical;
+}
+
+.adversary-sheet .roll-adversary-attack-btn:hover {
+  background: linear-gradient(135deg, rgba(229,152,102,0.25) 0%, rgba(229,152,102,0.1) 100%) !important;
+  border-color: rgba(229,152,102,0.6) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(229,152,102,0.2) !important;
+}
+
+/* ==========================================================================
+   WARFRAME TOKEN ATH / HUD (HORIZONTAL DOCK - BOTTOM LEFT)
+   ========================================================================== */
+#warframe-token-hud,
+.warframe-token-hud {
+  position: fixed;
+  bottom: 110px;
+  left: 15px;
+  width: auto;
+  max-width: calc(100vw - 30px);
+  height: auto;
+  min-height: 126px;
+  background: linear-gradient(135deg, rgba(8, 14, 24, 0.97) 0%, rgba(13, 20, 36, 0.98) 100%);
+  border: 1px solid rgba(0, 229, 255, 0.5);
+  border-radius: 12px;
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.85), 0 0 24px rgba(0, 229, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #e2e8f0;
+  font-family: 'Inter', sans-serif;
+  z-index: 80;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  user-select: none;
+  transition: all 0.25s ease;
+  pointer-events: auto;
+  box-sizing: border-box;
+}
+
+#warframe-token-hud.hidden,
+.warframe-token-hud.hidden {
+  display: none !important;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.wf-hud-horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  height: 100%;
+}
+
+.wf-hud-collapsible-row {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  transition: all 0.3s ease;
+}
+
+.wf-hud-collapsible-row.collapsed {
+  display: none !important;
+}
+
+/* Base Panel */
+.wf-hud-panel {
+  padding: 10px 12px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.wf-hud-panel:last-child {
+  border-right: none;
+}
+
+.wf-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 7px;
+  height: 16px;
+}
+
+.wf-panel-badge {
+  font-size: 9.5px;
+  color: #00e5ff;
+  font-weight: bold;
+}
+
+/* PANEL 1: IDENTITY & VITALS */
+.wf-hud-panel.vitals-panel {
+  width: 255px;
+  background: rgba(0, 229, 255, 0.04);
+  flex-shrink: 0;
+}
+
+.wf-identity-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 7px;
+}
+
+.wf-hud-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #00e5ff;
+  object-fit: cover;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.45);
+  flex-shrink: 0;
+}
+
+.wf-hud-titles {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex: 1;
+}
+
+.wf-hud-name {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 13.5px;
+  color: #00e5ff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wf-hud-sub {
+  font-size: 10px;
+  color: #94a3b8;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wf-hud-btn-toggle {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  padding: 3px 5px;
+  font-size: 13px;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.wf-hud-btn-toggle:hover {
+  color: #00e5ff;
+}
+
+.wf-hud-btn-rest {
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  color: #00e5ff;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 3px 6px;
+  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.wf-hud-btn-rest:hover {
+  background: rgba(0, 229, 255, 0.25);
+  border-color: #00e5ff;
+  color: #fff;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+  transform: scale(1.08);
+}
+
+.wf-vitals-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-vital-row {
+  display: grid;
+  grid-template-columns: 42px 1fr 54px;
+  align-items: center;
+  gap: 7px;
+}
+
+.wf-vital-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.wf-vital-row.shields .wf-vital-label { color: #38bdf8; }
+.wf-vital-row.health .wf-vital-label { color: #ef4444; }
+.wf-vital-row.energy .wf-vital-label { color: #c084fc; }
+
+.wf-bar-track {
+  height: 8px;
+  background: rgba(0, 0, 0, 0.65);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  position: relative;
+}
+
+.wf-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.shields-fill {
+  background: linear-gradient(90deg, #0284c7 0%, #38bdf8 100%);
+  box-shadow: 0 0 7px rgba(56, 189, 248, 0.65);
+}
+
+.health-fill {
+  background: linear-gradient(90deg, #b91c1c 0%, #ef4444 100%);
+  box-shadow: 0 0 7px rgba(239, 68, 68, 0.65);
+}
+
+.energy-fill {
+  background: linear-gradient(90deg, #7c3aed 0%, #c084fc 100%);
+  box-shadow: 0 0 7px rgba(192, 132, 252, 0.65);
+}
+
+.wf-vital-val {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-align: right;
+  color: #f8fafc;
+}
+
+.wf-vital-val span {
+  font-size: 8.5px;
+  color: #64748b;
+  font-weight: normal;
+}
+
+/* PANEL 2: ACTIONS */
+.wf-hud-panel.actions-panel {
+  width: 118px;
+  flex-shrink: 0;
+}
+
+.wf-action-reset {
+  background: none;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 11px;
+  padding: 1px 3px;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.wf-action-reset:hover {
+  color: #00e5ff;
+  transform: rotate(180deg);
+}
+
+.wf-actions-col {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.wf-action-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 7px;
+  border-radius: 5px;
+  border: 1px solid;
+  font-size: 9.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  height: 20px;
+  box-sizing: border-box;
+}
+
+.wf-action-pill[data-action-type="parkour"].active {
+  border-color: rgba(0, 229, 255, 0.65);
+  background: rgba(0, 229, 255, 0.18);
+  color: #00e5ff;
+  box-shadow: 0 0 7px rgba(0, 229, 255, 0.35);
+}
+
+.wf-action-pill[data-action-type="action1"].active,
+.wf-action-pill[data-action-type="action2"].active,
+.wf-action-pill[data-action-type="action"].active {
+  border-color: rgba(34, 197, 94, 0.65);
+  background: rgba(34, 197, 94, 0.18);
+  color: #4ade80;
+  box-shadow: 0 0 7px rgba(34, 197, 94, 0.35);
+}
+
+.wf-action-pill[data-action-type="reaction"].active {
+  border-color: rgba(234, 179, 8, 0.65);
+  background: rgba(234, 179, 8, 0.18);
+  color: #facc15;
+  box-shadow: 0 0 7px rgba(234, 179, 8, 0.35);
+}
+
+.wf-action-pill.spent {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.35);
+  color: #475569;
+  opacity: 0.55;
+  text-decoration: line-through;
+}
+
+.wf-action-pill:hover {
+  filter: brightness(1.2);
+}
+
+.wf-act-name {
+  font-size: 9px;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 0.3px;
+}
+
+/* CHARACTER SHEET ACTIONS BAR */
+.sheet-actions-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(10, 14, 23, 0.7);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  border-radius: 6px;
+  padding: 4px 10px;
+  margin-bottom: 8px;
+}
+
+.sheet-action-toggle {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  height: 25px !important;
+  min-height: 25px !important;
+  max-height: 25px !important;
+  line-height: 23px !important;
+  padding: 0 8px !important;
+  border-radius: 4px !important;
+  font-family: 'Orbitron', sans-serif !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+  width: auto !important;
+  flex: none !important;
+  cursor: pointer !important;
+  border: 1px solid;
+  transition: all 0.2s ease !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.sheet-action-toggle .sheet-act-status {
+  font-size: 8px !important;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 1px 4px !important;
+  border-radius: 3px !important;
+  font-weight: bold;
+  line-height: 1 !important;
+  display: inline-block !important;
+  margin-left: 2px !important;
+}
+
+.sheet-action-toggle[data-action-type="parkour"].active {
+  border-color: rgba(0, 229, 255, 0.6);
+  background: rgba(0, 229, 255, 0.15);
+  color: #00e5ff;
+}
+
+.sheet-action-toggle[data-action-type="action1"].active,
+.sheet-action-toggle[data-action-type="action2"].active {
+  border-color: rgba(34, 197, 94, 0.6);
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+}
+
+.sheet-action-toggle[data-action-type="reaction"].active {
+  border-color: rgba(234, 179, 8, 0.6);
+  background: rgba(234, 179, 8, 0.15);
+  color: #facc15;
+}
+
+.sheet-action-toggle.spent {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.3);
+  color: #475569;
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.sheet-action-reset-btn {
+  height: 25px !important;
+  min-height: 25px !important;
+  max-height: 25px !important;
+  line-height: 23px !important;
+  white-space: nowrap !important;
+  box-sizing: border-box !important;
+}
+
+/* PANEL 3: ARSENAL */
+.wf-hud-panel.arsenal-panel {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.wf-weapons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+  max-height: 82px;
+}
+
+.wf-weapons-list::-webkit-scrollbar {
+  width: 3px;
+}
+
+.wf-weapons-list::-webkit-scrollbar-thumb {
+  background: rgba(0, 229, 255, 0.3);
+  border-radius: 2px;
+}
+
+.wf-weapon-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 6px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  height: 25px;
+  box-sizing: border-box;
+}
+
+.wf-weapon-item:hover {
+  border-color: #00e5ff;
+  background: rgba(0, 229, 255, 0.12);
+  transform: translateX(2px);
+}
+
+.wf-weapon-img {
+  width: 19px;
+  height: 19px;
+  object-fit: contain;
+  border: none !important;
+  flex-shrink: 0;
+}
+
+.wf-weapon-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.wf-weapon-name-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.wf-weapon-name {
+  font-size: 9px;
+  font-weight: 600;
+  color: #e2e8f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.1;
+}
+
+.wf-weapon-mode-badge {
+  font-size: 7px;
+  padding: 0 4px;
+  border-radius: 3px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+
+.wf-weapon-mode-badge.mode-melee {
+  background: rgba(231, 76, 60, 0.2);
+  color: #ff7675;
+  border: 1px solid rgba(231, 76, 60, 0.4);
+}
+
+.wf-weapon-mode-badge.mode-ranged {
+  background: rgba(0, 229, 255, 0.15);
+  color: #00e5ff;
+  border: 1px solid rgba(0, 229, 255, 0.4);
+}
+
+.wf-weapon-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 1;
+  margin-top: 1px;
+}
+
+.wf-weapon-meta {
+  font-size: 7.5px;
+  color: #94a3b8;
+  font-family: 'Orbitron', sans-serif;
+  line-height: 1;
+}
+
+.wf-weapon-ammo {
+  font-size: 7.5px;
+  font-family: 'Orbitron', monospace;
+  color: #00e5ff;
+  padding: 0 3px;
+  background: rgba(0, 229, 255, 0.1);
+  border-radius: 3px;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.wf-weapon-ammo.low {
+  color: #f1c40f;
+  background: rgba(241, 196, 15, 0.12);
+  border-color: rgba(241, 196, 15, 0.4);
+}
+
+.wf-weapon-ammo.empty {
+  color: #e74c3c;
+  background: rgba(231, 76, 60, 0.18);
+  border-color: rgba(231, 76, 60, 0.5);
+}
+
+.wf-weapon-actions {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.wf-weapon-sub-btn {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+  color: #94a3b8;
+  font-size: 8.5px;
+  width: 17px;
+  height: 17px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.wf-weapon-sub-btn:hover {
+  transform: scale(1.15);
+}
+
+.wf-weapon-sub-btn.wf-weapon-swapmode-btn:hover {
+  color: #f39c12;
+  border-color: #f39c12;
+  background: rgba(243, 156, 18, 0.25);
+  box-shadow: 0 0 6px rgba(243, 156, 18, 0.4);
+}
+
+.wf-weapon-sub-btn.wf-weapon-reload-btn:hover {
+  color: #2ecc71;
+  border-color: #2ecc71;
+  background: rgba(46, 204, 113, 0.25);
+  box-shadow: 0 0 6px rgba(46, 204, 113, 0.4);
+}
+
+.wf-weapon-sub-btn.wf-weapon-altfire-btn:hover {
+  color: #e67e22;
+  border-color: #e67e22;
+  background: rgba(230, 126, 34, 0.25);
+  box-shadow: 0 0 6px rgba(230, 126, 34, 0.4);
+}
+
+.wf-weapon-roll-btn {
+  background: none;
+  border: none;
+  color: #00e5ff;
+  font-size: 11px;
+  cursor: pointer;
+  padding: 0 2px;
+  flex-shrink: 0;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.wf-weapon-roll-btn:hover {
+  color: #38bdf8;
+  transform: scale(1.2);
+}
+
+/* PANEL 4: 4 POUVOIRS WARFRAME */
+.wf-hud-panel.powers-panel {
+  width: 270px;
+  flex-shrink: 0;
+}
+
+.wf-powers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.wf-power-slot {
+  position: relative;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.wf-power-slot.affordable {
+  cursor: pointer;
+}
+
+.wf-power-slot.affordable:hover {
+  border-color: #00e5ff;
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.55);
+  transform: translateY(-2px);
+}
+
+.wf-power-slot.unaffordable {
+  cursor: not-allowed;
+  opacity: 0.5;
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.wf-power-slot.locked {
+  cursor: default;
+  opacity: 0.4;
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.wf-power-slot.locked .wf-power-img {
+  filter: grayscale(100%) opacity(40%);
+}
+
+.wf-power-key {
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 8.5px;
+  font-weight: 700;
+  color: #00e5ff;
+  text-shadow: 0 0 3px #000;
+  z-index: 2;
+}
+
+.wf-power-img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  margin-top: 4px;
+  border: none !important;
+  filter: drop-shadow(0 0 5px rgba(0, 229, 255, 0.4));
+}
+
+.wf-power-locked-icon {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+.wf-power-overlay {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2px 3px;
+  background: rgba(10, 16, 26, 0.94);
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.wf-power-name {
+  font-size: 8px;
+  font-weight: 600;
+  color: #e2e8f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 95%;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.wf-power-cost {
+  font-size: 8px;
+  font-family: 'Orbitron', sans-serif;
+  color: #c084fc;
+  font-weight: bold;
+  line-height: 1;
+}
+
+/* PANEL 5: FOCUS (ACTIFS SEULEMENT) */
+.wf-hud-panel.focus-panel {
+  width: 215px;
+  flex-shrink: 0;
+}
+
+.wf-focus-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+  max-height: 82px;
+}
+
+.wf-focus-list::-webkit-scrollbar {
+  width: 3px;
+}
+
+.wf-focus-list::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.3);
+  border-radius: 2px;
+}
+
+.wf-focus-chip.active-power {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 6px;
+  background: rgba(168, 85, 247, 0.14);
+  border: 1px solid rgba(168, 85, 247, 0.38);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  height: 25px;
+  box-sizing: border-box;
+}
+
+.wf-focus-chip.active-power:hover {
+  border-color: #c084fc;
+  background: rgba(168, 85, 247, 0.28);
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.45);
+  transform: translateX(2px);
+}
+
+.wf-focus-icon {
+  width: 19px;
+  height: 19px;
+  border: none !important;
+  flex-shrink: 0;
+}
+
+.wf-focus-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.wf-focus-name {
+  font-size: 9px;
+  font-weight: 600;
+  color: #e2e8f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.1;
+}
+
+.wf-focus-cost {
+  font-size: 8px;
+  color: #c084fc;
+  font-family: 'Orbitron', sans-serif;
+  line-height: 1;
+}
+
+.wf-focus-badge.active {
+  background: rgba(168, 85, 247, 0.3);
+  color: #d8b4fe;
+  font-size: 8px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.wf-hud-empty {
+  font-size: 9.5px;
+  color: #64748b;
+  font-style: italic;
+  padding: 6px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+/* ==========================================================================
+   KINETIC ACTION ECONOMY MODALS (PARKOUR & RÉACTIONS)
+   ========================================================================== */
+.dialog.warframe-dialog.kinetic-action-dialog .window-content {
+  background: rgba(10, 14, 23, 0.98) !important;
+  color: #e2e8f0 !important;
+  font-family: 'Inter', sans-serif !important;
+  padding: 12px 14px !important;
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 229, 255, 0.15) !important;
+}
+
+.dialog.warframe-dialog.kinetic-action-dialog .dialog-buttons {
+  margin-top: 10px;
+  gap: 8px;
+}
+
+.dialog.warframe-dialog.kinetic-action-dialog .dialog-buttons button {
+  background: rgba(15, 23, 42, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #94a3b8 !important;
+  font-family: 'Orbitron', sans-serif !important;
+  font-size: 11px !important;
+  border-radius: 4px !important;
+  padding: 6px 12px !important;
+  transition: all 0.2s ease !important;
+}
+
+.dialog.warframe-dialog.kinetic-action-dialog .dialog-buttons button:hover {
+  background: rgba(0, 229, 255, 0.15) !important;
+  border-color: #00e5ff !important;
+  color: #00e5ff !important;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.3) !important;
+}
+
+.wf-kinetic-dialog-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wf-dialog-header-desc {
+  font-size: 11.5px;
+  color: #94a3b8;
+  line-height: 1.4;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.wf-dialog-header-desc strong {
+  color: #00e5ff;
+}
+
+.wf-dialog-alert-warning {
+  margin-top: 6px;
+  padding: 5px 8px;
+  background: rgba(231, 76, 60, 0.12);
+  border: 1px solid rgba(231, 76, 60, 0.35);
+  border-radius: 4px;
+  font-size: 10.5px;
+  color: #ff7675;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.wf-dialog-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.wf-dialog-cards-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.wf-dialog-cards-list::-webkit-scrollbar-thumb {
+  background: rgba(0, 229, 255, 0.3);
+  border-radius: 2px;
+}
+
+.wf-dialog-action-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 10px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.wf-dialog-action-card:hover {
+  background: rgba(0, 229, 255, 0.1);
+  border-color: #00e5ff;
+  transform: translateX(4px);
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.25);
+}
+
+.wf-dialog-action-card:hover .wf-card-title {
+  color: #00e5ff;
+}
+
+.wf-card-icon {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+}
+
+.wf-card-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.wf-card-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 2px;
+  transition: color 0.2s ease;
+}
+
+.wf-card-text {
+  font-size: 11px;
+  color: #94a3b8;
+  line-height: 1.35;
+}
+
+.wf-card-text strong {
+  color: #e2e8f0;
+}
+
+.wf-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 6px;
+}
+
+.wf-badge-tag {
+  font-size: 8.5px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: 'Orbitron', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.wf-badge-tag.cyan {
+  background: rgba(0, 229, 255, 0.15);
+  color: #00e5ff;
+  border: 1px solid rgba(0, 229, 255, 0.35);
+}
+
+.wf-badge-tag.blue {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.35);
+}
+
+.wf-badge-tag.green {
+  background: rgba(46, 204, 113, 0.15);
+  color: #4ade80;
+  border: 1px solid rgba(46, 204, 113, 0.35);
+}
+
+.wf-badge-tag.gold {
+  background: rgba(241, 196, 15, 0.15);
+  color: #facc15;
+  border: 1px solid rgba(241, 196, 15, 0.35);
+}
+
+.wf-badge-tag.orange {
+  background: rgba(230, 126, 34, 0.15);
+  color: #fb923c;
+  border: 1px solid rgba(230, 126, 34, 0.35);
+}
+
+.wf-badge-tag.purple {
+  background: rgba(165, 94, 234, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(165, 94, 234, 0.35);
+}
+
+.wf-badge-tag.red {
+  background: rgba(231, 76, 60, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(231, 76, 60, 0.35);
+}
+
+.wf-badge-tag.yellow {
+  background: rgba(234, 179, 8, 0.15);
+  color: #fde047;
+  border: 1px solid rgba(234, 179, 8, 0.35);
+}
+
+.wf-badge-tag.grey {
+  background: rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+
+

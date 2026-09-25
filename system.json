@@ -1,0 +1,103 @@
+{
+  "id": "warframe-ttrpg",
+  "type": "system",
+  "title": "Warframe TTRPG",
+  "description": "A custom futuristic system for playing Warframe Campaigns in Foundry VTT.",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "14"
+  },
+  "initiative": "1d20 + @attributes.prowess.value",
+  "documentTypes": {
+    "Actor": {
+      "warframe": {
+        "htmlFields": ["details.biography"]
+      },
+      "adversary": {
+        "htmlFields": ["details.description"]
+      }
+    },
+    "Item": {
+      "weapon": {
+        "htmlFields": ["description"]
+      },
+      "ability": {
+        "htmlFields": ["description"]
+      },
+      "mod": {
+        "htmlFields": ["description"]
+      },
+      "warframe": {
+        "htmlFields": ["description", "progression"]
+      },
+      "consumable": {
+        "htmlFields": ["description"]
+      }
+    }
+  },
+  "authors": [
+    {
+      "name": "Antigravity Pair Programmer"
+    }
+  ],
+  "esmodules": [
+    "module/warframe.js"
+  ],
+  "styles": [
+    {
+      "src": "css/warframe.css"
+    }
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    }
+  ],
+  "grid": {
+    "type": 1,
+    "distance": 5,
+    "units": "ft",
+    "diagonals": 0
+  },
+  "primaryTokenAttribute": "health",
+  "secondaryTokenAttribute": "shields",
+  "socket": true,
+  "packs": [
+    {
+      "name": "warframes",
+      "label": "Warframes",
+      "path": "packs/warframes",
+      "type": "Item",
+      "system": "warframe-ttrpg"
+    },
+    {
+      "name": "weapons",
+      "label": "Weapons",
+      "path": "packs/weapons",
+      "type": "Item",
+      "system": "warframe-ttrpg"
+    },
+    {
+      "name": "mods",
+      "label": "Mods",
+      "path": "packs/mods",
+      "type": "Item",
+      "system": "warframe-ttrpg"
+    },
+    {
+      "name": "bestiary",
+      "label": "Bestiaire",
+      "path": "packs/bestiary",
+      "type": "Actor",
+      "system": "warframe-ttrpg"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# LevelDB lock files
+LOCK
+*.old
+
+# Node & dependencies
+node_modules/
+
+# Commercial third-party modules
+module/ember/

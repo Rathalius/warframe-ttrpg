@@ -1,0 +1,329 @@
+<form class="{{cssClass}} warframe-sheet-form item-sheet weapon-sheet" autocomplete="off">
+  <!-- SHEET HEADER -->
+  <header class="sheet-header weapon-sheet-header">
+    <div class="weapon-img-container">
+      <img class="profile-img weapon-profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    </div>
+
+    <div class="header-details">
+      <div class="weapon-title-row">
+        <input class="charname weapon-name-input" name="name" type="text" value="{{item.name}}" placeholder="Nom de l'Arme" />
+        <div class="weapon-type-pill {{system.type}}">
+          <i class="{{typeIcon}}"></i> {{capitalize system.type}}
+        </div>
+      </div>
+
+      <div class="weapon-quick-bar">
+        <div class="quick-stat damage">
+          <span class="stat-label">Dégâts</span>
+          <span class="stat-val"><i class="fas fa-tint"></i> {{system.damage}} <small>({{system.damageType}})</small></span>
+        </div>
+        <div class="quick-stat crit">
+          <span class="stat-label">Critique</span>
+          <span class="stat-val">{{system.critChance}}% <small>(x{{system.critMultiplier}})</small></span>
+        </div>
+        <div class="quick-stat status">
+          <span class="stat-label">Statut</span>
+          <span class="stat-val">{{system.statusChance}}%</span>
+        </div>
+        <div class="quick-stat range">
+          <span class="stat-label">Portée</span>
+          <span class="stat-val">{{system.range}}</span>
+        </div>
+      </div>
+
+      <div class="weapon-header-actions">
+        <button type="button" class="roll-weapon-btn main-roll" title="Lancer le Jet d'Attaque">
+          <i class="fas fa-dice-d20"></i> Jet d'Attaque
+        </button>
+        {{#if (eq system.type "melee")}}
+          <button type="button" class="roll-weapon-finisher-btn finisher-roll" title="Exécuter un Coup de Grâce">
+            <i class="fas fa-skull"></i> Coup de Grâce (x2.0 Pur)
+          </button>
+        {{/if}}
+        {{#if system.hasAltFire}}
+          <button type="button" class="roll-weapon-alt-btn alt-roll" title="{{#if system.altFireLabel}}{{system.altFireLabel}}{{else}}Alt-Fire{{/if}}" style="background: linear-gradient(135deg, rgba(155, 89, 182, 0.2), rgba(0, 229, 255, 0.2)); border: 1px solid #9b59b6; color: #d6a2e8; font-family: 'Orbitron', sans-serif; font-size: 11px; font-weight: bold; padding: 6px 12px; border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+            <i class="{{#if system.altFireIcon}}{{system.altFireIcon}}{{else}}fas fa-bolt{{/if}}"></i> {{#if system.altFireLabel}}{{system.altFireLabel}}{{else}}Alt-Fire{{/if}}
+          </button>
+        {{/if}}
+        {{#if system.canSwapMode}}
+          <button type="button" class="swap-weapon-mode-btn swap-mode" title="Changer de Mode d'Arme (Actuel : {{system.currentMode}})" style="background: linear-gradient(135deg, rgba(230, 126, 34, 0.2), rgba(241, 196, 15, 0.2)); border: 1px solid #e67e22; color: #f39c12; font-family: 'Orbitron', sans-serif; font-size: 11px; font-weight: bold; padding: 6px 12px; border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+            <i class="fas fa-sync-alt"></i> {{#if (eq system.currentMode 'melee')}}Passer en Mode Fusil{{else}}Passer en Mode Baïonnette{{/if}}
+          </button>
+        {{/if}}
+      </div>
+    </div>
+  </header>
+
+  <!-- SHEET TABS -->
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="stats"><i class="fas fa-crosshairs"></i> Statistiques & Combat</a>
+    <a class="item" data-tab="mods"><i class="fas fa-microchip"></i> Mods & Capacité</a>
+    <a class="item" data-tab="description"><i class="fas fa-book-open"></i> Description & Histoire</a>
+  </nav>
+
+  <!-- SHEET BODY -->
+  <section class="sheet-body weapon-sheet-body">
+    <!-- STATS TAB -->
+    <div class="tab stats" data-group="primary" data-tab="stats">
+      <div class="weapon-stats-layout">
+        <!-- Classification -->
+        <div class="card-panel weapon-panel">
+          <h3><i class="fas fa-tag"></i> Classification</h3>
+          <div class="form-row-grid">
+            <div class="form-group">
+              <label>Emplacement d'Arme</label>
+              <select name="system.type">
+                <option value="primary" {{#if (eq system.type "primary")}}selected{{/if}}>Arme Principale</option>
+                <option value="secondary" {{#if (eq system.type "secondary")}}selected{{/if}}>Arme Secondaire</option>
+                <option value="melee" {{#if (eq system.type "melee")}}selected{{/if}}>Arme de Mêlée</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Sous-type / Catégorie</label>
+              <input type="text" name="system.subtype" value="{{system.subtype}}" list="weapon-subtypes-list" placeholder="ex. Fusil d'assaut, Pompe, Arc, Nikana" />
+              <datalist id="weapon-subtypes-list">
+                <option value="Fusil d'assaut" />
+                <option value="Fusil à rafale" />
+                <option value="Fusil semi-automatique" />
+                <option value="Fusil à rayon" />
+                <option value="Fusil à pompe" />
+                <option value="Arc" />
+                <option value="Fusil de précision" />
+                <option value="Lanceur lourd" />
+                <option value="Fusil-lance" />
+                <option value="Canon de bras" />
+                <option value="Pistolet" />
+                <option value="Doubles pistolets" />
+                <option value="Pistolet à pompe" />
+                <option value="Pistolet à rayon" />
+                <option value="Arme de jet" />
+                <option value="Épée" />
+                <option value="Doubles épées" />
+                <option value="Lame lourde" />
+                <option value="Arme d'hast" />
+                <option value="Bâton" />
+                <option value="Nikana" />
+                <option value="Gantelets / Pugilat" />
+                <option value="Griffes" />
+                <option value="Faux" />
+                <option value="Marteau" />
+                <option value="Dague" />
+                <option value="Doubles dagues" />
+                <option value="Pisto-lame" />
+                <option value="Fouet" />
+                <option value="Fouet-lame" />
+                <option value="Glaive" />
+                <option value="Éventail de combat" />
+                <option value="Tonfas" />
+                <option value="Rapière" />
+                <option value="Machette" />
+              </datalist>
+            </div>
+          </div>
+        </div>
+
+        <!-- Combat & Damage -->
+        <div class="card-panel weapon-panel">
+          <h3><i class="fas fa-fire-alt"></i> Combat & Dégâts</h3>
+          <div class="form-row-grid">
+            <div class="form-group">
+              <label>Formule de Dégâts</label>
+              <input type="text" name="system.damage" value="{{system.damage}}" placeholder="ex. 1d10, 2d6+2" />
+            </div>
+            <div class="form-group">
+              <label>Type de Dégâts Principal</label>
+              <select name="system.damageType" class="element-select">
+                {{#each damageTypes as |dmg|}}
+                  <option value="{{dmg.key}}" {{#if (eq ../system.damageType dmg.key)}}selected{{/if}}>{{dmg.label}}</option>
+                {{/each}}
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Portée Efficace</label>
+              <input type="text" name="system.range" value="{{system.range}}" placeholder="ex. Mêlée, 25m, 50m" />
+            </div>
+            <div class="form-group">
+              <label>Attribut d'Attaque</label>
+              <select name="system.attribute">
+                <option value="none" {{#if (eq system.attribute "none")}}selected{{/if}}>Aucun (Fixe)</option>
+                <option value="prowess" {{#if (eq system.attribute "prowess")}}selected{{/if}}>Prouesse</option>
+                <option value="physique" {{#if (eq system.attribute "physique")}}selected{{/if}}>Physique</option>
+                <option value="systems" {{#if (eq system.attribute "systems")}}selected{{/if}}>Systèmes</option>
+                <option value="focus" {{#if (eq system.attribute "focus")}}selected{{/if}}>Focalisation</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Bonus d'Attaque (Au Toucher)</label>
+              <input type="number" name="system.attackBonus" value="{{system.attackBonus}}" placeholder="0" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Critical & Status -->
+        <div class="card-panel weapon-panel">
+          <h3><i class="fas fa-bolt"></i> Métriques de Critique & Statut</h3>
+          <div class="form-row-grid">
+            <div class="form-group">
+              <label>Chances de Coup Critique (%)</label>
+              <input type="number" name="system.critChance" value="{{system.critChance}}" placeholder="20" min="0" />
+            </div>
+            <div class="form-group">
+              <label>Multiplicateur Critique (x)</label>
+              <input type="number" name="system.critMultiplier" value="{{system.critMultiplier}}" placeholder="2.0" step="0.1" min="1" />
+            </div>
+            <div class="form-group">
+              <label>Chances de Statut (%)</label>
+              <input type="number" name="system.statusChance" value="{{system.statusChance}}" placeholder="15" min="0" max="100" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Effective Modded Performance -->
+        {{#if hasSlottedMods}}
+          <div class="card-panel weapon-panel" style="background: linear-gradient(135deg, rgba(0, 229, 255, 0.08), rgba(255, 215, 0, 0.04)); border: 1px solid rgba(0, 229, 255, 0.35);">
+            <h3 style="color: #00e5ff;"><i class="fas fa-microchip"></i> Performances Modifiées Effectives</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; font-size: 11px; padding: 4px 0;">
+              <div><strong>Dégâts :</strong> <span style="color: #ffd700; font-weight: bold;">+{{modStats.damageBonus}}%</span></div>
+              <div><strong>Chances Crit :</strong> <span style="color: #f1c40f; font-weight: bold;">{{modStats.effectiveCritChance}}%</span> <small style="color: #8892b0;">(Base: {{system.critChance}}%)</small></div>
+              <div><strong>Mult. Critique :</strong> <span style="color: #e67e22; font-weight: bold;">{{modStats.effectiveCritMult}}x</span> <small style="color: #8892b0;">(Base: {{system.critMultiplier}}x)</small></div>
+              <div><strong>Chances Statut :</strong> <span style="color: #2ecc71; font-weight: bold;">{{modStats.effectiveStatusChance}}%</span> <small style="color: #8892b0;">(Base: {{system.statusChance}}%)</small></div>
+              {{#if modStats.multishot}}<div><strong>Tir Multiple :</strong> <span style="color: #3498db; font-weight: bold;">+{{modStats.multishot}}%</span></div>{{/if}}
+              {{#if modStats.fireRate}}<div><strong>Cadence de Tir :</strong> <span style="color: #9b59b6; font-weight: bold;">+{{modStats.fireRate}}%</span></div>{{/if}}
+            </div>
+            {{#if modStats.elementsHtml}}
+              <div style="margin-top: 6px; border-top: 1px dashed rgba(0, 229, 255, 0.2); padding-top: 6px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                <span style="font-size: 10px; color: #8892b0; font-weight: bold; text-transform: uppercase;">Éléments Actifs :</span>
+                {{{modStats.elementsHtml}}}
+              </div>
+            {{/if}}
+          </div>
+        {{/if}}
+
+        <!-- Handling / Ballistics (Melee Stance moved to Upgrade Grid) -->
+        {{#if (ne system.type "melee")}}
+          <div class="card-panel weapon-panel">
+            <h3><i class="fas fa-boxes"></i> Balistique & Munitions</h3>
+            <div class="form-row-grid">
+              <div class="form-group">
+                <label>Chargeur (Actuel / Max)</label>
+                <div class="mag-inputs" style="display: flex; align-items: center; gap: 6px;">
+                  <input type="number" name="system.magazine.value" value="{{system.magazine.value}}" min="0" style="text-align: center; width: 60px;" />
+                  <span>/</span>
+                  <input type="number" name="system.magazine.max" value="{{system.magazine.max}}" min="1" style="text-align: center; width: 60px;" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Réserve de Munitions</label>
+                <input type="number" name="system.ammoReserve" value="{{system.ammoReserve}}" min="0" placeholder="210" />
+              </div>
+              <div class="form-group">
+                <label>Cadence de Tir (Tirs/Round)</label>
+                <input type="number" name="system.fireRate" value="{{system.fireRate}}" min="1" placeholder="1" />
+              </div>
+              <div class="form-group">
+                <label>Coût d'Action de Rechargement</label>
+                <select name="system.reload">
+                  <option value="action" {{#if (eq system.reload "action")}}selected{{/if}}>1 Action Majeure</option>
+                  <option value="parkour" {{#if (or (eq system.reload "parkour") (eq system.reload "bonus"))}}selected{{/if}}>Manœuvre de Parkour (Glissade)</option>
+                  <option value="instant" {{#if (eq system.reload "instant")}}selected{{/if}}>Instantané / Gratuit</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        {{/if}}
+      </div>
+    </div>
+
+    <!-- MODS & UPGRADES TAB (Exact Character Sheet Upgrade Grid System) -->
+    <div class="tab mods" data-group="primary" data-tab="mods">
+      <div class="tab-header-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; gap: 12px;">
+        <div class="mod-capacity-meter" style="flex: 1;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <h3 style="font-family: 'Orbitron', sans-serif; font-size: 11px; color: #00e5ff; margin: 0; text-transform: uppercase;"><i class="fas fa-microchip"></i> Capacité de Mods</h3>
+            <span class="capacity-text" style="font-family: 'Orbitron', sans-serif; font-size: 10px; color: #8892b0;">
+              Utilisé : <strong style="color: {{#if (gt totalDrain modCapacity)}}#ff2a5f{{else}}#00e5ff{{/if}};">{{totalDrain}}</strong> / Max : <strong style="color: #fff;">{{modCapacity}}</strong>
+            </span>
+          </div>
+          <div class="meter-bar-container" style="background: rgba(0,0,0,0.5); border: 1px solid rgba(0, 229, 255, 0.2); border-radius: 3px; height: 10px; overflow: hidden; position: relative;">
+            <div class="meter-bar {{#if (gt totalDrain modCapacity)}}overloaded{{/if}}" style="background: {{#if (gt totalDrain modCapacity)}}linear-gradient(90deg, #ff2a5f, #e74c3c){{else}}linear-gradient(90deg, #00e5ff, #0077ff){{/if}}; height: 100%; width: {{min (pct totalDrain modCapacity) 100}}%; transition: width 0.3s ease;"></div>
+          </div>
+        </div>
+
+        <button type="button" class="toggle-catalyst-btn action-btn {{#if system.orokinCatalyst}}catalyst-active{{else}}catalyst-inactive{{/if}}" 
+                title="{{#if system.orokinCatalyst}}Le Catalyseur Orokin est installé (capacité doublée à 60). Cliquez pour le retirer.{{else}}Cliquez pour installer un Catalyseur Orokin (double la capacité de 30 à 60), ou glissez-déposez un Catalyseur Orokin sur cette fiche.{{/if}}"
+                style="background: {{#if system.orokinCatalyst}}linear-gradient(135deg, rgba(46, 204, 113, 0.25), rgba(39, 174, 96, 0.35)){{else}}linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(0, 119, 255, 0.25)){{/if}}; border: 1px solid {{#if system.orokinCatalyst}}#2ecc71{{else}}#00e5ff{{/if}}; color: {{#if system.orokinCatalyst}}#2ecc71{{else}}#00e5ff{{/if}}; font-family: 'Orbitron', sans-serif; font-size: 10px; font-weight: bold; padding: 6px 14px; border-radius: 4px; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; white-space: nowrap; box-shadow: {{#if system.orokinCatalyst}}0 0 8px rgba(46, 204, 113, 0.4){{else}}0 0 8px rgba(0, 229, 255, 0.25){{/if}}; transition: all 0.2s ease;">
+          <img src="systems/warframe-ttrpg/asset/supercharger/OrokinCatalyst.png" style="width: 24px; height: 24px; object-fit: contain; border: none; background: transparent; filter: drop-shadow(0 0 4px {{#if system.orokinCatalyst}}#2ecc71{{else}}#00e5ff{{/if}});" />
+          {{#if system.orokinCatalyst}}
+            <span><i class="fas fa-check-circle" style="color: #2ecc71;"></i> Catalyseur Actif (Capacité 60)</span>
+          {{else}}
+            <span><i class="fas fa-bolt" style="color: #00e5ff;"></i> Installer un Catalyseur</span>
+          {{/if}}
+        </button>
+      </div>
+
+      <!-- UPGRADE SOCKET GRID -->
+      <div class="mod-upgrade-grid-panel card-panel">
+        <h2 style="font-family: 'Orbitron', sans-serif; font-size: 11px; color: #00e5ff; margin-top: 0; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;"><i class="fas fa-th-large"></i> Grille d'Amélioration</h2>
+        <div class="mod-upgrade-grid">
+          <!-- Row 1: Special Slot (Stance for Melee on left, Exilus for Primary/Secondary on right) -->
+          <div class="mod-upgrade-row top-row">
+            {{#if (eq system.type "melee")}}
+              <div class="mod-slot-card-spacer"></div>
+              {{renderModSlot modGrid system.modSlots "stance"}}
+              <div class="mod-slot-card-spacer"></div>
+              <div class="mod-slot-card-spacer"></div>
+            {{else}}
+              <div class="mod-slot-card-spacer"></div>
+              <div class="mod-slot-card-spacer"></div>
+              {{renderModSlot modGrid system.modSlots "exilus"}}
+              <div class="mod-slot-card-spacer"></div>
+            {{/if}}
+          </div>
+          <!-- Row 2: Slots 1-4 -->
+          <div class="mod-upgrade-row middle-row">
+            {{renderModSlot modGrid system.modSlots "slot1"}}
+            {{renderModSlot modGrid system.modSlots "slot2"}}
+            {{renderModSlot modGrid system.modSlots "slot3"}}
+            {{renderModSlot modGrid system.modSlots "slot4"}}
+          </div>
+          <!-- Row 3: Slots 5-8 -->
+          <div class="mod-upgrade-row bottom-row">
+            {{renderModSlot modGrid system.modSlots "slot5"}}
+            {{renderModSlot modGrid system.modSlots "slot6"}}
+            {{renderModSlot modGrid system.modSlots "slot7"}}
+            {{renderModSlot modGrid system.modSlots "slot8"}}
+          </div>
+        </div>
+      </div>
+
+      {{#if hasSlottedMods}}
+        <div class="card-panel weapon-panel" style="margin-top: 10px; background: linear-gradient(135deg, rgba(0, 229, 255, 0.08), rgba(255, 215, 0, 0.04)); border: 1px solid rgba(0, 229, 255, 0.35);">
+          <h3 style="color: #00e5ff; margin-top: 0; font-size: 11px;"><i class="fas fa-microchip"></i> Performances Modifiées Effectives</h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; font-size: 11px; padding: 4px 0;">
+            <div><strong>Dégâts :</strong> <span style="color: #ffd700; font-weight: bold;">+{{modStats.damageBonus}}%</span></div>
+            <div><strong>Chances Crit :</strong> <span style="color: #f1c40f; font-weight: bold;">{{modStats.effectiveCritChance}}%</span> <small style="color: #8892b0;">(Base: {{system.critChance}}%)</small></div>
+            <div><strong>Mult. Critique :</strong> <span style="color: #e67e22; font-weight: bold;">{{modStats.effectiveCritMult}}x</span> <small style="color: #8892b0;">(Base: {{system.critMultiplier}}x)</small></div>
+            <div><strong>Chances Statut :</strong> <span style="color: #2ecc71; font-weight: bold;">{{modStats.effectiveStatusChance}}%</span> <small style="color: #8892b0;">(Base: {{system.statusChance}}%)</small></div>
+            {{#if modStats.multishot}}<div><strong>Tir Multiple :</strong> <span style="color: #3498db; font-weight: bold;">+{{modStats.multishot}}%</span></div>{{/if}}
+            {{#if modStats.fireRate}}<div><strong>Cadence de Tir :</strong> <span style="color: #9b59b6; font-weight: bold;">+{{modStats.fireRate}}%</span></div>{{/if}}
+          </div>
+          {{#if modStats.elementsHtml}}
+            <div style="margin-top: 6px; border-top: 1px dashed rgba(0, 229, 255, 0.2); padding-top: 6px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+              <span style="font-size: 10px; color: #8892b0; font-weight: bold; text-transform: uppercase;">Éléments Actifs :</span>
+              {{{modStats.elementsHtml}}}
+            </div>
+          {{/if}}
+        </div>
+      {{/if}}
+    </div>
+
+    <!-- DESCRIPTION TAB -->
+    <div class="tab description" data-group="primary" data-tab="description">
+      <div class="card-panel weapon-panel" style="height: 100%; display: flex; flex-direction: column;">
+        <h3><i class="fas fa-file-alt"></i> Spécifications & Histoire de l'Arme</h3>
+        {{editor system.description target="system.description" button=true owner=owner editable=editable}}
+      </div>
+    </div>
+  </section>
+</form>

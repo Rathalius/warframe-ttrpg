@@ -1,0 +1,454 @@
+{
+  "Actor": {
+    "types": [
+      "warframe",
+      "adversary"
+    ],
+    "warframe": {
+      "credits": 0,
+      "platinum": 0,
+      "rage": {
+        "value": 50,
+        "max": 300
+      },
+      "rubble": {
+        "value": 0,
+        "max": 1500
+      },
+      "brimstone": {
+        "value": 0,
+        "max": 100
+      },
+      "deathWell": {
+        "value": 0,
+        "max": 100
+      },
+      "battery": {
+        "value": 0,
+        "max": 100
+      },
+      "immolation": {
+        "value": 0,
+        "max": 100
+      },
+      "mutation": {
+        "value": 0,
+        "max": 100
+      },
+      "restraint": {
+        "value": 100,
+        "max": 100
+      },
+      "legion": {
+        "catenach": {
+          "active": false,
+          "health": 150,
+          "max": 150
+        },
+        "gulphagor": {
+          "active": false,
+          "health": 150,
+          "max": 150
+        },
+        "vythelas": {
+          "active": false,
+          "health": 150,
+          "max": 150
+        }
+      },
+      "health": {
+        "value": null,
+        "max": null
+      },
+      "shields": {
+        "value": null,
+        "max": null
+      },
+      "armor": {
+        "value": null
+      },
+      "energy": {
+        "value": null,
+        "max": null
+      },
+      "powerStrength": {
+        "value": 100
+      },
+      "powerDuration": {
+        "value": 100
+      },
+      "powerEfficiency": {
+        "value": 100
+      },
+      "powerRange": {
+        "value": 100
+      },
+      "speed": {
+        "land": {
+          "value": 30
+        },
+        "climb": {
+          "value": 15
+        }
+      },
+      "attributes": {
+        "physique": {
+          "value": 10,
+          "label": "Physique"
+        },
+        "prowess": {
+          "value": 10,
+          "label": "Prouesse"
+        },
+        "systems": {
+          "value": 10,
+          "label": "Systèmes"
+        },
+        "focus": {
+          "value": 10,
+          "label": "Focalisation"
+        }
+      },
+      "asiSpent": 0,
+      "details": {
+        "biography": "",
+        "frameClass": "",
+        "level": {
+          "value": 1
+        },
+        "aura": "",
+        "exilus": "",
+        "age": "",
+        "height": "",
+        "weight": "",
+        "operator": ""
+      },
+      "skills": {
+        "athletics": {
+          "value": false,
+          "label": "Athlétisme",
+          "attr": "physique"
+        },
+        "survival": {
+          "value": false,
+          "label": "Survie",
+          "attr": "physique"
+        },
+        "acrobatics": {
+          "value": false,
+          "label": "Acrobaties",
+          "attr": "prowess"
+        },
+        "stealth": {
+          "value": false,
+          "label": "Furtivité",
+          "attr": "prowess"
+        },
+        "reflexes": {
+          "value": false,
+          "label": "Réflexes",
+          "attr": "prowess"
+        },
+        "hacking": {
+          "value": false,
+          "label": "Piratage",
+          "attr": "systems"
+        },
+        "engineering": {
+          "value": false,
+          "label": "Ingénierie",
+          "attr": "systems"
+        },
+        "perception": {
+          "value": false,
+          "label": "Perception",
+          "attr": "focus"
+        },
+        "void": {
+          "value": false,
+          "label": "Canalisation du Néant",
+          "attr": "focus"
+        }
+      },
+      "resistances": {
+        "impact": "normal",
+        "puncture": "normal",
+        "slash": "normal",
+        "heat": "normal",
+        "cold": "normal",
+        "electricity": "normal",
+        "toxin": "normal",
+        "blast": "normal",
+        "corrosive": "normal",
+        "gas": "normal",
+        "magnetic": "normal",
+        "radiation": "normal",
+        "viral": "normal",
+        "void": "normal"
+      },
+      "modSlots": {
+        "aura": {
+          "polarity": "Madurai"
+        },
+        "aura2": {
+          "polarity": "none"
+        },
+        "exilus": {
+          "polarity": "none"
+        },
+        "slot1": {
+          "polarity": "none"
+        },
+        "slot2": {
+          "polarity": "none"
+        },
+        "slot3": {
+          "polarity": "none"
+        },
+        "slot4": {
+          "polarity": "none"
+        },
+        "slot5": {
+          "polarity": "none"
+        },
+        "slot6": {
+          "polarity": "none"
+        },
+        "slot7": {
+          "polarity": "none"
+        },
+        "slot8": {
+          "polarity": "none"
+        }
+      }
+    },
+    "adversary": {
+      "health": {
+        "value": 30,
+        "max": 30
+      },
+      "shields": {
+        "value": 0,
+        "max": 0
+      },
+      "armor": {
+        "value": 0
+      },
+      "details": {
+        "description": "",
+        "level": {
+          "value": 1
+        },
+        "faction": "",
+        "attacks": ""
+      },
+      "resistances": {
+        "impact": "normal",
+        "puncture": "normal",
+        "slash": "normal",
+        "heat": "normal",
+        "cold": "normal",
+        "electricity": "normal",
+        "toxin": "normal",
+        "blast": "normal",
+        "corrosive": "normal",
+        "gas": "normal",
+        "magnetic": "normal",
+        "radiation": "normal",
+        "viral": "normal",
+        "void": "normal"
+      }
+    }
+  },
+  "Item": {
+    "types": [
+      "weapon",
+      "ability",
+      "mod",
+      "warframe",
+      "consumable"
+    ],
+    "weapon": {
+      "description": "",
+      "type": "primary",
+      "subtype": "Rifle",
+      "damage": "1d10",
+      "damageType": "Slash",
+      "range": "50m",
+      "equipped": false,
+      "critChance": 20,
+      "critMultiplier": 2,
+      "statusChance": 15,
+      "attackBonus": 0,
+      "attribute": "prowess",
+      "magazine": {
+        "value": 30,
+        "max": 30
+      },
+      "ammoReserve": 210,
+      "fireRate": 1,
+      "reload": 1,
+      "hasAltFire": false,
+      "altFireLabel": "",
+      "altFireIcon": "fas fa-bolt",
+      "altDamage": "4d10",
+      "altDamageType": "Void",
+      "canSwapMode": false,
+      "currentMode": "rifle",
+      "modes": {},
+      "stancePolarity": "none",
+      "orokinCatalyst": false,
+      "modSlots": {
+        "stance": {
+          "polarity": "none"
+        },
+        "exilus": {
+          "polarity": "none"
+        },
+        "slot1": {
+          "polarity": "none"
+        },
+        "slot2": {
+          "polarity": "none"
+        },
+        "slot3": {
+          "polarity": "none"
+        },
+        "slot4": {
+          "polarity": "none"
+        },
+        "slot5": {
+          "polarity": "none"
+        },
+        "slot6": {
+          "polarity": "none"
+        },
+        "slot7": {
+          "polarity": "none"
+        },
+        "slot8": {
+          "polarity": "none"
+        }
+      }
+    },
+    "ability": {
+      "description": "",
+      "cost": 25,
+      "abilitySlot": 1
+    },
+    "mod": {
+      "description": "",
+      "drain": 4,
+      "polarity": "Madurai",
+      "equipped": false,
+      "modType": "warframe",
+      "weaponType": "all",
+      "slot": "",
+      "type": "standard",
+      "rarity": "common",
+      "rank": {
+        "value": 5,
+        "max": 5
+      },
+      "stats": {
+        "health": 0,
+        "shields": 0,
+        "armor": 0,
+        "energy": 0,
+        "powerStrength": 0,
+        "powerDuration": 0,
+        "powerEfficiency": 0,
+        "powerRange": 0,
+        "sprintSpeed": 0,
+        "damage": 0,
+        "critChance": 0,
+        "critMultiplier": 0,
+        "statusChance": 0,
+        "multishot": 0,
+        "fireRate": 0,
+        "magazine": 0,
+        "reload": 0,
+        "range": 0,
+        "capacity": 0,
+        "comboDuration": 0,
+        "initialCombo": 0,
+        "heat": 0,
+        "cold": 0,
+        "electricity": 0,
+        "toxin": 0,
+        "blast": 0,
+        "radiation": 0,
+        "gas": 0,
+        "magnetic": 0,
+        "viral": 0,
+        "corrosive": 0,
+        "impact": 0,
+        "puncture": 0,
+        "slash": 0
+      }
+    },
+    "warframe": {
+      "description": "",
+      "progression": "",
+      "advancements": {},
+      "baseHealth": 100,
+      "baseShields": 150,
+      "baseArmor": 100,
+      "baseEnergy": 100,
+      "passive": "",
+      "activeMechanic": "",
+      "power1": {
+        "name": "",
+        "unlock": 1,
+        "description": "",
+        "upgrade20": "",
+        "upgrade30": ""
+      },
+      "power2": {
+        "name": "",
+        "unlock": 3,
+        "description": "",
+        "upgrade20": "",
+        "upgrade30": ""
+      },
+      "power3": {
+        "name": "",
+        "unlock": 5,
+        "description": "",
+        "upgrade20": "",
+        "upgrade30": ""
+      },
+      "power4": {
+        "name": "",
+        "unlock": 10,
+        "description": "",
+        "upgrade20": "",
+        "upgrade30": ""
+      }
+    },
+    "consumable": {
+      "description": "",
+      "quantity": 1,
+      "type": "Forma",
+      "isForma": false,
+      "isSupercharger": false,
+      "isGear": true,
+      "formaType": "Forma",
+      "superchargerType": "Orokin Reactor",
+      "activation": "none",
+      "actionType": "none",
+      "formula": "",
+      "damageType": "",
+      "range": "",
+      "save": {
+        "ability": "",
+        "dc": 10
+      },
+      "charges": {
+        "value": 1,
+        "max": 1
+      },
+      "price": 0
+    }
+  }
+}

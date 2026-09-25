@@ -1,0 +1,85 @@
+<div class="planet-sheet-container">
+  <!-- Planet Header Banner -->
+  <header class="planet-header-banner">
+    <div>
+      <h2 class="planet-header-title">{{planet.name}}</h2>
+      <p class="planet-header-subtitle">{{planet.subtitle}}</p>
+    </div>
+    <div class="planet-faction-badge" style="color: {{faction.color}}; border-color: {{faction.color}};">
+      <i class="fa-solid fa-shield-halved"></i>
+      <span>{{faction.name}}</span>
+    </div>
+  </header>
+
+  <!-- Info Grid -->
+  <div class="planet-info-grid">
+    <div class="planet-stat-box">
+      <div class="planet-stat-label"><i class="fa-solid fa-ranking-star"></i> Paliers Tenno Conseillés</div>
+      <div class="planet-stat-value" style="color: #58d8ff;">{{planet.playerRank}}</div>
+    </div>
+    <div class="planet-stat-box">
+      <div class="planet-stat-label"><i class="fa-solid fa-satellite"></i> Statut Orbital</div>
+      <div class="planet-stat-value" style="color: #2ecc71;">Nœud Actif (Solar Rail)</div>
+    </div>
+  </div>
+
+  <!-- Resources Section -->
+  <div class="planet-stat-box" style="margin-bottom: 16px;">
+    <div class="planet-stat-label"><i class="fa-solid fa-gem"></i> Ressources Récoltables</div>
+    <div class="planet-resources-wrap">
+      {{#each planet.resources}}
+        <span class="planet-resource-chip">
+          <i class="fa-solid fa-circle"></i>
+          {{this}}
+        </span>
+      {{/each}}
+    </div>
+  </div>
+
+  <!-- Lore & Briefing -->
+  <div class="planet-lore-box">
+    <div style="font-weight: 700; color: #58d8ff; margin-bottom: 6px; font-family: 'Orbitron', sans-serif; font-size: 11px; letter-spacing: 1px;">
+      <i class="fa-solid fa-satellite-dish"></i> TRANSMISSION DU LOTUS // RENSEIGNEMENTS
+    </div>
+    <p style="margin: 0;">{{planet.lore}}</p>
+  </div>
+
+  <!-- City / Major Hub / Colony -->
+  {{#if planet.city}}
+    <div class="planet-poi-card" style="border-left: 3px solid #ffd166; background: rgba(255, 209, 102, 0.05); padding: 8px 12px; margin-top: 10px;">
+      <h4 style="color: #ffd166; margin-bottom: 4px; font-size: 11.5px;">
+        <i class="fa-solid fa-city"></i> COLONIE & REFUGE : {{#if planet.city.name}}{{planet.city.name}}{{else}}{{planet.city}}{{/if}}
+        {{#if planet.city.subtitle}}<span style="color: #e5c07b; font-weight: normal; font-size: 10.5px; text-transform: none;"> — {{planet.city.subtitle}}</span>{{/if}}
+      </h4>
+      {{#if planet.city.description}}
+        <p style="margin-bottom: 5px; color: #cbd5e1; font-size: 11px; line-height: 1.4;">{{planet.city.description}}</p>
+      {{/if}}
+      {{#if planet.openWorld}}
+        <p style="margin-bottom: 3px; font-size: 10.5px; color: #58d8ff;">
+          <i class="fa-solid fa-compass"></i> <b>Paysage ouvert accessible :</b> {{planet.openWorld}}
+        </p>
+      {{/if}}
+      {{#if planet.city.notableNPCs}}
+        <p style="margin: 0; font-size: 10px; color: #94a3b8;">
+          <i class="fa-solid fa-users"></i> <b>Figures notables :</b> {{planet.city.notableNPCs}}
+        </p>
+      {{/if}}
+      {{#unless planet.city.description}}
+        {{#unless planet.openWorld}}
+          <p>Zone de non-agression, marchands et point de ralliement des Tenno.</p>
+        {{/unless}}
+      {{/unless}}
+    </div>
+  {{/if}}
+
+  <!-- Mysterious Boss Assassination -->
+  {{#if planet.boss}}
+    <div class="planet-poi-card boss-card">
+      <h4><i class="fa-solid fa-skull"></i> CIBLE PRIORITAIRE D'ASSASSINAT : {{planet.boss.name}}</h4>
+      <p style="margin-bottom: 4px;"><b>Secteur :</b> {{planet.boss.location}}</p>
+      {{#if planet.boss.briefing}}
+        <p><b>Renseignement du Lotus :</b> {{planet.boss.briefing}}</p>
+      {{/if}}
+    </div>
+  {{/if}}
+</div>

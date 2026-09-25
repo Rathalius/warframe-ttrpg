@@ -1,0 +1,863 @@
+<div class="character-wizard-container">
+  <!-- Top Stepper Header -->
+  <div class="wizard-header">
+    <div class="wizard-title-block">
+      <div class="wizard-lotus-icon">
+        <i class="fas fa-atom fa-spin" style="animation-duration: 20s;"></i>
+      </div>
+      <div>
+        <h1 class="wizard-title">Éveil Tenno</h1>
+        <p class="wizard-subtitle">Protocole de Création de Personnage par Transférence</p>
+      </div>
+    </div>
+
+    <!-- Stepper Navigation Dots -->
+    <div class="wizard-stepper">
+      <div class="step-badge {{#if (eq step 1)}}active{{else if (gt step 1)}}completed{{/if}}" data-step="1">
+        <div class="step-circle"><i class="fas fa-user-shield"></i></div>
+        <span class="step-label">1. Warframe</span>
+      </div>
+      <div class="step-line {{#if (gt step 1)}}completed{{/if}}"></div>
+      <div class="step-badge {{#if (eq step 2)}}active{{else if (gt step 2)}}completed{{/if}}" data-step="2">
+        <div class="step-circle"><i class="fas fa-dice-d20"></i></div>
+        <span class="step-label">2. Caractéristiques</span>
+      </div>
+      <div class="step-line {{#if (gt step 2)}}completed{{/if}}"></div>
+      <div class="step-badge {{#if (eq step 3)}}active{{else if (gt step 3)}}completed{{/if}}" data-step="3">
+        <div class="step-circle"><i class="fas fa-sun"></i></div>
+        <span class="step-label">3. Focalisation</span>
+      </div>
+      <div class="step-line {{#if (gt step 3)}}completed{{/if}}"></div>
+      <div class="step-badge {{#if (eq step 4)}}active{{else if (gt step 4)}}completed{{/if}}" data-step="4">
+        <div class="step-circle"><i class="fas fa-crosshairs"></i></div>
+        <span class="step-label">4. Arsenal</span>
+      </div>
+      <div class="step-line {{#if (gt step 4)}}completed{{/if}}"></div>
+      <div class="step-badge {{#if (eq step 5)}}active{{/if}}" data-step="5">
+        <div class="step-circle"><i class="fas fa-dna"></i></div>
+        <span class="step-label">5. Éveil</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wizard Content Area -->
+  <div class="wizard-body">
+
+    <!-- STEP 1: WARFRAME SELECTION -->
+    {{#if (eq step 1)}}
+    <div class="wizard-step-pane step-warframe">
+      <div class="step-intro">
+        <h2>Choisissez votre Warframe</h2>
+        <p>Votre Warframe est votre conduit, votre armure et votre arme létale. Sélectionnez l'une des trois Warframes de départ canoniques, ou parcourez l'archive complète Orokin.</p>
+      </div>
+
+      <!-- Starter Trio Highlights -->
+      <div class="starter-trio-section">
+        <div class="section-label">
+          <i class="fas fa-star" style="color: #ffd700;"></i> Warframes de Départ Canoniques
+        </div>
+        <div class="starter-cards-grid">
+          {{#each starters}}
+          <div class="warframe-card starter-card {{#if (eq ../selectedWarframe.name this.name)}}selected{{/if}}" data-frame-name="{{this.name}}">
+            <div class="starter-badge">DÉPART</div>
+            <div class="card-img-wrap">
+              <img src="{{this.img}}" alt="{{this.name}}" />
+            </div>
+            <div class="card-content">
+              <div class="frame-name">{{this.name}}</div>
+              <div class="frame-theme">{{this.theme}}</div>
+              <div class="frame-stats-mini">
+                <span title="Santé"><i class="fas fa-heart" style="color: #e74c3c;"></i> {{this.system.baseHealth}}</span>
+                <span title="Boucliers"><i class="fas fa-shield-alt" style="color: #3498db;"></i> {{this.system.baseShields}}</span>
+                <span title="Armure"><i class="fas fa-user-shield" style="color: #f39c12;"></i> {{this.system.baseArmor}}</span>
+                <span title="Énergie"><i class="fas fa-bolt" style="color: #00e5ff;"></i> {{this.system.baseEnergy}}</span>
+              </div>
+            </div>
+            <button type="button" class="select-frame-action-btn">
+              {{#if (eq ../selectedWarframe.name this.name)}}<i class="fas fa-check"></i> Sélectionnée{{else}}Sélectionner la Warframe{{/if}}
+            </button>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+
+      <!-- Full Archive Section -->
+      <div class="archive-section">
+        <div class="archive-header-row">
+          <div class="section-label">
+            <i class="fas fa-database" style="color: #00e5ff;"></i> Archive Complète des Warframes ({{allWarframes.length}})
+          </div>
+          <div class="archive-search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" class="warframe-search-input" placeholder="Rechercher une Warframe par nom..." value="{{warframeSearch}}" />
+          </div>
+        </div>
+
+        <div class="archive-cards-grid">
+          {{#each filteredWarframes}}
+          <div class="warframe-card archive-card {{#if (eq ../selectedWarframe.name this.name)}}selected{{/if}}" data-frame-name="{{this.name}}">
+            <div class="card-img-wrap">
+              <img src="{{this.img}}" alt="{{this.name}}" />
+            </div>
+            <div class="card-content">
+              <div class="frame-name">{{this.name}}</div>
+              <div class="frame-stats-mini">
+                <span title="Santé"><i class="fas fa-heart" style="color: #e74c3c;"></i> {{this.system.baseHealth}}</span>
+                <span title="Boucliers"><i class="fas fa-shield-alt" style="color: #3498db;"></i> {{this.system.baseShields}}</span>
+                <span title="Armure"><i class="fas fa-user-shield" style="color: #f39c12;"></i> {{this.system.baseArmor}}</span>
+                <span title="Énergie"><i class="fas fa-bolt" style="color: #00e5ff;"></i> {{this.system.baseEnergy}}</span>
+              </div>
+            </div>
+            <button type="button" class="select-frame-action-btn">
+              {{#if (eq ../selectedWarframe.name this.name)}}<i class="fas fa-check"></i> Sélectionnée{{else}}Sélectionner{{/if}}
+            </button>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+
+      <!-- Selected Preview Drawer -->
+      {{#if selectedWarframe}}
+      <div class="selected-frame-preview-bar">
+        <div class="preview-img-container">
+          <img src="{{selectedWarframe.img}}" alt="{{selectedWarframe.name}}" />
+        </div>
+        <div class="preview-details">
+          <div class="preview-title-row">
+            <span class="preview-title">{{selectedWarframe.name}}</span>
+            {{#if selectedWarframeSignatures}}
+            <span class="signature-tag"><i class="fas fa-crown"></i> Équipement Signature : {{selectedWarframeSignatures}}</span>
+            {{/if}}
+          </div>
+          <p class="preview-desc">{{selectedWarframe.system.description}}</p>
+          <div class="preview-passive">
+            <strong><i class="fas fa-dna" style="color: #2ecc71;"></i> Passif :</strong> {{selectedWarframe.system.passive}}
+          </div>
+          {{#if selectedWarframe.system.activeMechanic}}
+          <div class="preview-mechanic">
+            <strong><i class="fas fa-cogs" style="color: #ffd700;"></i> Mécanique :</strong> {{selectedWarframe.system.activeMechanic}}
+          </div>
+          {{/if}}
+        </div>
+      </div>
+      {{/if}}
+    </div>
+    {{/if}}
+
+    <!-- STEP 2: ATTRIBUTES & STAT ALLOCATION -->
+    {{#if (eq step 2)}}
+    <div class="wizard-step-pane step-attributes">
+      <div class="step-intro">
+        <h2>Attributs du Conduit &amp; Attribution des Caractéristiques</h2>
+        <p>Les prouesses physiques, neurales et du Néant de votre Warframe sont régies par quatre caractéristiques fondamentales : <strong>Physique</strong>, <strong>Prouesse</strong>, <strong>Systèmes</strong> et <strong>Focalisation</strong>. Répartissez votre base via l'attribution de 48/48 Points ou lancez 4d6 (garder les 3 meilleurs dés).</p>
+      </div>
+
+      <!-- Method Selector Tabs -->
+      <div class="stat-method-selector">
+        <button type="button" class="stat-method-tab {{#if (eq statMethod 'point_buy')}}active{{/if}}" data-method="point_buy">
+          <i class="fas fa-sliders-h"></i> Attribution 48/48 Points
+        </button>
+        <button type="button" class="stat-method-tab {{#if (eq statMethod 'rolled')}}active{{/if}}" data-method="rolled">
+          <i class="fas fa-dice-d20"></i> Lancer 4d6 (Garder les 3 Meilleurs)
+        </button>
+      </div>
+
+      <!-- METHOD A: 48/48 POINT ALLOCATION -->
+      {{#if (eq statMethod 'point_buy')}}
+      <div class="point-buy-container">
+        <div class="point-allocation-header">
+          <div class="point-budget-display">
+            <span class="budget-label">Budget de Points :</span>
+            <span class="points-badge {{#if isPointBuyValid}}valid{{else}}invalid{{/if}}">
+              {{totalAllocated}} / 48 Points
+            </span>
+            {{#if isPointBuyValid}}
+              <span class="budget-status valid"><i class="fas fa-check-circle"></i> Complet (48/48)</span>
+            {{else if (gt totalAllocated 48)}}
+              <span class="budget-status over"><i class="fas fa-exclamation-triangle"></i> Dépassé de {{overPoints}} pts</span>
+            {{else}}
+              <span class="budget-status remaining"><i class="fas fa-info-circle"></i> {{remainingPoints}} pts restants</span>
+            {{/if}}
+          </div>
+          <div class="point-budget-hint">
+            <i class="fas fa-info-circle" style="color: #00e5ff;"></i> Distribuez les 48 points parmi vos 4 caractéristiques fondamentales.
+          </div>
+        </div>
+
+        <!-- Presets Grid with Descriptions -->
+        <div class="presets-container">
+          <div class="presets-header">
+            <span class="presets-label"><i class="fas fa-bookmark" style="color: #ffd700;"></i> Archétypes &amp; Préréglages de Caractéristiques :</span>
+            <span class="presets-hint">Sélectionnez un préréglage pour charger une répartition de caractéristiques spécialisée</span>
+          </div>
+
+          <div class="presets-cards-grid">
+            {{#each statPresets}}
+            <button type="button" class="btn-stat-preset {{#if this.isActive}}active{{/if}}" data-preset="{{this.id}}">
+              <div class="preset-card-top">
+                <span class="preset-name"><i class="{{this.icon}}"></i> {{this.name}}</span>
+                {{#if this.isActive}}
+                  <span class="preset-active-pill"><i class="fas fa-check"></i> Active</span>
+                {{/if}}
+              </div>
+              <div class="preset-scores-badge">{{this.scoresLabel}}</div>
+              <div class="preset-tagline">{{this.tagline}}</div>
+              <div class="preset-desc-text">{{this.description}}</div>
+            </button>
+            {{/each}}
+          </div>
+        </div>
+
+        <div class="attribute-cards-grid">
+          <!-- Physique -->
+          <div class="attr-card">
+            <div class="attr-header">
+              <div class="attr-icon-wrap" style="color: #e74c3c;">
+                <i class="fas fa-heart-pulse"></i>
+              </div>
+              <div class="attr-name">Physique</div>
+              <div class="attr-sub">Santé &amp; Ténacité</div>
+            </div>
+            <div class="attr-score-box">
+              <div class="attr-score-val">{{attributes.physique}}</div>
+              <div class="attr-mod-badge">{{statModLabels.physique}}</div>
+            </div>
+            <div class="attr-controls">
+              <button type="button" class="point-buy-btn" data-stat="physique" data-action="dec"><i class="fas fa-minus"></i></button>
+              <input type="number" class="stat-score-input" data-stat="physique" value="{{attributes.physique}}" min="6" max="18" />
+              <button type="button" class="point-buy-btn" data-stat="physique" data-action="inc"><i class="fas fa-plus"></i></button>
+            </div>
+            <div class="attr-governs">Régit : PV max par rang, Sauvegardes de Physique, Athlétisme, Survie</div>
+          </div>
+
+          <!-- Prowess -->
+          <div class="attr-card">
+            <div class="attr-header">
+              <div class="attr-icon-wrap" style="color: #2ecc71;">
+                <i class="fas fa-person-running"></i>
+              </div>
+              <div class="attr-name">Prouesse</div>
+              <div class="attr-sub">Agilité &amp; Réflexes</div>
+            </div>
+            <div class="attr-score-box">
+              <div class="attr-score-val">{{attributes.prowess}}</div>
+              <div class="attr-mod-badge">{{statModLabels.prowess}}</div>
+            </div>
+            <div class="attr-controls">
+              <button type="button" class="point-buy-btn" data-stat="prowess" data-action="dec"><i class="fas fa-minus"></i></button>
+              <input type="number" class="stat-score-input" data-stat="prowess" value="{{attributes.prowess}}" min="6" max="18" />
+              <button type="button" class="point-buy-btn" data-stat="prowess" data-action="inc"><i class="fas fa-plus"></i></button>
+            </div>
+            <div class="attr-governs">Régit : Initiative, Sauvegardes de Prouesse, Acrobaties, Furtivité, Réflexes</div>
+          </div>
+
+          <!-- Systems -->
+          <div class="attr-card">
+            <div class="attr-header">
+              <div class="attr-icon-wrap" style="color: #3498db;">
+                <i class="fas fa-microchip"></i>
+              </div>
+              <div class="attr-name">Systèmes</div>
+              <div class="attr-sub">Technologie &amp; Ingénierie</div>
+            </div>
+            <div class="attr-score-box">
+              <div class="attr-score-val">{{attributes.systems}}</div>
+              <div class="attr-mod-badge">{{statModLabels.systems}}</div>
+            </div>
+            <div class="attr-controls">
+              <button type="button" class="point-buy-btn" data-stat="systems" data-action="dec"><i class="fas fa-minus"></i></button>
+              <input type="number" class="stat-score-input" data-stat="systems" value="{{attributes.systems}}" min="6" max="18" />
+              <button type="button" class="point-buy-btn" data-stat="systems" data-action="inc"><i class="fas fa-plus"></i></button>
+            </div>
+            <div class="attr-governs">Régit : Sauvegardes de Systèmes, Piratage, Ingénierie, DD Technique</div>
+          </div>
+
+          <!-- Focus -->
+          <div class="attr-card">
+            <div class="attr-header">
+              <div class="attr-icon-wrap" style="color: #9b59b6;">
+                <i class="fas fa-brain"></i>
+              </div>
+              <div class="attr-name">Focalisation</div>
+              <div class="attr-sub">Canalisation du Néant &amp; Volonté</div>
+            </div>
+            <div class="attr-score-box">
+              <div class="attr-score-val">{{attributes.focus}}</div>
+              <div class="attr-mod-badge">{{statModLabels.focus}}</div>
+            </div>
+            <div class="attr-controls">
+              <button type="button" class="point-buy-btn" data-stat="focus" data-action="dec"><i class="fas fa-minus"></i></button>
+              <input type="number" class="stat-score-input" data-stat="focus" value="{{attributes.focus}}" min="6" max="18" />
+              <button type="button" class="point-buy-btn" data-stat="focus" data-action="inc"><i class="fas fa-plus"></i></button>
+            </div>
+            <div class="attr-governs">Régit : Sauvegardes de Focalisation, Perception, Canalisation du Néant, Puissance des Pouvoirs</div>
+          </div>
+        </div>
+      </div>
+      {{/if}}
+
+      <!-- METHOD B: ROLL 4d6 (DROP LOWEST) -->
+      {{#if (eq statMethod 'rolled')}}
+      <div class="dice-roll-container">
+        <div class="roll-banner-row">
+          <div class="roll-info-text">
+            <i class="fas fa-dice"></i> Lancez <strong>4d6</strong> par caractéristique et gardez les <strong>3 dés les plus élevés</strong>. Maximum <strong>2 tentatives de lancer</strong> par personnage (création uniquement).
+          </div>
+          <div class="roll-action-group">
+            <span class="roll-attempt-counter {{#if (eq rollCount 2)}}limit-reached{{/if}}">
+              Tentatives : <strong>{{rollCount}} / 2</strong>
+            </span>
+            {{#if (eq rollCount 0)}}
+              <button type="button" class="btn-roll-stats">
+                <i class="fas fa-dice-d20"></i> Lancer les Caractéristiques (4d6 Garder 3)
+              </button>
+            {{else if (eq rollCount 1)}}
+              <button type="button" class="btn-roll-stats btn-reroll">
+                <i class="fas fa-sync-alt"></i> Lancer le Second Set (1 Tentative Restante)
+              </button>
+            {{else}}
+              <button type="button" class="btn-roll-stats" disabled title="Maximum 2 tentatives de lancer par personnage durant la création">
+                <i class="fas fa-lock"></i> Lancers Max Atteints (2/2)
+              </button>
+            {{/if}}
+            {{#if (gt rollCount 0)}}
+              <button type="button" class="btn-reset-rolls" title="Réinitialiser les lancers et recommencer à la tentative 1">
+                <i class="fas fa-undo"></i> Réinitialiser
+              </button>
+            {{/if}}
+          </div>
+        </div>
+
+        {{#if hasMultipleSets}}
+        <!-- Set 1 vs Set 2 Comparison Selector Bar -->
+        <div class="roll-sets-selector-bar">
+          <div class="sets-selector-header">
+            <span class="sets-title"><i class="fas fa-balance-scale" style="color: #ffd700;"></i> Sélectionnez votre Set de Dés Préféré :</span>
+            <span class="sets-subtitle">Comparez les deux sets ci-dessous et cliquez sur celui qui correspond le mieux à votre style de jeu.</span>
+          </div>
+          <div class="sets-cards-row">
+            {{#each rollSets}}
+            <div class="set-choice-card {{#if this.isActive}}active{{/if}}" data-set-index="{{this.index}}">
+              <div class="set-card-top">
+                <div class="set-card-badge"><i class="fas fa-dice"></i> Set {{this.displayIndex}}</div>
+                {{#if this.isActive}}
+                  <span class="set-status-tag active"><i class="fas fa-check-circle"></i> SET ACTIF</span>
+                {{else}}
+                  <span class="set-status-tag inactive">Cliquer pour Choisir</span>
+                {{/if}}
+              </div>
+              <div class="set-card-sum">
+                <span class="sum-label">Somme du Pool</span>
+                <span class="sum-number">{{this.totalSum}}</span>
+              </div>
+              <div class="set-card-scores">
+                <span class="scores-label">Scores Lancés :</span>
+                <div class="scores-pills">
+                  {{#each this.scoresList}}
+                    <span class="mini-score-pill">{{this}}</span>
+                  {{/each}}
+                </div>
+              </div>
+              <button type="button" class="btn-select-roll-set {{#if this.isActive}}active{{/if}}" data-set-index="{{this.index}}">
+                {{#if this.isActive}}
+                  <i class="fas fa-check"></i> Sélectionné (Set {{this.displayIndex}})
+                {{else}}
+                  <i class="fas fa-mouse-pointer"></i> Choisir le Set {{this.displayIndex}}
+                {{/if}}
+              </button>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+        {{/if}}
+
+        {{#if hasRolled}}
+        <!-- Rolled Scores Pool -->
+        <div class="rolled-results-section">
+          <div class="section-label">
+            <i class="fas fa-list-ol" style="color: #ffd700;"></i> Réserve des Résultats Lancés {{#if hasMultipleSets}}— <span style="color: #00e5ff;">Set {{activeSetDisplayIndex}} Actif</span>{{/if}} (Attribuez chacun à une caractéristique)
+          </div>
+          <div class="rolled-cards-grid">
+            {{#each rolledOptions}}
+            <div class="rolled-score-card {{#if this.isAssignedTo}}assigned{{/if}}">
+              <div class="rolled-score-header">
+                <span class="score-num-badge">#{{this.displayIndex}}</span>
+                {{#if this.isAssignedTo}}
+                  <span class="assigned-tag"><i class="fas fa-arrow-right"></i> {{this.isAssignedTo}}</span>
+                {{else}}
+                  <span class="unassigned-tag">Non assigné</span>
+                {{/if}}
+              </div>
+              <div class="rolled-total-val">{{this.total}}</div>
+              <div class="rolled-dice-breakdown">
+                <span class="dice-kept-label">Gardé :</span>
+                <span class="kept-str">{{this.kept}}</span>
+                <span class="dropped-str" title="Plus bas dé retiré">(retiré {{this.dropped}})</span>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+
+        <!-- Target Attributes Assignment Grid -->
+        <div class="assignment-targets-section">
+          <div class="section-label">
+            <i class="fas fa-check-double" style="color: #00e5ff;"></i> Attribuer les Scores aux Caractéristiques {{#if hasMultipleSets}}<span style="font-size: 10px; color: #00e5ff; font-weight: normal; margin-left: 6px;">(Utilisant le Set {{activeSetDisplayIndex}})</span>{{/if}}
+          </div>
+          <div class="assignment-cards-grid">
+            <!-- Physique -->
+            <div class="assign-card {{#if (ne assignedRolls.physique null)}}assigned{{/if}}">
+              <div class="assign-header">
+                <i class="fas fa-heart-pulse" style="color: #e74c3c;"></i>
+                <span class="assign-stat-title">Physique</span>
+              </div>
+              <div class="assign-dropdown-wrap">
+                <select class="assign-stat-select" data-stat="physique">
+                  <option value="">-- Sélectionner un Score Lancé --</option>
+                  {{#each rolledOptions}}
+                    <option value="{{this.id}}" {{#if (eq ../assignedRolls.physique this.id)}}selected{{/if}}>
+                      Score #{{this.displayIndex}} : {{this.total}} {{#if this.isAssignedTo}}({{this.isAssignedTo}}){{/if}}
+                    </option>
+                  {{/each}}
+                </select>
+              </div>
+              <div class="assign-preview">
+                {{#if (ne assignedRolls.physique null)}}
+                  <span class="assigned-val">{{attributes.physique}}</span>
+                  <span class="assigned-mod">{{statModLabels.physique}}</span>
+                {{else}}
+                  <span class="unassigned-placeholder">En attente d'attribution</span>
+                {{/if}}
+              </div>
+            </div>
+
+            <!-- Prowess -->
+            <div class="assign-card {{#if (ne assignedRolls.prowess null)}}assigned{{/if}}">
+              <div class="assign-header">
+                <i class="fas fa-person-running" style="color: #2ecc71;"></i>
+                <span class="assign-stat-title">Prouesse</span>
+              </div>
+              <div class="assign-dropdown-wrap">
+                <select class="assign-stat-select" data-stat="prowess">
+                  <option value="">-- Sélectionner un Score Lancé --</option>
+                  {{#each rolledOptions}}
+                    <option value="{{this.id}}" {{#if (eq ../assignedRolls.prowess this.id)}}selected{{/if}}>
+                      Score #{{this.displayIndex}} : {{this.total}} {{#if this.isAssignedTo}}({{this.isAssignedTo}}){{/if}}
+                    </option>
+                  {{/each}}
+                </select>
+              </div>
+              <div class="assign-preview">
+                {{#if (ne assignedRolls.prowess null)}}
+                  <span class="assigned-val">{{attributes.prowess}}</span>
+                  <span class="assigned-mod">{{statModLabels.prowess}}</span>
+                {{else}}
+                  <span class="unassigned-placeholder">En attente d'attribution</span>
+                {{/if}}
+              </div>
+            </div>
+
+            <!-- Systems -->
+            <div class="assign-card {{#if (ne assignedRolls.systems null)}}assigned{{/if}}">
+              <div class="assign-header">
+                <i class="fas fa-microchip" style="color: #3498db;"></i>
+                <span class="assign-stat-title">Systèmes</span>
+              </div>
+              <div class="assign-dropdown-wrap">
+                <select class="assign-stat-select" data-stat="systems">
+                  <option value="">-- Sélectionner un Score Lancé --</option>
+                  {{#each rolledOptions}}
+                    <option value="{{this.id}}" {{#if (eq ../assignedRolls.systems this.id)}}selected{{/if}}>
+                      Score #{{this.displayIndex}} : {{this.total}} {{#if this.isAssignedTo}}({{this.isAssignedTo}}){{/if}}
+                    </option>
+                  {{/each}}
+                </select>
+              </div>
+              <div class="assign-preview">
+                {{#if (ne assignedRolls.systems null)}}
+                  <span class="assigned-val">{{attributes.systems}}</span>
+                  <span class="assigned-mod">{{statModLabels.systems}}</span>
+                {{else}}
+                  <span class="unassigned-placeholder">En attente d'attribution</span>
+                {{/if}}
+              </div>
+            </div>
+
+            <!-- Focus -->
+            <div class="assign-card {{#if (ne assignedRolls.focus null)}}assigned{{/if}}">
+              <div class="assign-header">
+                <i class="fas fa-brain" style="color: #9b59b6;"></i>
+                <span class="assign-stat-title">Focalisation</span>
+              </div>
+              <div class="assign-dropdown-wrap">
+                <select class="assign-stat-select" data-stat="focus">
+                  <option value="">-- Sélectionner un Score Lancé --</option>
+                  {{#each rolledOptions}}
+                    <option value="{{this.id}}" {{#if (eq ../assignedRolls.focus this.id)}}selected{{/if}}>
+                      Score #{{this.displayIndex}} : {{this.total}} {{#if this.isAssignedTo}}({{this.isAssignedTo}}){{/if}}
+                    </option>
+                  {{/each}}
+                </select>
+              </div>
+              <div class="assign-preview">
+                {{#if (ne assignedRolls.focus null)}}
+                  <span class="assigned-val">{{attributes.focus}}</span>
+                  <span class="assigned-mod">{{statModLabels.focus}}</span>
+                {{else}}
+                  <span class="unassigned-placeholder">En attente d'attribution</span>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+        {{else}}
+        <div class="dice-roll-empty-state">
+          <i class="fas fa-dice-d20 fa-3x" style="color: #00e5ff; opacity: 0.7; margin-bottom: 12px;"></i>
+          <p>Cliquez sur <strong>Lancer les Caractéristiques</strong> pour générer 4 scores avec 4d6 (en gardant les 3 meilleurs). Vous assignerez ensuite ces valeurs à vos quatre caractéristiques.</p>
+        </div>
+        {{/if}}
+      </div>
+      {{/if}}
+    </div>
+    {{/if}}
+
+    <!-- STEP 3: FOCUS SCHOOL SELECTION -->
+    {{#if (eq step 3)}}
+    <div class="wizard-step-pane step-focus">
+      <div class="step-intro">
+        <h2>Choisissez votre Voie de Focalisation</h2>
+        <p>Le Second Rêve a révélé les cinq disciplines de Transférence. Chaque école incarne une philosophie martiale qui renforce votre Tenno avec des améliorations passives innées.</p>
+      </div>
+
+      <div class="schools-grid">
+        {{#each focusSchools}}
+        <div class="school-card {{#if (eq ../selectedSchool this.name)}}selected{{/if}}" data-school-name="{{this.name}}">
+          <div class="school-emblem-wrap">
+            <img src="{{this.icon}}" alt="{{this.name}}" />
+          </div>
+          <div class="school-header">
+            <h3 class="school-name">{{this.name}}</h3>
+            <span class="school-title">{{this.title}}</span>
+          </div>
+          <p class="school-philosophy">{{this.philosophy}}</p>
+          <div class="school-starter-passive">
+            <div class="node-title"><i class="fas fa-bolt"></i> Passif Initial : <strong>{{this.starterNode}}</strong></div>
+            <div class="node-desc">{{this.nodeDesc}}</div>
+          </div>
+          <button type="button" class="select-school-action-btn">
+            {{#if (eq ../selectedSchool this.name)}}<i class="fas fa-check"></i> Sélectionnée{{else}}Choisir cette Voie{{/if}}
+          </button>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+
+    <!-- STEP 4: ARSENAL SELECTION (RANK 1 APPROPRIATE) -->
+    {{#if (eq step 4)}}
+    <div class="wizard-step-pane step-weapons">
+      <div class="step-intro">
+        <h2>Équipez votre Arsenal de Rang 1</h2>
+        <p>Sélectionnez votre arsenal de départ : <strong>1 Principale</strong>, <strong>1 Secondaire</strong> et <strong>1 Mêlée</strong>. Les armements avancés sont verrouillés pour la Transférence initiale.</p>
+      </div>
+
+      <!-- Current Arsenal Summary Bar -->
+      <div class="arsenal-summary-bar">
+        <div class="arsenal-slot-preview {{#if selectedPrimary}}filled{{/if}}" data-switch-tab="primary">
+          <div class="slot-badge">PRINCIPALE</div>
+          {{#if selectedPrimary}}
+            <img src="{{selectedPrimary.img}}" class="slot-img" />
+            <div class="slot-text">
+              <span class="slot-name">{{selectedPrimary.name}}</span>
+              <span class="slot-meta">{{selectedPrimary.system.subtype}} ({{selectedPrimary.system.damage}} {{selectedPrimary.system.damageType}})</span>
+            </div>
+          {{else}}
+            <div class="slot-empty"><i class="fas fa-plus"></i> Choisir une Arme Principale</div>
+          {{/if}}
+        </div>
+
+        <div class="arsenal-slot-preview {{#if selectedSecondary}}filled{{/if}}" data-switch-tab="secondary">
+          <div class="slot-badge">SECONDAIRE</div>
+          {{#if selectedSecondary}}
+            <img src="{{selectedSecondary.img}}" class="slot-img" />
+            <div class="slot-text">
+              <span class="slot-name">{{selectedSecondary.name}}</span>
+              <span class="slot-meta">{{selectedSecondary.system.subtype}} ({{selectedSecondary.system.damage}} {{selectedSecondary.system.damageType}})</span>
+            </div>
+          {{else}}
+            <div class="slot-empty"><i class="fas fa-plus"></i> Choisir une Arme Secondaire</div>
+          {{/if}}
+        </div>
+
+        <div class="arsenal-slot-preview {{#if selectedMelee}}filled{{/if}}" data-switch-tab="melee">
+          <div class="slot-badge">MÊLÉE</div>
+          {{#if selectedMelee}}
+            <img src="{{selectedMelee.img}}" class="slot-img" />
+            <div class="slot-text">
+              <span class="slot-name">{{selectedMelee.name}}</span>
+              <span class="slot-meta">{{selectedMelee.system.subtype}} ({{selectedMelee.system.damage}} {{selectedMelee.system.damageType}})</span>
+            </div>
+          {{else}}
+            <div class="slot-empty"><i class="fas fa-plus"></i> Choisir une Arme de Mêlée</div>
+          {{/if}}
+        </div>
+      </div>
+
+      <!-- Weapon Type Tabs -->
+      <div class="weapon-nav-tabs">
+        <button type="button" class="weapon-tab-btn {{#if (eq weaponTab 'primary')}}active{{/if}}" data-tab="primary">
+          <i class="fas fa-crosshairs"></i> Armes Principales ({{primaryWeapons.length}})
+        </button>
+        <button type="button" class="weapon-tab-btn {{#if (eq weaponTab 'secondary')}}active{{/if}}" data-tab="secondary">
+          <i class="fas fa-bullseye"></i> Armes Secondaires ({{secondaryWeapons.length}})
+        </button>
+        <button type="button" class="weapon-tab-btn {{#if (eq weaponTab 'melee')}}active{{/if}}" data-tab="melee">
+          <i class="fas fa-khanda"></i> Armes de Mêlée ({{meleeWeapons.length}})
+        </button>
+      </div>
+
+      <!-- Search Filter Bar -->
+      <div class="weapons-filter-row">
+        <div class="weapons-search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" class="weapon-search-input" placeholder="Rechercher une arme par nom ou sous-type..." value="{{weaponSearch}}" />
+        </div>
+      </div>
+
+      <!-- Weapons Cards Grid -->
+      <div class="weapons-grid">
+        {{#each currentWeaponList}}
+        <div class="weapon-card {{#if this.isSelected}}selected{{/if}} {{#if this.isSignature}}is-signature{{/if}}" data-weapon-name="{{this.name}}">
+          {{#if this.isSignature}}
+          <div class="weapon-sig-ribbon" title="Arme signature pour {{../selectedWarframe.name}}">
+            <i class="fas fa-star"></i> SIGNATURE
+          </div>
+          {{/if}}
+
+          <div class="weapon-card-header">
+            <img src="{{this.img}}" alt="{{this.name}}" />
+            <div>
+              <div class="weapon-card-name">{{this.name}}</div>
+              <div class="weapon-card-subtype">{{this.system.subtype}}</div>
+            </div>
+          </div>
+
+          <div class="weapon-card-stats">
+            <div class="weapon-stat-row">
+              <span class="stat-label">Dégâts</span>
+              <span class="stat-val dmg-val">{{this.system.damage}} {{this.system.damageType}}</span>
+            </div>
+            <div class="weapon-stat-row">
+              <span class="stat-label">Critique (Taux / Mult)</span>
+              <span class="stat-val">{{this.system.criticalChance}}% (x{{this.system.criticalMultiplier}})</span>
+            </div>
+            <div class="weapon-stat-row">
+              <span class="stat-label">Statut</span>
+              <span class="stat-val">{{this.system.statusChance}}%</span>
+            </div>
+          </div>
+
+          <div class="weapon-card-desc">
+            <div class="desc-content">
+              {{{this.system.description}}}
+            </div>
+          </div>
+          <button type="button" class="select-weapon-action-btn">
+            {{#if this.isSelected}}<i class="fas fa-check"></i> Équipée{{else}}Équiper{{/if}}
+          </button>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+
+    <!-- STEP 5: AWAKENING SUMMARY & CONFIRMATION -->
+    {{#if (eq step 5)}}
+    <div class="wizard-step-pane step-summary">
+      <div class="step-intro">
+        <h2>Synchronisation de Transférence Prête</h2>
+        <p>Le lien somatique est calibré. Confirmez votre désignation Tenno et vérifiez votre équipement de départ avant d'initier l'Éveil par Transférence.</p>
+      </div>
+
+      <!-- Tenno Designation Field -->
+      <div class="tenno-name-card">
+        <label for="wizard-tenno-name"><i class="fas fa-id-card" style="color: #00e5ff;"></i> Nom du Tenno / Indicatif :</label>
+        <div class="name-input-wrapper">
+          <input type="text" id="wizard-tenno-name" class="wizard-name-input" value="{{tennoName}}" placeholder="Entrez le nom du Tenno..." />
+          <span class="rank-indicator">RANG 1 (INITIÉ)</span>
+        </div>
+      </div>
+
+      <!-- Summary Dossier Grid -->
+      <div class="dossier-grid">
+        <!-- Warframe Dossier -->
+        <div class="dossier-card frame-dossier">
+          <div class="dossier-header">
+            <i class="fas fa-user-shield"></i> Warframe Choisie
+          </div>
+          <div class="dossier-content">
+            <img src="{{selectedWarframe.img}}" class="dossier-img" />
+            <div class="dossier-details">
+              <div class="dossier-title">{{selectedWarframe.name}}</div>
+              <div class="dossier-stats-grid">
+                <div><strong style="color: #e74c3c;">HP:</strong> {{selectedWarframe.system.baseHealth}}</div>
+                <div><strong style="color: #3498db;">Shields:</strong> {{selectedWarframe.system.baseShields}}</div>
+                <div><strong style="color: #f39c12;">Armor:</strong> {{selectedWarframe.system.baseArmor}}</div>
+                <div><strong style="color: #00e5ff;">Energy:</strong> {{selectedWarframe.system.baseEnergy}}</div>
+              </div>
+              <div class="dossier-passive-line">
+                <strong>Passif :</strong> {{selectedWarframe.system.passive}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Attributes Dossier -->
+        <div class="dossier-card attr-dossier">
+          <div class="dossier-header">
+            <i class="fas fa-dice-d20"></i> Caractéristiques Fondamentales
+          </div>
+          <div class="dossier-content" style="flex-direction: column; gap: 8px; justify-content: center;">
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; width: 100%;">
+              <div style="background: rgba(0,0,0,0.3); padding: 5px 8px; border-radius: 4px; border-left: 2px solid #e74c3c; display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 10px; color: #94a3b8; font-family: 'Orbitron', sans-serif;">Physique</span>
+                <span style="font-size: 12px; font-weight: bold; color: #fff;">{{attributes.physique}} <small style="color: #00e5ff;">({{statModLabels.physique}})</small></span>
+              </div>
+              <div style="background: rgba(0,0,0,0.3); padding: 5px 8px; border-radius: 4px; border-left: 2px solid #2ecc71; display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 10px; color: #94a3b8; font-family: 'Orbitron', sans-serif;">Prouesse</span>
+                <span style="font-size: 12px; font-weight: bold; color: #fff;">{{attributes.prowess}} <small style="color: #00e5ff;">({{statModLabels.prowess}})</small></span>
+              </div>
+              <div style="background: rgba(0,0,0,0.3); padding: 5px 8px; border-radius: 4px; border-left: 2px solid #3498db; display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 10px; color: #94a3b8; font-family: 'Orbitron', sans-serif;">Systèmes</span>
+                <span style="font-size: 12px; font-weight: bold; color: #fff;">{{attributes.systems}} <small style="color: #00e5ff;">({{statModLabels.systems}})</small></span>
+              </div>
+              <div style="background: rgba(0,0,0,0.3); padding: 5px 8px; border-radius: 4px; border-left: 2px solid #9b59b6; display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 10px; color: #94a3b8; font-family: 'Orbitron', sans-serif;">Focalisation</span>
+                <span style="font-size: 12px; font-weight: bold; color: #fff;">{{attributes.focus}} <small style="color: #00e5ff;">({{statModLabels.focus}})</small></span>
+              </div>
+            </div>
+            <div style="font-size: 9.5px; color: #a0aec0; text-align: center; font-family: 'Inter', sans-serif; margin-top: 4px;">
+              {{#if (eq statMethod 'point_buy')}}
+                <i class="fas fa-sliders-h" style="color: #00e5ff;"></i> Méthode : <strong>Attribution 48/48 Points</strong>
+              {{else}}
+                <i class="fas fa-dice" style="color: #ffd700;"></i> Méthode : <strong>4d6 Garder 3</strong> ({{#if hasMultipleSets}}Set {{activeSetDisplayIndex}} sur {{rollSets.length}} sélectionné{{else}}Tentative {{rollCount}}/2{{/if}}, Total : {{activeSet.totalSum}})
+              {{/if}}
+            </div>
+          </div>
+        </div>
+
+        <!-- Focus School Dossier -->
+        <div class="dossier-card focus-dossier">
+          <div class="dossier-header">
+            <i class="fas fa-sun"></i> École de Focalisation
+          </div>
+          <div class="dossier-content">
+            <img src="{{selectedSchoolData.icon}}" class="dossier-img circle-emblem" />
+            <div class="dossier-details">
+              <div class="dossier-title">{{selectedSchoolData.name}}</div>
+              <div class="dossier-school-title">{{selectedSchoolData.title}}</div>
+              <div class="dossier-passive-line">
+                <strong>Passif de Départ :</strong> {{selectedSchoolData.starterNode}}
+              </div>
+              <div class="dossier-desc">{{selectedSchoolData.philosophy}}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arsenal Dossier -->
+        <div class="dossier-card arsenal-dossier">
+          <div class="dossier-header">
+            <i class="fas fa-crosshairs"></i> Arsenal Équipé
+          </div>
+          <div class="dossier-weapons-list">
+            <div class="dossier-weapon-row">
+              <img src="{{selectedPrimary.img}}" />
+              <div class="dossier-weapon-text">
+                <span class="tag">PRINCIPALE</span>
+                <span class="w-name">{{selectedPrimary.name}}</span>
+                <span class="w-stat">{{selectedPrimary.system.subtype}} &bull; {{selectedPrimary.system.damage}} {{selectedPrimary.system.damageType}}</span>
+              </div>
+            </div>
+            <div class="dossier-weapon-row">
+              <img src="{{selectedSecondary.img}}" />
+              <div class="dossier-weapon-text">
+                <span class="tag">SECONDAIRE</span>
+                <span class="w-name">{{selectedSecondary.name}}</span>
+                <span class="w-stat">{{selectedSecondary.system.subtype}} &bull; {{selectedSecondary.system.damage}} {{selectedSecondary.system.damageType}}</span>
+              </div>
+            </div>
+            <div class="dossier-weapon-row">
+              <img src="{{selectedMelee.img}}" />
+              <div class="dossier-weapon-text">
+                <span class="tag">MÊLÉE</span>
+                <span class="w-name">{{selectedMelee.name}}</span>
+                <span class="w-stat">{{selectedMelee.system.subtype}} &bull; {{selectedMelee.system.damage}} {{selectedMelee.system.damageType}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Big Awaken Tenno Action Area -->
+      <div class="awaken-action-container">
+        <div class="lotus-quote">
+          <i class="fas fa-quote-left" style="color: #00e5ff; opacity: 0.5;"></i>
+          <em>« Réveillez-vous, Tenno. Ne rêvez pas de ce que vous êtes, mais de ce que vous voulez devenir. »</em>
+          <span style="display: block; font-size: 10px; color: #00e5ff; margin-top: 4px; font-weight: bold;">— The Lotus</span>
+        </div>
+        <button type="button" class="btn-awaken-tenno">
+          <i class="fas fa-power-off"></i> ÉVEILLER LE TENNO (FINALISER LA TRANSFÉRENCE)
+        </button>
+      </div>
+    </div>
+    {{/if}}
+
+  </div>
+
+  <!-- Wizard Footer Controls -->
+  <div class="wizard-footer">
+    <button type="button" class="wizard-nav-btn btn-prev" {{#if (eq step 1)}}disabled{{/if}}>
+      <i class="fas fa-chevron-left"></i> Étape Précédente
+    </button>
+
+    <div class="wizard-status-indicator">
+      {{#if (eq step 1)}}
+        {{#if selectedWarframe}}
+          <span style="color: #2ecc71;"><i class="fas fa-check-circle"></i> Warframe sélectionnée : <strong>{{selectedWarframe.name}}</strong></span>
+        {{else}}
+          <span style="color: #f39c12;"><i class="fas fa-exclamation-circle"></i> Veuillez sélectionner une Warframe</span>
+        {{/if}}
+      {{else if (eq step 2)}}
+        {{#if canProceedFromStats}}
+          <span style="color: #2ecc71;"><i class="fas fa-check-circle"></i> Caractéristiques configurées ({{#if (eq statMethod 'point_buy')}}48/48 Points{{else}}Set {{activeSetDisplayIndex}} Assigné{{/if}})</span>
+        {{else}}
+          <span style="color: #f39c12;"><i class="fas fa-exclamation-circle"></i> {{#if (eq statMethod 'point_buy')}}Attribuez les 48 points ({{remainingPoints}} pts restants){{else}}Attribuez les 4 caractéristiques du Set {{activeSetDisplayIndex}}{{/if}}</span>
+        {{/if}}
+      {{else if (eq step 3)}}
+        {{#if selectedSchool}}
+          <span style="color: #2ecc71;"><i class="fas fa-check-circle"></i> École de Focalisation choisie : <strong>{{selectedSchool}}</strong></span>
+        {{else}}
+          <span style="color: #f39c12;"><i class="fas fa-exclamation-circle"></i> Veuillez choisir une Voie de Focalisation</span>
+        {{/if}}
+      {{else if (eq step 4)}}
+        {{#if canProceedFromWeapons}}
+          <span style="color: #2ecc71;"><i class="fas fa-check-circle"></i> Arsenal prêt (1 Principale, 1 Secondaire, 1 Mêlée)</span>
+        {{else}}
+          <span style="color: #f39c12;"><i class="fas fa-exclamation-circle"></i> Sélectionnez 1 arme Principale, 1 Secondaire et 1 arme de Mêlée</span>
+        {{/if}}
+      {{else if (eq step 5)}}
+        <span style="color: #00e5ff;"><i class="fas fa-check-double"></i> Prêt pour la séquence d'Éveil</span>
+      {{/if}}
+    </div>
+
+    {{#if (lt step 5)}}
+    <button type="button" class="wizard-nav-btn btn-next" {{#unless canGoNext}}disabled{{/unless}}>
+      Étape Suivante <i class="fas fa-chevron-right"></i>
+    </button>
+    {{else}}
+    <button type="button" class="wizard-nav-btn btn-finish-shortcut">
+      <i class="fas fa-bolt"></i> Prêt
+    </button>
+    {{/if}}
+  </div>
+</div>
